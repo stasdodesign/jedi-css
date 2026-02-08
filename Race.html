@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Детали Рейса #R00101 - ТрансЛогистик</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="jedicss.ico/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="jedicss.ico/favicon.svg" />
+    <link rel="shortcut icon" href="jedicss.ico/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="jedicss.ico/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="JEDI CSS. Product Design System" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .status-new { background-color: #3b82f6; color: white; }
+        .status-loading { background-color: #22d3ee; color: black; }
+        .status-in-transit { background-color: #22c55e; color: white; }
+        .status-problem { background-color: #ef4444; color: white; }
+        .status-delayed { background-color: #f97316; color: white; }
+        .status-unloading { background-color: #a3e635; color: black; }
+        .status-completed { background-color: #6b7280; color: white; }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        .section-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        .section-title {
+            font-size: 1.25rem; /* 20px */
+            font-weight: 600;
+            color: #1f2937; /* gray-800 */
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #e5e7eb; /* gray-200 */
+        }
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 16px;
+        }
+        .info-item {
+            margin-bottom: 8px;
+        }
+        .info-label {
+            font-weight: 500;
+            color: #4b5563; /* gray-600 */
+        }
+        .info-value {
+            color: #1f2937; /* gray-800 */
+        }
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background-color: #d1d5db; /* gray-300 */
+        }
+        .timeline-item {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -25px; /* Adjust based on icon size and padding */
+            top: 2px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #3b82f6; /* blue-500 */
+            border: 2px solid white;
+        }
+        .timeline-item-problem::before {
+             background-color: #ef4444; /* red-500 */
+        }
+        .timeline-item-completed::before {
+             background-color: #22c55e; /* green-500 */
+        }
+        .btn {
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.2s ease-in-out;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn-primary {
+            background-color: #3b82f6; /* Синий */
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb;
+        }
+        .btn-secondary {
+            background-color: #6b7280; /* Серый */
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #4b5563;
+        }
+         .btn-danger {
+            background-color: #ef4444; /* Красный */
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #dc2626;
+        }
+        .btn-icon {
+            padding: 8px;
+        }
+        /* Стили для модального окна (аналогично главной странице) */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 24px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+        }
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        .close-button {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6b7280;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+
+  <!-- Главное меню -->
+  <header class="main-header">
+    <div class="logo">
+      <svg class="logo-img" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M399.93,408a7.59,7.59,0,0,1-7.9-6.61.1.1,0,0,1,.07-.1h0a.1.1,0,0,1,.09.06,9.65,9.65,0,0,0,.77,1.6,7,7,0,0,1,.2-7.09.1.1,0,0,1,.07,0l.05,0a.08.08,0,0,1,0,.12c-1.09,2.06.07,4.14.86,5.19a6.51,6.51,0,0,1-.63-4.53,7.8,7.8,0,0,1,3.23-4.34h0a.08.08,0,0,1,.07,0,.08.08,0,0,1,0,.12,3.2,3.2,0,0,0-1.38,2.29c-.2,2.11,1.73,4.27,1.75,4.29a.09.09,0,0,1,0,.1,5.78,5.78,0,0,0-.67,4.64,6.24,6.24,0,0,0,2.92,3.26l.06-2.63-1.05,1.1a.07.07,0,0,1-.06,0l-.05,0a.08.08,0,0,1,0-.11l.79-1.56-2.08-.3a.08.08,0,0,1-.07-.09.1.1,0,0,1,.07-.09l2.09-.3-.67-1.85a.1.1,0,0,1,.05-.11h0a.07.07,0,0,1,.07,0l.95,1.38.27-10.34A.09.09,0,0,1,400,392h0a.09.09,0,0,1,.09.09c0,.06.19,7.05.27,10.34l.95-1.38a.1.1,0,0,1,.07,0h0a.09.09,0,0,1,0,.11l-.67,1.85,2.09.3a.11.11,0,0,1,.08.09.09.09,0,0,1-.08.09l-2.08.3.8,1.56a.09.09,0,0,1,0,.11.07.07,0,0,1-.06,0l-.06,0-1.05-1.1c0,1.62.06,2.36.07,2.63a6.23,6.23,0,0,0,2.91-3.26,5.78,5.78,0,0,0-.67-4.64.09.09,0,0,1,0-.1s1.95-2.18,1.75-4.28a3.2,3.2,0,0,0-1.38-2.29.09.09,0,0,1,0-.13.12.12,0,0,1,.08,0l0,0a7.76,7.76,0,0,1,3.23,4.33,6.5,6.5,0,0,1-.62,4.53c.78-1,1.94-3.12.85-5.19a.09.09,0,0,1,0-.12l.05,0a.08.08,0,0,1,.07,0A7,7,0,0,1,407,403a8.06,8.06,0,0,0,.83-1.67.1.1,0,0,1,.09-.06h0a.1.1,0,0,1,.07.1,7.59,7.59,0,0,1-7.9,6.61h-.14Z" transform="translate(-390 -390)"/>
+        <path d="M400,410a10,10,0,1,1,10-10A10,10,0,0,1,400,410Zm0-19.39a9.39,9.39,0,1,0,9.39,9.39A9.4,9.4,0,0,0,400,390.61Z" transform="translate(-390 -390)"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-title">JEDI</span>
+        <span class="logo-subtitle">Product Design System</span>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="themes.html" class="nav-link">Themes</a>
+      <a href="primitives.html" class="nav-link active">Primitives</a>
+      <a href="type.html" class="nav-link">Type</a>
+      <a href="colors.html" class="nav-link">Colors</a>
+      <a href="icons.html" class="nav-link">Icons</a>
+    </nav>
+    <button class="burger" id="burger-btn">☰</button>
+    <div class="extra-menu">
+      <a href="https://github.com/stasdodesign/" class="menu-link">GitHub</a>
+    </div>
+  </header>
+  <div class="overlay" id="overlay"></div>
+
+  
+  <!-- Второе меню - Якоря -->
+  <aside class="sub-nav">
+    <ul>
+      <li><strong>Logistics</strong></li>
+      <li><a href="logistics_dashboard_v1.html" class="nav-link">Dashboard</a></li>
+      <li><a href="Race.html" class="nav-link">Race</a></li> 
+    </ul>
+  </aside>
+     
+   <!-- Компоненты -->
+  <main class="components-list">     
+    <header class="bg-white shadow-md sticky top-12 z-50 rounded-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+				<a href="logistics_dashboard_v1.html">
+                <i class="fas fa-truck-fast text-3xl text-blue-600 mr-3"></i></a>
+                <a href="logistics_dashboard_v1.html"><h1 class="text-2xl font-bold text-gray-800">Транс<span class="text-blue-600">Логистик</span></h1></a>
+				
+            </div>
+            <div class="flex items-center space-x-4">
+                 <a href="logistics_dashboard_v1.html" class="text-blue-600 hover:text-blue-800 font-medium flex items-center">
+                    <i class="fas fa-arrow-left mr-2"></i> Назад к Панели
+                </a>
+                <div class="relative">
+                    <i class="fas fa-bell text-xl text-gray-600 cursor-pointer"></i>
+                    <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+                </div>
+                <i class="fas fa-user-circle text-3xl text-gray-600 cursor-pointer"></i>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <div class="mb-8 p-6 bg-white rounded-lg shadow flex flex-col md:flex-row justify-between items-start md:items-center">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800">Рейс #R00101</h2>
+                <p class="text-gray-500 text-lg">Москва, ул. Ленина, 1 <i class="fas fa-long-arrow-alt-right mx-2"></i> Тверь, пр. Победы, 50</p>
+            </div>
+            <div class="mt-4 md:mt-0">
+                <span id="shipmentStatusBadge" class="badge status-in-transit text-lg px-4 py-2">В пути</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div class="lg:col-span-2 space-y-6">
+                <section class="section-card">
+                    <h3 class="section-title">Информация о Заказе</h3>
+                    <div class="info-grid">
+                        <div class="info-item"><span class="info-label">Клиент:</span> <span class="info-value">ООО "СтройМаш"</span></div>
+                        <div class="info-item"><span class="info-label">Контакт:</span> <span class="info-value">Иванов Иван, +7 (900) 123-45-67</span></div>
+                        <div class="info-item"><span class="info-label">Вес груза:</span> <span class="info-value">5000 кг</span></div>
+                        <div class="info-item"><span class="info-label">Габариты:</span> <span class="info-value">3x2x2 м</span></div>
+                        <div class="info-item"><span class="info-label">Стоимость перевозки:</span> <span class="info-value">25 000 руб.</span></div>
+                        <div class="info-item"><span class="info-label">Дата заявки:</span> <span class="info-value">30.05.2025</span></div>
+                        <div class="info-item"><span class="info-label">Плановая дата загрузки:</span> <span class="info-value">01.06.2025</span></div>
+                        <div class="info-item"><span class="info-label">Ожидаемая дата доставки (ETA):</span> <span class="info-value">03.06.2025</span></div>
+                        <div class="info-item col-span-full"><span class="info-label">Спец. условия:</span> <span class="info-value text-orange-600">Хрупкий груз, требуется осторожное обращение.</span></div>
+                    </div>
+                </section>
+
+                <section class="section-card">
+                    <h3 class="section-title">Исполнитель и Транспорт</h3>
+                    <div class="info-grid">
+                        <div class="info-item"><span class="info-label">Водитель:</span> <span class="info-value">Иванов Петр Сергеевич</span></div>
+                        <div class="info-item"><span class="info-label">Телефон водителя:</span> <span class="info-value">+7 (910) 765-43-21</span></div>
+                        <div class="info-item"><span class="info-label">Транспортное средство:</span> <span class="info-value">КАМАЗ 5490</span></div>
+                        <div class="info-item"><span class="info-label">Гос. номер:</span> <span class="info-value">А 123 БВ 77</span></div>
+                        <div class="info-item"><span class="info-label">Тип кузова:</span> <span class="info-value">Тентованный</span></div>
+                        <div class="info-item"><span class="info-label">Грузоподъемность:</span> <span class="info-value">20 тонн</span></div>
+                    </div>
+                </section>
+
+                <section class="section-card">
+                    <h3 class="section-title">Отслеживание на Карте</h3>
+                    <div class="bg-gray-200 h-64 rounded-md flex items-center justify-center">
+                        <p class="text-gray-500">[ Изображение карты с маршрутом и текущим положением ТС ]</p>
+                        </div>
+                </section>
+            </div>
+
+            <div class="lg:col-span-1 space-y-6">
+                <section class="section-card">
+                    <h3 class="section-title">История Рейса</h3>
+                    <div class="timeline">
+                        <div class="timeline-item timeline-item-completed">
+                            <p class="font-semibold text-sm text-gray-700">02.06.2025, 10:00</p>
+                            <p class="text-sm text-gray-600">Статус: <span class="font-medium text-green-600">В пути</span>. Груз покинул пункт загрузки.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <p class="font-semibold text-sm text-gray-700">01.06.2025, 15:00</p>
+                            <p class="text-sm text-gray-600">Статус: <span class="font-medium text-blue-600">Загрузка завершена</span>. ТС готово к отправлению.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <p class="font-semibold text-sm text-gray-700">01.06.2025, 09:00</p>
+                            <p class="text-sm text-gray-600">Статус: <span class="font-medium text-blue-600">Назначен водитель</span>. Иванов П.С., КАМАЗ А123БВ.</p>
+                        </div>
+                         <div class="timeline-item">
+                            <p class="font-semibold text-sm text-gray-700">30.05.2025, 11:30</p>
+                            <p class="text-sm text-gray-600">Статус: <span class="font-medium text-blue-600">Заявка принята</span>. Заказ от ООО "СтройМаш".</p>
+                        </div>
+                        <!-- <div class="timeline-item timeline-item-problem">
+                            <p class="font-semibold text-sm text-gray-700">02.06.2025, 14:00</p>
+                            <p class="text-sm text-gray-600">Статус: <span class="font-medium text-red-600">Проблема</span>. Задержка на трассе М10 (ремонтные работы).</p>
+                            <p class="text-xs text-gray-500">Комментарий: Водитель сообщил о заторе.</p>
+                        </div> -->
+                    </div>
+                </section>
+
+                <section class="section-card">
+                    <h3 class="section-title">Документы</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
+                            <a href="#" class="text-blue-600 hover:underline flex items-center">
+                                <i class="fas fa-file-pdf mr-2 text-red-500"></i> ТТН_R00101.pdf
+                            </a>
+                            <button class="text-gray-400 hover:text-gray-600 btn-icon" title="Скачать"><i class="fas fa-download"></i></button>
+                        </li>
+                        <li class="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
+                            <a href="#" class="text-blue-600 hover:underline flex items-center">
+                                <i class="fas fa-file-invoice mr-2 text-green-500"></i> Счет_R00101.docx
+                            </a>
+                             <button class="text-gray-400 hover:text-gray-600 btn-icon" title="Скачать"><i class="fas fa-download"></i></button>
+                        </li>
+                         <li class="flex items-center justify-between p-2 hover:bg-gray-50 rounded">
+                            <a href="#" class="text-blue-600 hover:underline flex items-center">
+                                <i class="fas fa-file-alt mr-2 text-yellow-500"></i> Договор_перевозки.pdf
+                            </a>
+                             <button class="text-gray-400 hover:text-gray-600 btn-icon" title="Скачать"><i class="fas fa-download"></i></button>
+                        </li>
+                    </ul>
+                    <button class="btn btn-secondary w-full mt-4 text-sm"><i class="fas fa-plus mr-2"></i>Добавить документ</button>
+                </section>
+
+                <section class="section-card">
+                    <h3 class="section-title">Действия по Рейсу</h3>
+                    <div class="space-y-3">
+                        <button id="updateStatusBtn" class="btn btn-primary w-full"><i class="fas fa-edit mr-2"></i>Обновить Статус</button>
+                        <button class="btn btn-secondary w-full"><i class="fas fa-phone-alt mr-2"></i>Связаться с Водителем</button>
+                        <button class="btn btn-secondary w-full"><i class="fas fa-envelope mr-2"></i>Связаться с Клиентом</button>
+                        <button id="reportProblemBtn" class="btn btn-danger w-full"><i class="fas fa-exclamation-triangle mr-2"></i>Сообщить о Проблеме</button>
+                        <textarea class="w-full p-2 border border-gray-300 rounded-md mt-3 focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="Добавить комментарий к рейсу..."></textarea>
+                        <button class="btn btn-primary w-full mt-2 text-sm">Сохранить комментарий</button>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <div id="updateStatusModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Обновить Статус Рейса #R00101</h2>
+                <button id="closeUpdateStatusModalBtn" class="close-button">&times;</button>
+            </div>
+            <div>
+                <label for="newStatus" class="block text-sm font-medium text-gray-700 mb-1">Новый статус:</label>
+                <select id="newStatus" name="newStatus" class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option value="loading">Ожидает загрузки</option>
+                    <option value="in-transit" selected>В пути</option>
+                    <option value="unloading">На разгрузке</option>
+                    <option value="delayed">Задерживается</option>
+                    <option value="problem">Проблема</option>
+                    <option value="completed">Завершен</option>
+                </select>
+                <label for="statusComment" class="block text-sm font-medium text-gray-700 mt-4 mb-1">Комментарий (если необходимо):</label>
+                <textarea id="statusComment" name="statusComment" rows="3" class="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-200 flex justify-end space-x-3">
+                 <button id="cancelUpdateStatusBtn" class="btn btn-secondary">Отмена</button>
+                 <button id="saveStatusBtn" class="btn btn-primary">Сохранить Статус</button>
+            </div>
+        </div>
+    </div>
+    
+    <div id="reportProblemModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Сообщить о Проблеме (Рейс #R00101)</h2>
+                <button id="closeReportProblemModalBtn" class="close-button">&times;</button>
+            </div>
+            <div>
+                <label for="problemType" class="block text-sm font-medium text-gray-700 mb-1">Тип проблемы:</label>
+                <select id="problemType" name="problemType" class="block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <option>Поломка ТС</option>
+                    <option>Проблема на таможне</option>
+                    <option>ДТП</option>
+                    <option>Проблема с грузом</option>
+                    <option>Задержка по вине третьих лиц</option>
+                    <option>Другое</option>
+                </select>
+                <label for="problemDescription" class="block text-sm font-medium text-gray-700 mt-4 mb-1">Описание проблемы:</label>
+                <textarea id="problemDescription" name="problemDescription" rows="4" required class="block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Подробно опишите возникшую проблему..."></textarea>
+            </div>
+            <div class="mt-6 pt-4 border-t border-gray-200 flex justify-end space-x-3">
+                 <button id="cancelReportProblemBtn" class="btn btn-secondary">Отмена</button>
+                 <button id="sendProblemReportBtn" class="btn btn-danger">Отправить Сообщение</button>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+    <script>
+        const updateStatusModal = document.getElementById('updateStatusModal');
+        const reportProblemModal = document.getElementById('reportProblemModal');
+
+        const updateStatusBtn = document.getElementById('updateStatusBtn');
+        const reportProblemBtn = document.getElementById('reportProblemBtn');
+        
+        const closeUpdateStatusModalBtn = document.getElementById('closeUpdateStatusModalBtn');
+        const cancelUpdateStatusBtn = document.getElementById('cancelUpdateStatusBtn');
+        const saveStatusBtn = document.getElementById('saveStatusBtn');
+
+        const closeReportProblemModalBtn = document.getElementById('closeReportProblemModalBtn');
+        const cancelReportProblemBtn = document.getElementById('cancelReportProblemBtn');
+        const sendProblemReportBtn = document.getElementById('sendProblemReportBtn');
+
+        const shipmentStatusBadge = document.getElementById('shipmentStatusBadge');
+
+        // Открытие модальных окон
+        if(updateStatusBtn) {
+            updateStatusBtn.onclick = () => updateStatusModal.style.display = 'block';
+        }
+        if(reportProblemBtn) {
+            reportProblemBtn.onclick = () => reportProblemModal.style.display = 'block';
+        }
+
+        // Закрытие модальных окон
+        if(closeUpdateStatusModalBtn) {
+            closeUpdateStatusModalBtn.onclick = () => updateStatusModal.style.display = 'none';
+        }
+        if(cancelUpdateStatusBtn) {
+            cancelUpdateStatusBtn.onclick = () => updateStatusModal.style.display = 'none';
+        }
+        if(closeReportProblemModalBtn) {
+            closeReportProblemModalBtn.onclick = () => reportProblemModal.style.display = 'none';
+        }
+        if(cancelReportProblemBtn) {
+            cancelReportProblemBtn.onclick = () => reportProblemModal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == updateStatusModal) {
+                updateStatusModal.style.display = 'none';
+            }
+            if (event.target == reportProblemModal) {
+                reportProblemModal.style.display = 'none';
+            }
+        }
+
+        // Логика сохранения статуса (симуляция)
+        if(saveStatusBtn) {
+            saveStatusBtn.onclick = () => {
+                const newStatusSelect = document.getElementById('newStatus');
+                const newStatusValue = newStatusSelect.value;
+                const newStatusText = newStatusSelect.options[newStatusSelect.selectedIndex].text;
+                
+                shipmentStatusBadge.textContent = newStatusText;
+                shipmentStatusBadge.className = `badge text-lg px-4 py-2 status-${newStatusValue}`; // Обновляем класс для цвета
+                
+                // Добавить в историю рейса (симуляция)
+                const timeline = document.querySelector('.timeline');
+                const newItem = document.createElement('div');
+                newItem.classList.add('timeline-item');
+                if (newStatusValue === 'problem' || newStatusValue === 'delayed') {
+                    newItem.classList.add('timeline-item-problem');
+                } else if (newStatusValue === 'completed') {
+                     newItem.classList.add('timeline-item-completed');
+                }
+
+                const currentDate = new Date().toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'});
+                newItem.innerHTML = `
+                    <p class="font-semibold text-sm text-gray-700">${currentDate}</p>
+                    <p class="text-sm text-gray-600">Статус: <span class="font-medium text-${newStatusValue === 'problem' || newStatusValue === 'delayed' ? 'red' : (newStatusValue === 'completed' ? 'green' : 'blue')}-600">${newStatusText}</span>.</p>
+                    ${document.getElementById('statusComment').value ? `<p class="text-xs text-gray-500">Комментарий: ${document.getElementById('statusComment').value}</p>` : ''}
+                `;
+                if (timeline && timeline.firstChild) {
+                     timeline.insertBefore(newItem, timeline.firstChild);
+                } else if (timeline) {
+                    timeline.appendChild(newItem);
+                }
+
+
+                console.log(`Статус обновлен на: ${newStatusText}`);
+                document.getElementById('statusComment').value = ''; // Очистка комментария
+                updateStatusModal.style.display = 'none';
+                alert('Статус рейса успешно обновлен (симуляция)!');
+            };
+        }
+
+        // Логика отправки сообщения о проблеме (симуляция)
+        if(sendProblemReportBtn) {
+            sendProblemReportBtn.onclick = () => {
+                const problemDescription = document.getElementById('problemDescription').value;
+                if (!problemDescription.trim()) {
+                    alert('Пожалуйста, опишите проблему.');
+                    return;
+                }
+                // Обновляем основной статус на "Проблема"
+                shipmentStatusBadge.textContent = "Проблема";
+                shipmentStatusBadge.className = `badge text-lg px-4 py-2 status-problem`;
+
+                // Добавляем в историю
+                const timeline = document.querySelector('.timeline');
+                const newItem = document.createElement('div');
+                newItem.classList.add('timeline-item', 'timeline-item-problem');
+                const currentDate = new Date().toLocaleString('ru-RU', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit'});
+                newItem.innerHTML = `
+                    <p class="font-semibold text-sm text-gray-700">${currentDate}</p>
+                    <p class="text-sm text-gray-600">Статус: <span class="font-medium text-red-600">Проблема</span>.</p>
+                    <p class="text-xs text-gray-500">Описание: ${problemDescription}</p>
+                `;
+                 if (timeline && timeline.firstChild) {
+                     timeline.insertBefore(newItem, timeline.firstChild);
+                } else if (timeline) {
+                    timeline.appendChild(newItem);
+                }
+
+                console.log(`Сообщение о проблеме: ${problemDescription}`);
+                document.getElementById('problemDescription').value = ''; // Очистка
+                reportProblemModal.style.display = 'none';
+                alert('Сообщение о проблеме отправлено (симуляция)!');
+            };
+        }
+
+    </script>
+  <script src="js/modal.js"></script>
+  <script src="js/tabs.js"></script>
+  <script src="js/accordion.js"></script>
+  <script src="js/burger.js"></script>
+  <script src="js/scroll.js"></script>
+    <!-- Подвал -->
+    <footer>
+      <p>&copy; 2025 JEDI CSS. Product Design System</p>
+  </footer>    
+</body>
+</html>

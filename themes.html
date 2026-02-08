@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Themes - UI Components</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="jedicss.ico/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="jedicss.ico/favicon.svg" />
+    <link rel="shortcut icon" href="jedicss.ico/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="jedicss.ico/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="JEDI CSS. Product Design System" />
+    <link rel="manifest" href="jedicss.ico/site.webmanifest" />
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/trigger.css">
+    <link rel="stylesheet" href="css/hr.css">   
+  </head>
+<body>
+
+  <!-- Главное меню -->
+  <header class="main-header">
+    <div class="logo">
+      <svg class="logo-img" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M399.93,408a7.59,7.59,0,0,1-7.9-6.61.1.1,0,0,1,.07-.1h0a.1.1,0,0,1,.09.06,9.65,9.65,0,0,0,.77,1.6,7,7,0,0,1,.2-7.09.1.1,0,0,1,.07,0l.05,0a.08.08,0,0,1,0,.12c-1.09,2.06.07,4.14.86,5.19a6.51,6.51,0,0,1-.63-4.53,7.8,7.8,0,0,1,3.23-4.34h0a.08.08,0,0,1,.07,0,.08.08,0,0,1,0,.12,3.2,3.2,0,0,0-1.38,2.29c-.2,2.11,1.73,4.27,1.75,4.29a.09.09,0,0,1,0,.1,5.78,5.78,0,0,0-.67,4.64,6.24,6.24,0,0,0,2.92,3.26l.06-2.63-1.05,1.1a.07.07,0,0,1-.06,0l-.05,0a.08.08,0,0,1,0-.11l.79-1.56-2.08-.3a.08.08,0,0,1-.07-.09.1.1,0,0,1,.07-.09l2.09-.3-.67-1.85a.1.1,0,0,1,.05-.11h0a.07.07,0,0,1,.07,0l.95,1.38.27-10.34A.09.09,0,0,1,400,392h0a.09.09,0,0,1,.09.09c0,.06.19,7.05.27,10.34l.95-1.38a.1.1,0,0,1,.07,0h0a.09.09,0,0,1,0,.11l-.67,1.85,2.09.3a.11.11,0,0,1,.08.09.09.09,0,0,1-.08.09l-2.08.3.8,1.56a.09.09,0,0,1,0,.11.07.07,0,0,1-.06,0l-.06,0-1.05-1.1c0,1.62.06,2.36.07,2.63a6.23,6.23,0,0,0,2.91-3.26,5.78,5.78,0,0,0-.67-4.64.09.09,0,0,1,0-.1s1.95-2.18,1.75-4.28a3.2,3.2,0,0,0-1.38-2.29.09.09,0,0,1,0-.13.12.12,0,0,1,.08,0l0,0a7.76,7.76,0,0,1,3.23,4.33,6.5,6.5,0,0,1-.62,4.53c.78-1,1.94-3.12.85-5.19a.09.09,0,0,1,0-.12l.05,0a.08.08,0,0,1,.07,0A7,7,0,0,1,407,403a8.06,8.06,0,0,0,.83-1.67.1.1,0,0,1,.09-.06h0a.1.1,0,0,1,.07.1,7.59,7.59,0,0,1-7.9,6.61h-.14Z" transform="translate(-390 -390)"/>
+        <path d="M400,410a10,10,0,1,1,10-10A10,10,0,0,1,400,410Zm0-19.39a9.39,9.39,0,1,0,9.39,9.39A9.4,9.4,0,0,0,400,390.61Z" transform="translate(-390 -390)"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-title">JEDI</span>
+        <span class="logo-subtitle">Product Design System</span>
+      </div>
+    </div>
+      <nav class="main-nav">
+      <a href="themes.html" class="nav-link active">Themes</a>
+      <a href="primitives.html" class="nav-link">Primitives</a>
+      <a href="type.html" class="nav-link">Type</a>
+      <a href="colors.html" class="nav-link">Colors</a>
+      <a href="icons.html" class="nav-link">Icons</a>
+    </nav>
+    <button class="burger" id="burger-btn">☰</button>
+    <div class="extra-menu">
+      <a href="https://github.com/stasdodesign/" class="menu-link">GitHub</a>
+    </div>
+  </header>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Второе меню - Якоря -->
+  <aside class="sub-nav">
+    <ul>
+      <li><strong>Components</strong></li>
+      <li><a href="#accordion" class="nav-link">Accordion</a></li>
+      <li><a href="#alert" class="nav-link">Alert</a></li>
+      <li><a href="#badge" class="nav-link">Badge</a></li>
+      <li><a href="#button" class="nav-link">Button</a></li>
+      <li><a href="#card" class="nav-link">Card</a></li>
+      <li><a href="#checkbox" class="nav-link">Checkbox</a></li>
+      <li><a href="#dropdown" class="nav-link">Dropdown</a></li>
+      <li><a href="#input" class="nav-link">Input</a></li>
+      <li><a href="#modal" class="nav-link">Modal</a></li>
+      <li><a href="#progress" class="nav-link">Progress</a></li>
+      <li><a href="#radio" class="nav-link">Radio</a></li>
+      <li><a href="#select" class="nav-link">Select</a></li>
+      <li><a href="#slider" class="nav-link">Slider</a></li>
+      <li><a href="#spinner" class="nav-link">Spinner</a></li>
+      <li><a href="#switch" class="nav-link">Switch</a></li>
+      <li><a href="#tabs" class="nav-link">Tabs</a></li>
+      <li><a href="#textarea" class="nav-link">Textarea</a></li>
+      <li><a href="#toast" class="nav-link">Toast</a></li>
+      <li><a href="#tooltip" class="nav-link">Tooltip</a></li>
+      <li><a href="#typography" class="nav-link">Typography</a></li>
+    </ul>
+  </aside>
+
+  <!-- Компоненты -->
+  <main class="components-list">
+
+    <!-- Accordion -->
+    <section id="accordion" class="component-section">
+      <h1>Components</h1>
+      <h2>Accordion</h2>
+      <div class="component-example">
+        <button class="accordion">Section 1</button>
+        <div class="panel"><p>Content 1</p></div>
+
+        <button class="accordion">Section 2</button>
+        <div class="panel"><p>Content 2</p></div>
+
+        <button class="accordion">Section 3</button>
+        <div class="panel"><p>Content 3</p></div>
+      </div>
+    </section>
+
+    <!-- Alert -->
+    <section id="alert" class="component-section">
+      <h2>Alert</h2>
+      <div class="component-example alerts">
+        <div class="alert success">Success alert</div>
+        <div class="alert error">Error alert</div>
+        <div class="alert info">Info alert</div>
+      </div>
+    </section>
+
+<!-- Badge -->
+<section id="badge" class="component-section">
+  <h2>Badge</h2>
+  <h3>Status</h3>
+  <div class="component-example">
+    
+    <span class="badge badge-success">Success</span>
+    <span class="badge badge-warning">Warning</span>
+    <span class="badge badge-error">Error</span>
+    <span class="badge badge-info">Info</span>
+    <span class="badge badge-secondary">Secondary</span>
+    <span class="badge badge-light">Light</span>
+    <br><br>
+  </div>
+  <h3>Outline</h3>
+  <div class="component-example">
+    <span class="badge badge-outline-primary">Primary</span>
+    <span class="badge badge-outline-success">Success</span>
+    <span class="badge badge-outline-warning">Warning</span>
+    <span class="badge badge-outline-error">Error</span>
+    <span class="badge badge-outline-info">Info</span>
+    <span class="badge badge-outline-secondary">Secondary</span>
+    <span class="badge badge-outline-light">Light</span>
+    <span class="badge badge-outline-dark">Dark</span>
+  </div>
+</section>
+
+
+    <!-- Button w/tooltip & right icon-->
+    <section id="button" class="component-section">
+      <h2>Button</h2>
+      <div class="component-example">
+        <button class="btn-primary">Default Button</button>
+        <button class="btn-primary hover">Hover Button</button>
+        <button class="btn-secondary-test" secondary>Secondary Button</button>
+        <button class="btn-primary" disabled>Disabled Button</button>
+        <div class="tooltip-container">
+          <button class="btn-icon-right btn-primary" onclick="openModal()">
+              Создать триггер
+              <svg class="icon small-icon ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                  <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>   
+          </button>
+          <span class="tooltip">Эта кнопка для вызова модального окна</span>
+      </div>
+<!-- Button w/caption -->
+<div class="button-container">
+  <button class="btn-icon-right btn-primary gradient-outline gradient-hover-btn" onclick="openModal()">
+      Создать триггер
+      <svg class="icon small-icon ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+          <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>   
+  </button>
+  <span class="button-caption">Эта кнопка для вызова модального окна</span>
+</div>
+
+<!-- Button w/arrow -->
+<div class="button-container">
+  <button class="btn-icon-right btn-primary" onclick="openModal()">
+      Создать триггер
+      <svg class="icon small-icon ml-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+          <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>   
+  </button>
+  <div class="caption-with-arrow">
+    <svg class="curved-arrow-left" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 90.79 130.63"><g id="Objects"><path d="M632.12,1476.51,606.05,1461a1.85,1.85,0,0,0-1-.26,1.8,1.8,0,0,0-.87,3.35l22.11,13.19a131.7,131.7,0,0,0-23.53,1.09A117.93,117.93,0,0,0,590,1481a93,93,0,0,0-12.44,4.43,63.41,63.41,0,0,0-21.66,15.41,53.11,53.11,0,0,0-12.42,23.61,51,51,0,0,0-1.19,13.32,51.8,51.8,0,0,0,2.29,13.09,53.73,53.73,0,0,0,5.41,12.05,55.06,55.06,0,0,0,8.06,10.39,59.41,59.41,0,0,0,21.85,14,68,68,0,0,0,25.38,4v-.6a69.13,69.13,0,0,1-24.71-5.14,57.06,57.06,0,0,1-20.37-14.31,52.17,52.17,0,0,1-11.93-21.48,48.12,48.12,0,0,1-1.7-12.14,45.29,45.29,0,0,1,13.56-32.83,72.05,72.05,0,0,1,20-13.87,107.77,107.77,0,0,1,11.48-4.68c3.95-1.3,8-2.47,12-3.41a203.41,203.41,0,0,1,23-3.85l-21.56,14.62a1.82,1.82,0,0,0-.48,2.51,1.8,1.8,0,0,0,2.5.47l25.13-17a1.79,1.79,0,0,0-.09-3Z" transform="translate(-542.21 -1460.69)"/>
+    </g>
+  </svg>
+    <span class="button-caption">Эта кнопка для вызова модального окна :)</span>
+  </div>
+</div>
+
+      </div>
+    </section>
+
+    <!-- Card -->
+    <section id="card" class="component-section">
+      <h2>Card</h2>
+      <div class="component-example cards">
+        <div class="card">
+          <div class="card-body">
+            <h3 class="card-title">Card Title</h3>
+            <p class="card-text">Some text inside the card body.</p>
+            <button class="btn-primary">Card Button</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Checkbox -->
+    <section id="checkbox" class="component-section">
+      <h2>Checkbox</h2>
+      <div class="component-example">
+        <label><input type="checkbox" checked> Checked</label><br>
+        <label><input type="checkbox"> Unchecked</label>
+      </div>
+    </section>
+
+    <!-- Dropdown -->
+    <section id="dropdown" class="component-section">
+      <h2>Dropdown</h2>
+      <div class="component-example">
+        <select class="select-primary">
+          <option>Select an option</option>
+          <option>Option 1</option>
+          <option>Option 2</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Input -->
+    <section id="input" class="component-section">
+      <h2>Input</h2>
+      <div class="component-example">
+        <input type="text" class="input-primary" placeholder="Enter text">
+      </div>
+    </section>
+
+    <!-- Modal -->
+    <section id="modal" class="component-section">
+      <h2>Modal</h2>
+      <div class="component-example modal-section">
+        <button class="open-modal-btn" id="openModalBtn">Open Modal</button>
+        <div id="modalWindow" class="modal">
+          <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <p>Modal Content</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Progress -->
+    <section id="progress" class="component-section">
+      <h2>Progress</h2>
+      <div class="component-example">
+        <progress value="50" max="100"></progress>
+      </div>
+    </section>
+
+    <!-- Radio -->
+    <section id="radio" class="component-section">
+      <h2>Radio</h2>
+      <div class="component-example">
+        <label><input type="radio" name="option" checked> Option 1</label><br>
+        <label><input type="radio" name="option"> Option 2</label>
+      </div>
+    </section>
+
+    <!-- Select -->
+    <section id="select" class="component-section">
+      <h2>Select</h2>
+      <div class="component-example">
+        <select>
+          <option>Item 1</option>
+          <option>Item 2</option>
+        </select>
+      </div>
+    </section>
+
+    <!-- Slider -->
+    <section id="slider" class="component-section">
+      <h2>Slider</h2>
+      <div class="component-example">
+        <input type="range" min="1" max="100" value="50">
+      </div>
+    </section>
+
+    <!-- Spinner -->
+    <section id="spinner" class="component-section">
+      <h2>Spinner</h2>
+      <div class="component-example">
+        <div class="spinner"></div>
+      </div>
+    </section>
+
+    <!-- Switch -->
+    <section id="switch" class="component-section">
+      <h2>Switch</h2>
+      <div class="component-example switch-section">
+        <label class="switch">
+          <input type="checkbox">
+          <span class="slider"></span>
+        </label>
+      </div>
+    </section>
+
+    <!-- Tabs -->
+    <section id="tabs" class="component-section">
+      <h2>Tabs</h2>
+      <div class="component-example tabs-section">
+        <div class="tabs">
+          <button class="tab-link active" data-tab="tab1">Tab 1</button>
+          <button class="tab-link" data-tab="tab2">Tab 2</button>
+        </div>
+        <div id="tab1" class="tab-content" style="display:block;">Content 1</div>
+        <div id="tab2" class="tab-content">Content 2</div>
+      </div>
+    </section>
+
+    <!-- Textarea -->
+    <section id="textarea" class="component-section">
+      <h2>Textarea</h2>
+      <div class="component-example">
+        <textarea placeholder="Type something..."></textarea>
+      </div>
+    </section>
+
+    <!-- Toast -->
+    <section id="toast" class="component-section">
+      <h2>Toast</h2>
+      <div class="component-example">
+        <div class="toast">This is a toast notification!</div>
+      </div>
+    </section>
+
+    <!-- Tooltip -->
+    <section id="tooltip" class="component-section">
+      <h2>Tooltip</h2>
+      <div class="component-example">
+        <button class="btn-primary" title="Tooltip on hover">Hover over me</button>
+      </div>
+    </section>
+
+    <!-- Typography -->
+    <section id="typography" class="component-section">
+      <h2>Typography</h2>
+      <div class="component-example">
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <p>This is a paragraph of text.</p>
+        <strong>This is bold text.</strong>
+        <br></br><small>This is a small text.</small>
+      </div>
+    </section>
+
+
+  </main>
+
+  <script src="js/trigger.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/tabs.js"></script>
+  <script src="js/accordion.js"></script>
+  <script src="js/burger.js"></script>
+  <script src="js/scroll.js"></script>
+    <!-- Подвал -->
+    <footer>
+      <p>&copy; 2025 JEDI CSS. Product Design System</p>
+  </footer>
+
+</body>
+</html>

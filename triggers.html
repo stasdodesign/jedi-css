@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HR Триггеры</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/trigger.css">
+    <link rel="stylesheet" href="css/hr.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="jedicss.ico/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="jedicss.ico/favicon.svg" />
+    <link rel="shortcut icon" href="jedicss.ico/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="jedicss.ico/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="JEDI CSS. Product Design System" />
+    <link rel="manifest" href="jedicss.ico/site.webmanifest" />
+  </head>
+<body>
+
+  <!-- Главное меню -->
+  <header class="main-header">
+    <div class="logo">
+      <svg class="logo-img" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M399.93,408a7.59,7.59,0,0,1-7.9-6.61.1.1,0,0,1,.07-.1h0a.1.1,0,0,1,.09.06,9.65,9.65,0,0,0,.77,1.6,7,7,0,0,1,.2-7.09.1.1,0,0,1,.07,0l.05,0a.08.08,0,0,1,0,.12c-1.09,2.06.07,4.14.86,5.19a6.51,6.51,0,0,1-.63-4.53,7.8,7.8,0,0,1,3.23-4.34h0a.08.08,0,0,1,.07,0,.08.08,0,0,1,0,.12,3.2,3.2,0,0,0-1.38,2.29c-.2,2.11,1.73,4.27,1.75,4.29a.09.09,0,0,1,0,.1,5.78,5.78,0,0,0-.67,4.64,6.24,6.24,0,0,0,2.92,3.26l.06-2.63-1.05,1.1a.07.07,0,0,1-.06,0l-.05,0a.08.08,0,0,1,0-.11l.79-1.56-2.08-.3a.08.08,0,0,1-.07-.09.1.1,0,0,1,.07-.09l2.09-.3-.67-1.85a.1.1,0,0,1,.05-.11h0a.07.07,0,0,1,.07,0l.95,1.38.27-10.34A.09.09,0,0,1,400,392h0a.09.09,0,0,1,.09.09c0,.06.19,7.05.27,10.34l.95-1.38a.1.1,0,0,1,.07,0h0a.09.09,0,0,1,0,.11l-.67,1.85,2.09.3a.11.11,0,0,1,.08.09.09.09,0,0,1-.08.09l-2.08.3.8,1.56a.09.09,0,0,1,0,.11.07.07,0,0,1-.06,0l-.06,0-1.05-1.1c0,1.62.06,2.36.07,2.63a6.23,6.23,0,0,0,2.91-3.26,5.78,5.78,0,0,0-.67-4.64.09.09,0,0,1,0-.1s1.95-2.18,1.75-4.28a3.2,3.2,0,0,0-1.38-2.29.09.09,0,0,1,0-.13.12.12,0,0,1,.08,0l0,0a7.76,7.76,0,0,1,3.23,4.33,6.5,6.5,0,0,1-.62,4.53c.78-1,1.94-3.12.85-5.19a.09.09,0,0,1,0-.12l.05,0a.08.08,0,0,1,.07,0A7,7,0,0,1,407,403a8.06,8.06,0,0,0,.83-1.67.1.1,0,0,1,.09-.06h0a.1.1,0,0,1,.07.1,7.59,7.59,0,0,1-7.9,6.61h-.14Z" transform="translate(-390 -390)"/>
+        <path d="M400,410a10,10,0,1,1,10-10A10,10,0,0,1,400,410Zm0-19.39a9.39,9.39,0,1,0,9.39,9.39A9.4,9.4,0,0,0,400,390.61Z" transform="translate(-390 -390)"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-title">JEDI</span>
+        <span class="logo-subtitle">Product Design System</span>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="themes.html" class="nav-link">Themes</a>
+      <a href="primitives.html" class="nav-link">Primitives</a>
+      <a href="type.html" class="nav-link">Type</a>
+      <a href="colors.html" class="nav-link">Colors</a>
+      <a href="icons.html" class="nav-link">Icons</a>
+    </nav>
+    <button class="burger" id="burger-btn">☰</button>
+    <div class="extra-menu">
+      <a href="https://github.com/stasdodesign/" class="menu-link">GitHub</a>
+    </div>
+  </header>
+
+  <!-- Второе меню - Якоря -->
+  <aside class="sub-nav">
+    <ul>
+      <li><a href="#Trigger">Trigger</a></li>
+    </ul>
+  </aside>
+
+  <!-- Компоненты -->
+  <main class="components-list">
+    <section id="Trigger" class="component-section">
+      <h1>HR Триггеры</h1>
+      <div class="container">
+        <div class="trigger-list" id="triggerList">
+            <!-- Список триггеров будет отрисован через JavaScript -->
+        </div>
+        <button class="btn" onclick="openModal()">Создать триггер</button>
+    
+<!-- Модальное окно -->
+<div id="modalWindow" class="modal">
+  <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h3>Новый триггер</h3>
+      <div class="form-group">
+          <label class="form-label">Событие</label>
+          <select id="eventInput" class="form-control">
+              <option>Конец испытательного срока</option>
+              <option>Первый день работы</option>
+              <option>День рождения</option>
+              <option>Годовщина работы</option>
+          </select>
+      </div>
+      <div class="form-group">
+          <label class="form-label">Условие</label>
+          <input type="text" id="conditionInput" class="form-control" placeholder="например, за 3 дня">
+      </div>
+      <div class="form-group">
+          <label class="form-label">Получатель</label>
+          <input type="text" id="recipientInput" class="form-control" placeholder="например, менеджер сотрудника">
+      </div>
+      <div class="form-group">
+          <label class="form-label">Действие</label>
+          <input type="text" id="actionInput" class="form-control" placeholder="например, отправить фидбек-форму">
+      </div>
+      <button class="btn-primary" onclick="saveTrigger()">Сохранить</button>
+  </div>
+</div>
+    </div>
+    </section>
+  </main>
+
+  <script src="js/trigger.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/tabs.js"></script>
+  <script src="js/accordion.js"></script>
+  <script src="js/burger.js"></script>
+  <footer>
+    <p>&copy; 2025 JEDI CSS. Product Design System</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Type - UI Components</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/trigger.css">
+    <link rel="stylesheet" href="css/hr.css">
+    <!-- This font is protected. For demonstration purposes only on stasdodesign.github.io -->
+    <link href="fonts/Jedi_Font.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="jedicss.ico/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="jedicss.ico/favicon.svg" />
+    <link rel="shortcut icon" href="jedicss.ico/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="jedicss.ico/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="JEDI CSS. Product Design System" />
+    <link rel="manifest" href="jedicss.ico/site.webmanifest" /> 
+ <style>
+      /* Стили только для демонстрационного блока Jedi Font */
+      .jedi-font-demo-wrapper {
+        background: #fff;
+        border-radius: 14px;
+        box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+        box-shadow: 0 10px 15px rgba(222, 101, 101, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+        /*margin:2rem auto 2rem auto;*/
+        max-width: 640px;
+        padding: 24px 24px 24px 24px;
+      
+      }
+      .jedi-font-demo-title {
+        font-family: 'Jedi', 'Inter', Arial, sans-serif;
+        font-size: 7rem;
+        /*letter-spacing: 0.005em;*/
+        margin-bottom: 0.7rem;
+        font-weight: 400;
+        /*text-transform: uppercase;*/
+        line-height: 0.57;
+        /*background: #23283a;*/
+        color: #000000;
+        /*border-radius: 10px;*/
+        padding: 18px 20px;
+        margin-left: -24px;
+        margin-right: -24px;
+        margin-top: -30px;
+        word-spacing: 0.035em;
+        white-space: normal;
+        word-break: break-word;
+      }
+      h2.jedi-font-demo-title {
+        color: #555;
+      }
+      .jedi-font-demo-title--blend {
+        font-size: 15rem;
+        margin-bottom: 0.7rem;
+        font-weight: 400;
+        background: linear-gradient(90deg, #ff0080 0%, #7928CA 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        word-spacing: 0.035em;
+        margin-top: -60px;
+        line-height: 0.7;
+      }
+      .jedi-font-demo-pre {
+        display: block;
+        padding: 9px;
+        margin: 0 0 18px 0;
+        font-family: Monaco, Menlo, Consolas, "Courier New", monospace;
+        font-size: 13px;
+        line-height: 1.4;
+        color: #333;
+        background-color: #f5f5f5;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        overflow-x: auto;
+        text-align: left;
+      }
+      .jedi-font-demo-container {
+        font-family: 'Jedi', 'Inter', Arial, sans-serif;
+        font-weight: normal;
+        font-style: normal;
+        overflow-x: auto;
+        overflow-y: hidden;
+        /*margin-bottom: 24px;*/
+        line-height: 1.3;
+        white-space: nowrap;
+        padding-bottom: 5px;
+        background: #23283a;
+        border-radius: 8px;
+        color: #ffe066;
+        padding: 18px 12px 12px 12px;
+      }
+      .jedi-font-demo-letters {
+        font-size: 3rem;
+        margin-bottom: 20px;
+        margin-top: 0px;
+        color: #fff;
+        letter-spacing: 0.2em;
+        line-height: 1;
+        white-space: normal; 
+        word-break: break-word;
+      }
+      .jedi-font-demo-size:before {
+        font-family: Arial, sans-serif;
+        font-size: 10px;
+        font-weight: normal;
+        font-style: normal;
+        color: #a8a8a8;
+        padding-right: 6px;
+        content: attr(data-size);
+      }
+      .jedi-font-demo-size {
+        display: block;
+        margin-bottom: 4px;
+        color: #fff;
+        white-space: normal;
+        word-break: break-word;
+        word-spacing: 0.06em;
+        line-height: 0.57;
+      }
+      .jedi-font-demo-title-input-wrapper input[type="text"] {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: block;
+  margin: 0 auto;
+}
+      /* Responsive */
+      @media (max-width: 959px) {
+        .jedi-font-demo-wrapper {
+          width: auto;
+          margin: 1rem 0 1rem 0;
+          padding: 12px 4vw 12px 4vw;
+        }
+        h1.jedi-font-demo-title {
+          font-size: 10rem;
+          padding: 12px 38px;
+          margin-left: -4vw;
+          margin-right: -4vw;
+        }
+         h3.jedi-font-demo-title {
+           font-size: 7rem;
+        } 
+      }
+    </style>
+  </head>
+<body>
+
+  <!-- Главное меню -->
+  <header class="main-header">
+    <div class="logo">
+      <svg class="logo-img" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M399.93,408a7.59,7.59,0,0,1-7.9-6.61.1.1,0,0,1,.07-.1h0a.1.1,0,0,1,.09.06,9.65,9.65,0,0,0,.77,1.6,7,7,0,0,1,.2-7.09.1.1,0,0,1,.07,0l.05,0a.08.08,0,0,1,0,.12c-1.09,2.06.07,4.14.86,5.19a6.51,6.51,0,0,1-.63-4.53,7.8,7.8,0,0,1,3.23-4.34h0a.08.08,0,0,1,.07,0,.08.08,0,0,1,0,.12,3.2,3.2,0,0,0-1.38,2.29c-.2,2.11,1.73,4.27,1.75,4.29a.09.09,0,0,1,0,.1,5.78,5.78,0,0,0-.67,4.64,6.24,6.24,0,0,0,2.92,3.26l.06-2.63-1.05,1.1a.07.07,0,0,1-.06,0l-.05,0a.08.08,0,0,1,0-.11l.79-1.56-2.08-.3a.08.08,0,0,1-.07-.09.1.1,0,0,1,.07-.09l2.09-.3-.67-1.85a.1.1,0,0,1,.05-.11h0a.07.07,0,0,1,.07,0l.95,1.38.27-10.34A.09.09,0,0,1,400,392h0a.09.09,0,0,1,.09.09c0,.06.19,7.05.27,10.34l.95-1.38a.1.1,0,0,1,.07,0h0a.09.09,0,0,1,0,.11l-.67,1.85,2.09.3a.11.11,0,0,1,.08.09.09.09,0,0,1-.08.09l-2.08.3.8,1.56a.09.09,0,0,1,0,.11.07.07,0,0,1-.06,0l-.06,0-1.05-1.1c0,1.62.06,2.36.07,2.63a6.23,6.23,0,0,0,2.91-3.26,5.78,5.78,0,0,0-.67-4.64.09.09,0,0,1,0-.1s1.95-2.18,1.75-4.28a3.2,3.2,0,0,0-1.38-2.29.09.09,0,0,1,0-.13.12.12,0,0,1,.08,0l0,0a7.76,7.76,0,0,1,3.23,4.33,6.5,6.5,0,0,1-.62,4.53c.78-1,1.94-3.12.85-5.19a.09.09,0,0,1,0-.12l.05,0a.08.08,0,0,1,.07,0A7,7,0,0,1,407,403a8.06,8.06,0,0,0,.83-1.67.1.1,0,0,1,.09-.06h0a.1.1,0,0,1,.07.1,7.59,7.59,0,0,1-7.9,6.61h-.14Z" transform="translate(-390 -390)"/>
+        <path d="M400,410a10,10,0,1,1,10-10A10,10,0,0,1,400,410Zm0-19.39a9.39,9.39,0,1,0,9.39,9.39A9.4,9.4,0,0,0,400,390.61Z" transform="translate(-390 -390)"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-title">JEDI</span>
+        <span class="logo-subtitle">Product Design System</span>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="themes.html" class="nav-link">Themes</a>
+      <a href="primitives.html" class="nav-link">Primitives</a>
+      <a href="type.html" class="nav-link active">Type</a>
+      <a href="colors.html" class="nav-link">Colors</a>
+      <a href="icons.html" class="nav-link">Icons</a>
+    </nav>
+    <button class="burger" id="burger-btn">☰</button>
+    <div class="extra-menu">
+      <a href="https://github.com/stasdodesign/portfolio" class="menu-link">GitHub</a>
+    </div>
+  </header>
+  <div class="overlay" id="overlay"></div>
+
+  
+  <!-- Второе меню - Якоря -->
+  <aside class="sub-nav">
+    <ul>
+      <li><a href="#JediFont" class="nav-link">Jedi Font</a></li>
+      <li><a href="#Headings" class="nav-link">Headings</a></li>
+      <li><a href="#Paragraphs" class="nav-link">Paragraphs</a></li>
+      <li><a href="#Blockquotes" class="nav-link">Blockquotes</a></li>
+      <li><a href="#Lists" class="nav-link">Lists</a></li>
+      <li><a href="#Code" class="nav-link">Code</a></li>
+    </ul>
+  </aside>
+  <!-- Компоненты -->
+  <main class="components-list">
+
+    <!-- Демонстрация Jedi Font -->
+    <section id="JediFont" class="component-section"></section>
+    <h1 class="jedi-font-demo-title jedi-font-demo-title--blend">Typography</h1>     
+    <section class="jedi-font-demo-wrapper" aria-labelledby="jedi-font-demo-title">
+<div class="jedi-font-demo-title-input-wrapper" style="max-width: 100%; margin: 0 auto 1rem auto;">
+  <label for="jediFontTitleInput" class="block text-sm font-medium text-gray-700 mb-2">
+    Type here to preview text below — the heading will update live
+</label>
+  </label>
+  <input
+    type="text"
+    id="jediFontTitleInput"
+    class="mt-1 block w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    placeholder="Type here to preview text"
+    value="Type here to preview text"
+  />
+</div>
+  <!-- Новые параметры для управления стилем -->
+  </div><div class="flex items-center space-x-4 flex-wrap sm:flex-nowrap" style=" margin-bottom: 1.5rem; gap: 1rem;">
+    <label class="flex items-center space-x-2">
+      <input type="checkbox" id="jediLetterSpacing" checked>
+      <span style="font-size: 1rem;">Letter spacing 0.005em</span>
+    </label>
+    <label class="flex items-center space-x-2">
+      <input type="checkbox" id="jediFontWeight">
+      <span style="font-size: 1rem;">Bold (700)</span>
+    </label>
+    <label class="flex items-center space-x-2">
+      <span style="font-size: 1rem;">Font size +</span>
+      <input type="number" id="jediFontSize" class="w-28 border border-gray-300 rounded-lg p-2 mt-mobile ml-mobile-0" placeholder="+1 rem" min="0" step="0.1" style="width: 5.5rem;">
+      <span style="font-size: 1rem;">rem</span>
+    </label>
+  </div>     
+      <div class="jedi-font-demo-title" id="jedi-font-demo-title">
+        Jedi Font made by Stanislav Dovidenko
+      </div>
+
+</div>      
+      <pre class="jedi-font-demo-pre" title="Usage">.your-style {
+    font-family: 'Jedi';
+    font-weight: normal;
+    font-style: normal;
+}</pre>
+      <div class="jedi-font-demo-container">
+        <p class="jedi-font-demo-letters">
+          abcdefghijklmnopqrstuvwxyz<br>
+          ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+          0123456789.:,;()*!?'@#&lt;&gt;$%&^+-=~
+        </p>
+        <p class="jedi-font-demo-size" data-size="10px" style="font-size: 10px;">The quick brown fox jumps over the lazy dog.</p>
+        <p class="jedi-font-demo-size" data-size="11px" style="font-size: 11px;">The quick brown fox jumps over the lazy dog.</p>
+        <p class="jedi-font-demo-size" data-size="12px" style="font-size: 12px;">The quick brown fox jumps over the lazy dog.</p>
+        <p class="jedi-font-demo-size" data-size="14px" style="font-size: 14px;">The quick brown fox jumps over the lazy dog.</p>
+        <p class="jedi-font-demo-size" data-size="18px" style="font-size: 18px;">The quick brown fox jumps over the lazy dog.</p>
+        <p class="jedi-font-demo-size" data-size="24px" style="font-size: 24px;">The quick brown fox jumps over the lazy dog.</p>
+        <p class="jedi-font-demo-size" data-size="30px" style="font-size: 30px;">The quick brown fox jumps over the lazy dog.</p>
+        <p class="jedi-font-demo-size" data-size="36px" style="font-size: 36px;">The quick brown fox jumps over the lazy dog.</p>
+        <p class="jedi-font-demo-size" data-size="48px" style="font-size: 48px;">The quick brown fox jumps over the lazy dog.</p>
+        <p class="jedi-font-demo-size" data-size="60px" style="font-size: 60px;">The quick brown fox jumps over the lazy dog.</p>
+        <p class="jedi-font-demo-size" data-size="72px" style="font-size: 72px;">The quick brown fox jumps over the lazy dog.</p>
+      </div>
+    </section>
+
+    <!-- Typography -->
+    <section id="Headings" class="component-section">
+      <!-- Заголовки -->
+      <h2 class="jedi-font-demo-title">Headings</h2>
+      <div class="component-example">
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <h6>Heading 6</h6>
+      </div>
+</section>
+<section id="Paragraphs" class="component-section">    
+      <!-- Параграфы -->
+      <h2 class="jedi-font-demo-title">Paragraphs</h2>
+      <div class="component-example">
+        <p>This is a standard paragraph. It contains some text to demonstrate the default styling of paragraphs in this design system.</p>
+        <p><strong>Bold text</strong> and <em>italic text</em> can be used to emphasize certain parts of the content.</p>
+      </div>
+    </section>
+
+    <section id="Blockquotes" class="component-section">  
+      <!-- Цитаты -->
+      <h2 class="jedi-font-demo-title">Blockquotes</h2>
+      <div class="component-example">
+        <blockquote>
+          "This is a blockquote. It is used to highlight a quote or a piece of text that requires special attention."
+        </blockquote>
+      </div>
+    </section>
+
+    <section id="Lists" class="component-section">  
+      <!-- Списки -->
+      <h2 class="jedi-font-demo-title">Lists</h2>
+      <div class="component-example">
+        <h4>Unordered List</h4>
+        <ul>
+          <li>First item</li>
+          <li>Second item</li>
+          <li>Third item</li>
+        </ul>
+        <h4>Ordered List</h4>
+        <ol>
+          <li>First item</li>
+          <li>Second item</li>
+          <li>Third item</li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="Code" class="component-section">  
+      <!-- Код -->
+      <h2 class="jedi-font-demo-title">Code</h2>
+      <div class="component-example">
+        <p>Inline code: <code>const x = 10;</code></p>
+        <pre><code>
+// Block of code
+function greet() {
+  console.log("Hello, world!");
+}
+        </code></pre>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="js/modal.js"></script>
+  <script src="js/tabs.js"></script>
+  <script src="js/accordion.js"></script>
+  <script src="js/burger.js"></script>
+  <script src="js/scroll.js"></script>
+  <script>
+  // filepath: c:\git\type.html
+  // Обновление заголовка при вводе
+  document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('jediFontTitleInput');
+    const title = document.getElementById('jedi-font-demo-title');
+    if (input && title) {
+      input.addEventListener('input', function() {
+        title.textContent = input.value;
+      });
+    }
+  });
+</script>
+<script>
+  // filepath: c:\git\type.html
+  document.addEventListener('DOMContentLoaded', function() {
+    const input = document.getElementById('jediFontTitleInput');
+    const title = document.getElementById('jedi-font-demo-title');
+    const letterSpacing = document.getElementById('jediLetterSpacing');
+    const fontWeight = document.getElementById('jediFontWeight');
+    const fontSizeInput = document.getElementById('jediFontSize');
+
+    // Начальные значения
+    let baseFontSize = 7; // rem, как в CSS
+    let fontSizeDelta = 0;
+
+    function updateTitleStyle() {
+      title.style.letterSpacing = letterSpacing.checked ? '0.005em' : '0em';
+      title.style.fontWeight = fontWeight.checked ? '700' : '400';
+      title.style.fontSize = (baseFontSize + (parseFloat(fontSizeInput.value) || 0)) + 'rem';
+    }
+
+    if (input && title) {
+      input.addEventListener('input', function() {
+        title.textContent = input.value;
+      });
+    }
+    if (letterSpacing && title) {
+      letterSpacing.addEventListener('change', updateTitleStyle);
+    }
+    if (fontWeight && title) {
+      fontWeight.addEventListener('change', updateTitleStyle);
+    }
+    if (fontSizeInput && title) {
+      fontSizeInput.addEventListener('input', updateTitleStyle);
+    }
+    // Установить начальное значение font-size
+    if (fontSizeInput) fontSizeInput.value = '';
+    updateTitleStyle();
+  });
+</script>
+    <!-- Подвал -->
+    <footer>
+      <p>&copy; 2025 JEDI CSS. Product Design System</p>
+  </footer>
+</body>
+</html>

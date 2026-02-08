@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-T">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Панель управления рейсами - ТрансЛогистик</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/png" href="jedicss.ico/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/svg+xml" href="jedicss.ico/favicon.svg" />
+    <link rel="shortcut icon" href="jedicss.ico/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="jedicss.ico/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-title" content="JEDI CSS. Product Design System" />
+    <link rel="manifest" href="jedicss.ico/site.webmanifest" /> 
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Светло-серый фон */
+        }
+        .status-new { background-color: #3b82f6; color: white; } /* Синий */
+        .status-loading { background-color: #22d3ee; color: black; } /* Голубой */
+        .status-in-transit { background-color: #22c55e; color: white; } /* Зеленый */
+        .status-problem { background-color: #ef4444; color: white; } /* Красный */
+        .status-delayed { background-color: #f97316; color: white; } /* Оранжевый */
+        .status-unloading { background-color: #a3e635; color: black; } /* Светло-зеленый */
+        .status-completed { background-color: #6b7280; color: white; } /* Серый */
+
+        .table-header th {
+            background-color: #e5e7eb; /* Светло-серый для заголовков таблицы */
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            color: #374151; /* Темно-серый текст */
+        }
+        .table-row td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #e5e7eb; /* Разделитель строк */
+            color: #4b5563; /* Серый текст */
+        }
+        .table-row:hover {
+            background-color: #f9fafb; /* Легкое выделение при наведении */
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -1px rgba(0,0,0,0.06);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -2px rgba(0,0,0,0.05);
+        }
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            transition: background-color 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background-color: #3b82f6; /* Синий */
+            color: white;
+        }
+        .btn-primary:hover {
+            background-color: #2563eb;
+        }
+        .btn-secondary {
+            background-color: #6b7280; /* Серый */
+            color: white;
+        }
+        .btn-secondary:hover {
+            background-color: #4b5563;
+        }
+        .badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+        /* Стили для модального окна */
+        .modal {
+            display: none; /* Скрыто по умолчанию */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5); /* Полупрозрачный фон */
+        }
+        .modal-content {
+            background-color: #fff;
+            margin: 10% auto;
+            padding: 24px;
+            border-radius: 8px;
+            width: 90%;
+            max-width: 600px; /* Максимальная ширина модального окна */
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 16px;
+            margin-bottom: 16px;
+        }
+        .modal-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+        .close-button {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #6b7280;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .close-button:hover {
+            color: #1f2937;
+        }
+    </style>
+</head>
+<body>
+
+  <!-- Главное меню -->
+  <header class="main-header">
+    <div class="logo">
+      <svg class="logo-img" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M399.93,408a7.59,7.59,0,0,1-7.9-6.61.1.1,0,0,1,.07-.1h0a.1.1,0,0,1,.09.06,9.65,9.65,0,0,0,.77,1.6,7,7,0,0,1,.2-7.09.1.1,0,0,1,.07,0l.05,0a.08.08,0,0,1,0,.12c-1.09,2.06.07,4.14.86,5.19a6.51,6.51,0,0,1-.63-4.53,7.8,7.8,0,0,1,3.23-4.34h0a.08.08,0,0,1,.07,0,.08.08,0,0,1,0,.12,3.2,3.2,0,0,0-1.38,2.29c-.2,2.11,1.73,4.27,1.75,4.29a.09.09,0,0,1,0,.1,5.78,5.78,0,0,0-.67,4.64,6.24,6.24,0,0,0,2.92,3.26l.06-2.63-1.05,1.1a.07.07,0,0,1-.06,0l-.05,0a.08.08,0,0,1,0-.11l.79-1.56-2.08-.3a.08.08,0,0,1-.07-.09.1.1,0,0,1,.07-.09l2.09-.3-.67-1.85a.1.1,0,0,1,.05-.11h0a.07.07,0,0,1,.07,0l.95,1.38.27-10.34A.09.09,0,0,1,400,392h0a.09.09,0,0,1,.09.09c0,.06.19,7.05.27,10.34l.95-1.38a.1.1,0,0,1,.07,0h0a.09.09,0,0,1,0,.11l-.67,1.85,2.09.3a.11.11,0,0,1,.08.09.09.09,0,0,1-.08.09l-2.08.3.8,1.56a.09.09,0,0,1,0,.11.07.07,0,0,1-.06,0l-.06,0-1.05-1.1c0,1.62.06,2.36.07,2.63a6.23,6.23,0,0,0,2.91-3.26,5.78,5.78,0,0,0-.67-4.64.09.09,0,0,1,0-.1s1.95-2.18,1.75-4.28a3.2,3.2,0,0,0-1.38-2.29.09.09,0,0,1,0-.13.12.12,0,0,1,.08,0l0,0a7.76,7.76,0,0,1,3.23,4.33,6.5,6.5,0,0,1-.62,4.53c.78-1,1.94-3.12.85-5.19a.09.09,0,0,1,0-.12l.05,0a.08.08,0,0,1,.07,0A7,7,0,0,1,407,403a8.06,8.06,0,0,0,.83-1.67.1.1,0,0,1,.09-.06h0a.1.1,0,0,1,.07.1,7.59,7.59,0,0,1-7.9,6.61h-.14Z" transform="translate(-390 -390)"/>
+        <path d="M400,410a10,10,0,1,1,10-10A10,10,0,0,1,400,410Zm0-19.39a9.39,9.39,0,1,0,9.39,9.39A9.4,9.4,0,0,0,400,390.61Z" transform="translate(-390 -390)"/>
+      </svg>
+      <div class="logo-text">
+        <span class="logo-title">JEDI</span>
+        <span class="logo-subtitle">Product Design System</span>
+      </div>
+    </div>
+    <nav class="main-nav">
+      <a href="themes.html" class="nav-link">Themes</a>
+      <a href="primitives.html" class="nav-link active">Primitives</a>
+      <a href="type.html" class="nav-link">Type</a>
+      <a href="colors.html" class="nav-link ">Colors</a>
+      <a href="icons.html" class="nav-link">Icons</a>
+    </nav>
+    <button class="burger" id="burger-btn">☰</button>
+    <div class="extra-menu">
+      <a href="https://github.com/stasdodesign/" class="menu-link">GitHub</a>
+    </div>
+  </header>
+  <div class="overlay" id="overlay"></div>
+
+  
+  <!-- Второе меню - Якоря -->
+  <aside class="sub-nav">
+    <ul>
+        <li><strong>Logistics</strong></li>
+        <li><a href="logistics_dashboard_v1.html" class="nav-link">Dashboard</a></li>
+        <li><a href="Race.html" class="nav-link">Race</a></li> 
+    </ul>
+  </aside>
+ 
+   <!-- Компоненты -->
+  <main class="components-list"> 
+    <header class="bg-white shadow-md sticky top-12 z-50 rounded-lg">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center">
+				<a href="logistics_dashboard_v1.html">
+                <i class="fas fa-truck-fast text-3xl text-blue-600 mr-3"></i></a>
+                <a href="logistics_dashboard_v1.html"><h1 class="text-2xl font-bold text-gray-800">Транс<span class="text-blue-600">Логистик</span></h1></a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <button id="addRequestBtn" class="btn btn-primary flex items-center" style="margin-bottom: 0px;">
+                    <i class="fas fa-plus mr-2"></i> Новая Заявка
+                </button>
+                <div class="relative">
+                    <i class="fas fa-bell text-xl text-gray-600 cursor-pointer"></i>
+                    <span class="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-500 ring-2 ring-white"></span>
+                </div>
+                <i class="fas fa-user-circle text-3xl text-gray-600 cursor-pointer"></i>
+            </div>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        <section id="new-requests" class="mb-12">
+            <h2 class="text-2xl font-semibold text-gray-700 mb-6">Новые Заявки (<span id="newRequestsCount">3</span>)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-lg font-semibold text-blue-600">Заявка #00123</h3>
+                        <span class="badge status-new">Новая</span>
+                    </div>
+                    <p class="text-gray-600 mb-1"><i class="fas fa-map-marker-alt mr-2 text-gray-400"></i> <span class="font-medium">Откуда:</span> Москва, ул. Ленина, 1</p>
+                    <p class="text-gray-600 mb-3"><i class="fas fa-map-signs mr-2 text-gray-400"></i> <span class="font-medium">Куда:</span> Санкт-Петербург, пр. Невский, 10</p>
+                    <div class="grid grid-cols-2 gap-2 mb-3 text-sm">
+                        <p class="text-gray-500"><i class="fas fa-weight-hanging mr-1 text-gray-400"></i> <span class="font-medium">Вес:</span> 5000 кг</p>
+                        <p class="text-gray-500"><i class="fas fa-box-open mr-1 text-gray-400"></i> <span class="font-medium">Габариты:</span> 3x2x2 м</p>
+                        <p class="text-gray-500"><i class="fas fa-calendar-alt mr-1 text-gray-400"></i> <span class="font-medium">Загрузка:</span> 05.06.2025</p>
+                        <p class="text-gray-500"><i class="fas fa-coins mr-1 text-gray-400"></i> <span class="font-medium">Стоимость:</span> 25000 руб.</p>
+                    </div>
+                    <p class="text-sm text-orange-600 mb-4"><i class="fas fa-exclamation-triangle mr-1"></i> Спец. условия: Хрупкий груз</p>
+                    <button class="btn btn-primary w-full process-request-btn" data-request-id="00123">Обработать Заявку</button>
+                </div>
+                <div class="card p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-lg font-semibold text-blue-600">Заявка #00124</h3>
+                        <span class="badge status-new">Новая</span>
+                    </div>
+                    <p class="text-gray-600 mb-1"><i class="fas fa-map-marker-alt mr-2 text-gray-400"></i> <span class="font-medium">Откуда:</span> Екатеринбург, ул. Мира, 20</p>
+                    <p class="text-gray-600 mb-3"><i class="fas fa-map-signs mr-2 text-gray-400"></i> <span class="font-medium">Куда:</span> Новосибирск, ул. Красная, 5</p>
+                     <div class="grid grid-cols-2 gap-2 mb-3 text-sm">
+                        <p class="text-gray-500"><i class="fas fa-weight-hanging mr-1 text-gray-400"></i> <span class="font-medium">Вес:</span> 10000 кг</p>
+                        <p class="text-gray-500"><i class="fas fa-box-open mr-1 text-gray-400"></i> <span class="font-medium">Габариты:</span> 5x2.4x2.5 м</p>
+                        <p class="text-gray-500"><i class="fas fa-calendar-alt mr-1 text-gray-400"></i> <span class="font-medium">Загрузка:</span> 06.06.2025</p>
+                        <p class="text-gray-500"><i class="fas fa-coins mr-1 text-gray-400"></i> <span class="font-medium">Стоимость:</span> 45000 руб.</p>
+                    </div>
+                    <button class="btn btn-primary w-full process-request-btn" data-request-id="00124">Обработать Заявку</button>
+                </div>
+                <div class="card p-6">
+                    <div class="flex justify-between items-start mb-3">
+                        <h3 class="text-lg font-semibold text-blue-600">Заявка #00125</h3>
+                        <span class="badge status-new">Новая</span>
+                    </div>
+                    <p class="text-gray-600 mb-1"><i class="fas fa-map-marker-alt mr-2 text-gray-400"></i> <span class="font-medium">Откуда:</span> Казань, ул. Баумана, 30</p>
+                    <p class="text-gray-600 mb-3"><i class="fas fa-map-signs mr-2 text-gray-400"></i> <span class="font-medium">Куда:</span> Самара, ул. Волжская, 15</p>
+                     <div class="grid grid-cols-2 gap-2 mb-3 text-sm">
+                        <p class="text-gray-500"><i class="fas fa-weight-hanging mr-1 text-gray-400"></i> <span class="font-medium">Вес:</span> 2000 кг</p>
+                        <p class="text-gray-500"><i class="fas fa-box-open mr-1 text-gray-400"></i> <span class="font-medium">Габариты:</span> 2x1.5x1.8 м</p>
+                        <p class="text-gray-500"><i class="fas fa-calendar-alt mr-1 text-gray-400"></i> <span class="font-medium">Загрузка:</span> 07.06.2025</p>
+                        <p class="text-gray-500"><i class="fas fa-coins mr-1 text-gray-400"></i> <span class="font-medium">Стоимость:</span> 15000 руб.</p>
+                    </div>
+                    <p class="text-sm text-orange-600 mb-4"><i class="fas fa-exclamation-triangle mr-1"></i> Спец. условия: Температурный режим +5°C</p>
+                    <button class="btn btn-primary w-full process-request-btn" data-request-id="00125">Обработать Заявку</button>
+                </div>
+            </div>
+        </section>
+
+        <section id="active-shipments">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-gray-700">Активные Рейсы (<span id="activeShipmentsCount">5</span>)</h2>
+                <div class="flex space-x-2">
+                    <input type="text" placeholder="Поиск по ID, Маршруту..." class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <select class="px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">Все статусы</option>
+                        <option value="new">Новый</option>
+                        <option value="loading">Ожидает загрузки</option>
+                        <option value="in-transit">В пути</option>
+                        <option value="problem">Проблема</option>
+                        <option value="delayed">Задерживается</option>
+                        <option value="unloading">На разгрузке</option>
+                        <option value="completed">Завершен</option>
+                    </select>
+                </div>
+            </div>
+            <div class="bg-white shadow-lg rounded-lg overflow-x-auto">
+                <table class="min-w-full">
+                    <thead class="table-header">
+                        <tr>
+                            <th>ID Рейса</th>
+                            <th>Маршрут</th>
+                            <th>Клиент</th>
+                            <th>Водитель</th>
+                            <th>ТС</th>
+                            <th>Статус</th>
+                            <th>Дата загрузки</th>
+                            <th>ETA</th>
+                            <th>Действия</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activeShipmentsTableBody">
+                        <tr class="table-row">
+                            <td class="font-medium text-blue-600"><a class="text-blue-600 hover:underline flex items-center" href="Race.html">#R00101</a></td>
+                            <td>Москва → Тверь</td>
+                            <td>ООО "СтройМаш"</td>
+                            <td>Иванов П.С.</td>
+                            <td>КАМАЗ А123БВ</td>
+                            <td><span class="badge status-in-transit">В пути</span></td>
+                            <td>01.06.2025</td>
+                            <td>03.06.2025</td>
+                            <td class="space-x-2">
+                                <button class="text-blue-500 hover:text-blue-700 view-details-btn" data-shipment-id="R00101" title="Детали рейса"><i class="fas fa-eye"></i></button>
+                                <button class="text-green-500 hover:text-green-700" title="Связаться с водителем"><i class="fas fa-phone-alt"></i></button>
+                                <button class="text-orange-500 hover:text-orange-700" title="Сообщить о проблеме"><i class="fas fa-exclamation-triangle"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="font-medium text-blue-600">#R00102</td>
+                            <td>Воронеж → Ростов-на-Дону</td>
+                            <td>ИП "Цветы Юга"</td>
+                            <td>Петров В.А.</td>
+                            <td>Газель Х456УЕ</td>
+                            <td><span class="badge status-loading">Ожидает загрузки</span></td>
+                            <td>04.06.2025</td>
+                            <td>06.06.2025</td>
+                            <td class="space-x-2">
+                                <button class="text-blue-500 hover:text-blue-700 view-details-btn" data-shipment-id="R00102" title="Детали рейса"><i class="fas fa-eye"></i></button>
+                                <button class="text-green-500 hover:text-green-700" title="Связаться с водителем"><i class="fas fa-phone-alt"></i></button>
+                                <button class="text-orange-500 hover:text-orange-700" title="Сообщить о проблеме"><i class="fas fa-exclamation-triangle"></i></button>
+                            </td>
+                        </tr>
+                        <tr class="table-row">
+                            <td class="font-medium text-blue-600">#R00103</td>
+                            <td>Омск → Красноярск</td>
+                            <td>АО "СибМеталл"</td>
+                            <td>Сидоров К.Н.</td>
+                            <td>MAN Т789РС</td>
+                            <td><span class="badge status-problem">Проблема</span></td>
+                            <td>28.05.2025</td>
+                            <td>02.06.2025</td>
+                            <td class="space-x-2">
+                                <button class="text-blue-500 hover:text-blue-700 view-details-btn" data-shipment-id="R00103" title="Детали рейса"><i class="fas fa-eye"></i></button>
+                                <button class="text-green-500 hover:text-green-700" title="Связаться с водителем"><i class="fas fa-phone-alt"></i></button>
+                                <button class="text-orange-500 hover:text-orange-700" title="Сообщить о проблеме"><i class="fas fa-exclamation-triangle"></i></button>
+                            </td>
+                        </tr>
+                         <tr class="table-row">
+                            <td class="font-medium text-blue-600">#R00104</td>
+                            <td>Уфа → Челябинск</td>
+                            <td>ООО "УралСнаб"</td>
+                            <td>Васильев Д.М.</td>
+                            <td>Volvo Ф102ХА</td>
+                            <td><span class="badge status-delayed">Задерживается</span></td>
+                            <td>30.05.2025</td>
+                            <td>03.06.2025</td>
+                            <td class="space-x-2">
+                                <button class="text-blue-500 hover:text-blue-700 view-details-btn" data-shipment-id="R00104" title="Детали рейса"><i class="fas fa-eye"></i></button>
+                                <button class="text-green-500 hover:text-green-700" title="Связаться с водителем"><i class="fas fa-phone-alt"></i></button>
+                                <button class="text-orange-500 hover:text-orange-700" title="Сообщить о проблеме"><i class="fas fa-exclamation-triangle"></i></button>
+                            </td>
+                        </tr>
+                         <tr class="table-row">
+                            <td class="font-medium text-blue-600">#R00105</td>
+                            <td>Пермь → Ижевск</td>
+                            <td>ЗАО "АгроХим"</td>
+                            <td>Михайлов А.Р.</td>
+                            <td>Scania К332МР</td>
+                            <td><span class="badge status-completed">Завершен</span></td>
+                            <td>25.05.2025</td>
+                            <td>27.05.2025</td>
+                            <td class="space-x-2">
+                                <button class="text-blue-500 hover:text-blue-700 view-details-btn" data-shipment-id="R00105" title="Детали рейса"><i class="fas fa-eye"></i></button>
+                                <button class="text-green-500 hover:text-green-700" title="Связаться с водителем"><i class="fas fa-phone-alt"></i></button>
+                                <button class="text-orange-500 hover:text-orange-700" title="Сообщить о проблеме"><i class="fas fa-exclamation-triangle"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+             <div class="mt-6 flex justify-end">
+                <section aria-label="Page navigation">
+                  <ul class="inline-flex items-center -space-x-px">
+                    <li>
+                      <a href="#" class="py-2 px-3 ml-0 leading-tight text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
+                        <span class="sr-only">Previous</span>
+                        <i class="fas fa-chevron-left"></i>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#" aria-current="page" class="z-10 py-2 px-3 leading-tight text-blue-600 bg-blue-50 border border-blue-300 hover:bg-blue-100 hover:text-blue-700">1</a>
+                    </li>
+                    <li>
+                      <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700">2</a>
+                    </li>
+                    <li>
+                      <a href="#" class="py-2 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700">
+                        <span class="sr-only">Next</span>
+                        <i class="fas fa-chevron-right"></i>
+                      </a>
+                    </li>
+                  </ul>
+                </section>
+            </div>
+        </section>
+    </main>
+
+    <div id="detailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle" class="modal-title">Детали Рейса/Заявки</h2>
+                <button id="closeModalBtn" class="close-button">&times;</button>
+            </div>
+            <div id="modalBody" class="text-gray-700">
+                <p>Загрузка информации...</p>
+            </div>
+            <div id="modalFooter" class="mt-6 pt-4 border-t border-gray-200 flex justify-end space-x-3">
+                 </div>
+        </div>
+    </div>
+  </main>
+
+    <script>
+        // Получаем элементы модального окна
+        const detailsModal = document.getElementById('detailsModal');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const modalFooter = document.getElementById('modalFooter');
+
+        // Обработчики для кнопок "Обработать Заявку"
+        document.querySelectorAll('.process-request-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const requestId = this.dataset.requestId;
+                modalTitle.textContent = `Обработка Заявки #${requestId}`;
+                // Здесь должен быть AJAX запрос для получения деталей заявки
+                // Пока что отобразим моковые данные
+                modalBody.innerHTML = `
+                    <p class="mb-2"><span class="font-semibold">ID Заявки:</span> ${requestId}</p>
+                    <p class="mb-2"><span class="font-semibold">Маршрут:</span> Москва - Санкт-Петербург</p>
+                    <p class="mb-2"><span class="font-semibold">Вес:</span> 5000 кг</p>
+                    <p class="mb-4"><span class="font-semibold">Спец. условия:</span> Хрупкий груз</p>
+                    <div class="space-y-4">
+                        <div>
+                            <label for="driver" class="block text-sm font-medium text-gray-700">Назначить водителя:</label>
+                            <select id="driver" name="driver" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option>Иванов П.С. (КАМАЗ А123БВ - свободен)</option>
+                                <option>Петров В.А. (Газель Х456УЕ - свободен)</option>
+                                <option>Сидоров К.Н. (MAN Т789РС - занят до 04.06)</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="notes" class="block text-sm font-medium text-gray-700">Комментарий:</label>
+                            <textarea id="notes" name="notes" rows="3" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Дополнительные инструкции..."></textarea>
+                        </div>
+                    </div>
+                `;
+                modalFooter.innerHTML = `
+                    <button class="btn btn-secondary close-modal-action">Отмена</button>
+                    <button class="btn btn-primary" onclick="assignRequest('${requestId}')">Назначить и Создать Рейс</button>
+                `;
+                detailsModal.style.display = 'block';
+                addCloseEventListenersToModal();
+            });
+        });
+
+        // Обработчики для кнопок "Детали рейса"
+        document.querySelectorAll('.view-details-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const shipmentId = this.dataset.shipmentId;
+                modalTitle.textContent = `Детали Рейса #${shipmentId}`;
+                 // Здесь должен быть AJAX запрос для получения деталей рейса
+                // Пока что отобразим моковые данные
+                modalBody.innerHTML = `
+                    <p class="mb-2"><span class="font-semibold">ID Рейса:</span> ${shipmentId}</p>
+                    <p class="mb-2"><span class="font-semibold">Маршрут:</span> Москва - Тверь</p>
+                    <p class="mb-2"><span class="font-semibold">Водитель:</span> Иванов П.С.</p>
+                    <p class="mb-2"><span class="font-semibold">ТС:</span> КАМАЗ А123БВ</p>
+                    <p class="mb-2"><span class="font-semibold">Статус:</span> <span class="badge status-in-transit">В пути</span></p>
+                    <p class="mb-4"><span class="font-semibold">ETA:</span> 03.06.2025</p>
+                    <h4 class="font-semibold mb-2">История статусов:</h4>
+                    <ul class="list-disc list-inside text-sm space-y-1">
+                        <li>02.06.2025 10:00 - В пути</li>
+                        <li>01.06.2025 15:00 - Загрузка завершена</li>
+                        <li>01.06.2025 09:00 - Назначен водитель</li>
+                    </ul>
+                `;
+                modalFooter.innerHTML = `<button class="btn btn-primary close-modal-action">Закрыть</button>`;
+                detailsModal.style.display = 'block';
+                addCloseEventListenersToModal();
+            });
+        });
+        
+        // Кнопка "Новая Заявка" в шапке
+        const addRequestBtnHeader = document.getElementById('addRequestBtn');
+        addRequestBtnHeader.addEventListener('click', function() {
+            modalTitle.textContent = `Создание Новой Заявки`;
+            modalBody.innerHTML = `
+                <form id="newRequestForm" class="space-y-4">
+                    <div>
+                        <label for="from_address" class="block text-sm font-medium text-gray-700">Адрес откуда:</label>
+                        <input type="text" id="from_address" name="from_address" required class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="to_address" class="block text-sm font-medium text-gray-700">Адрес куда:</label>
+                        <input type="text" id="to_address" name="to_address" required class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="weight" class="block text-sm font-medium text-gray-700">Вес (кг):</label>
+                            <input type="number" id="weight" name="weight" required class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="dimensions" class="block text-sm font-medium text-gray-700">Габариты (ДxШxВ м):</label>
+                            <input type="text" id="dimensions" name="dimensions" placeholder="например, 3x2x2" required class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                    </div>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label for="cost" class="block text-sm font-medium text-gray-700">Стоимость (руб.):</label>
+                            <input type="number" id="cost" name="cost" required class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        <div>
+                            <label for="load_date" class="block text-sm font-medium text-gray-700">Дата загрузки:</label>
+                            <input type="date" id="load_date" name="load_date" required class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="eta_date" class="block text-sm font-medium text-gray-700">Ожидаемая дата доставки:</label>
+                        <input type="date" id="eta_date" name="eta_date" required class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div>
+                        <label for="special_conditions" class="block text-sm font-medium text-gray-700">Специальные условия:</label>
+                        <textarea id="special_conditions" name="special_conditions" rows="2" class="mt-1 block w-full py-2 px-3 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="например, Хрупкий груз, Температурный режим"></textarea>
+                    </div>
+                </form>
+            `;
+            modalFooter.innerHTML = `
+                <button class="btn btn-secondary close-modal-action">Отмена</button>
+                <button type="submit" form="newRequestForm" class="btn btn-primary">Создать Заявку</button>
+            `;
+            detailsModal.style.display = 'block';
+            addCloseEventListenersToModal();
+
+            // Обработка отправки формы новой заявки
+            const newRequestForm = document.getElementById('newRequestForm');
+            if (newRequestForm) {
+                newRequestForm.addEventListener('submit', function(event) {
+                    event.preventDefault();
+                    // Здесь логика создания новой заявки
+                    console.log('Форма новой заявки отправлена');
+                    // Пример добавления новой карточки в DOM (упрощенно)
+                    const newRequestsCountEl = document.getElementById('newRequestsCount');
+                    const currentCount = parseInt(newRequestsCountEl.textContent);
+                    newRequestsCountEl.textContent = currentCount + 1;
+                    // Добавить карточку в DOM...
+                    detailsModal.style.display = 'none'; 
+                    alert('Новая заявка успешно создана (симуляция)!');
+                });
+            }
+        });
+
+
+        // Функция для добавления обработчиков закрытия к кнопкам внутри модального окна
+        function addCloseEventListenersToModal() {
+            document.querySelectorAll('.close-modal-action').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    detailsModal.style.display = 'none';
+                });
+            });
+        }
+        
+        // Закрытие модального окна по кнопке "крестик"
+        closeModalBtn.onclick = function() {
+            detailsModal.style.display = 'none';
+        }
+
+        // Закрытие модального окна по клику вне его области
+        window.onclick = function(event) {
+            if (event.target == detailsModal) {
+                detailsModal.style.display = 'none';
+            }
+        }
+
+        // Функция для симуляции назначения заявки
+        function assignRequest(requestId) {
+            console.log(`Заявка ${requestId} назначена и создан рейс (симуляция).`);
+            // Здесь может быть логика удаления карточки из "Новых заявок"
+            // и добавления строки в "Активные рейсы"
+            detailsModal.style.display = 'none';
+            alert(`Заявка ${requestId} успешно обработана и переведена в активные рейсы (симуляция)!`);
+            // Обновить счетчики и таблицы (в реальном приложении)
+        }
+
+    </script>
+  <script src="js/modal.js"></script>
+  <script src="js/tabs.js"></script>
+  <script src="js/accordion.js"></script>
+  <script src="js/burger.js"></script>
+  <script src="js/scroll.js"></script>
+    <!-- Подвал -->
+    <footer>
+      <p>&copy; 2025 JEDI CSS. Product Design System</p>
+  </footer>
+</body>
+</html>

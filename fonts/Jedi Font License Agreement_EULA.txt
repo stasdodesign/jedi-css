@@ -1,0 +1,36 @@
+END USER LICENSE AGREEMENT (EULA)
+
+Font Name: Jedi  
+Author: Stanislav Dovidenko  
+Contact: stanislavskii.yo@gmail.com  
+Date: 19 May 2025
+
+1. OWNERSHIP
+The "Jedi" font is an original creation and is the intellectual property of the author. All rights to the font design, file, and its visual form are reserved by Stanislav Dovidenko.
+
+2. LICENSE STATUS
+As of the date of this document, the font "Jedi" is NOT LICENSED for any form of use, distribution, modification, or commercial application.
+
+The font is presented solely for visual demonstration purposes on the website:
+https://stasdodesign.github.io/portfolio/ 
+
+3. NOT PERMITTED
+- Downloading or copying the font file by any means
+- Using the font in any design, print, web, application, or advertisement
+- Distributing, sharing, or reposting the font file to any external sources
+- Altering or creating derivative works from the font
+
+4. FUTURE LICENSING
+The author reserves the right to release a future license, which may include:
+- Free/open-source licenses (e.g., SIL Open Font License)
+- Paid commercial licenses
+- Custom or individual-use licenses upon request
+
+5. CONTACT
+For licensing, collaboration, or permission inquiries, please contact:
+📧 stanislavskii.yo@gmail.com
+
+6. LEGAL NOTICE
+This font is provided "as is" for viewing only. Unauthorized use may constitute a violation of copyright law and may result in legal action.
+
+All rights reserved.

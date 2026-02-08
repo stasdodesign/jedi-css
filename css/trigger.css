@@ -1,0 +1,185 @@
+
+ 
+.container {
+    max-width: 800px;
+    margin: auto;
+}
+.trigger-list {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    margin-bottom: 10px;
+}
+.trigger {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+}
+.trigger:last-child {
+    border-bottom: none;
+}
+.btn {
+    background-color: #333;
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.btn-icon-right {
+    background-color: #333;
+    color: white;
+    padding: 10px 15px 10px 20px;
+    text-decoration: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    z-index: 20;
+    box-shadow: 0 10px 15px rgba(222, 101, 101, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+.form {
+    display: none;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+.form input, .form select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.form .btn {
+    width: 100%;
+}
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    bottom: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #333;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 1;
+}
+
+.tooltip-container:hover .tooltip {
+    visibility: visible;
+}
+
+.btn .icon {
+    margin-right: 8px;
+    vertical-align: middle;
+}
+
+.button-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px 0;
+}
+
+.button-caption {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    margin-top: -4px;
+}
+
+.caption-with-arrow {
+    position: absolute;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 0px;
+    margin-top: 16px;
+    z-index: 10;
+    margin-right: 50px;
+}
+
+.curved-arrow-left {
+    width: 60px;
+    height: 60px;
+    transform: scale(1) rotate(0deg);
+    fill: #000000;
+    flex-shrink: 0;
+    margin-bottom: 8px;
+}
+
+.button-caption {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+}
+.gradient-outline {
+    position: relative;
+    background: white;
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 500;
+    border: none;
+    z-index: 1;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .gradient-outline::before {
+    content: '';
+    position: absolute;
+    top: -3px;
+    left: -3px;
+    right: -3px;
+    bottom: -3px;
+    background: linear-gradient(45deg, #1ab394, #f8ac59);
+    z-index: -1;
+    border-radius: 6px;
+  }
+ /* Стиль кнопки */
+.gradient-hover-btn {
+    position: relative;
+    background: transparent;
+    color: #ffffff;
+    /*border: 2px solid #333; /* цвет границы */
+    overflow: hidden;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  /* Псевдоэлемент для волны */
+  .gradient-hover-btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255, 255, 0, 0.3), rgba(255, 255, 0, 0)); /* светло-желтый градиент */
+    transition: all 0.3s ease;
+    z-index: -1; /* чтобы градиент не перекрывал текст */
+  }
+  
+  /* Эффект hover */
+  .gradient-hover-btn:hover {
+    color: #fff; /* Меняется цвет текста при наведении */
+  }
+  
+  .gradient-hover-btn:hover::after {
+    left: 100%; /* Градиент перемещается слева направо */
+  }
+  

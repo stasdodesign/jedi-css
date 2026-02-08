@@ -1,0 +1,272 @@
+:root {
+  --container-md: 28rem; /* 448px */
+}
+
+/* Основной контейнер */
+.max-w-2xl {
+  max-width: 42rem; /* Максимальная ширина 672px */
+}
+
+.w-full {
+  width: 100%;
+}
+.max-w-md {
+  max-width: var(--container-md);
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.p-6 {
+  padding: 1.5rem; /* Отступ 24px */
+}
+
+.p-8 {
+  padding:2rem;
+} /* Отступ 32px */
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+.rounded-2xl {
+  border-radius: 1rem; /* Радиус 16px */
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px rgba(222, 101, 101, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow:-15px 0 30px -10px var(#f5ae73),0 0 30px -10px var(#b6006f53),15px 0 30px -10px var(#2d01dd4a),0 0 0 1px var(#e2008b23);
+}
+
+.space-y-6 > * + * {
+  margin-top: 1.5rem; /* Расстояние между элементами 24px */
+}
+
+/* Заголовок */
+.text-2xl {
+  font-size: 1.5rem; /* Размер шрифта 24px */
+  line-height: 2rem; /* Высота строки 32px */
+}
+
+.font-bold {
+  font-weight: 700;
+}
+
+/* Внутренние отступы */
+.space-y-4 > * + * {
+  margin-top: 1rem; /* Расстояние между элементами 16px */
+}
+
+/* Метки */
+.block {
+  display: block;
+}
+
+.text-sm {
+  font-size: 0.875rem; /* Размер шрифта 14px */
+  line-height: 1.25rem; /* Высота строки 20px */
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem; /* Отступ снизу 4px */
+}
+
+/* Add bottom margin of 8px */
+.mb-2 {
+  margin-bottom: 0.5rem; /* 8px */
+}
+
+/* Поля ввода */
+.w-full {
+  width: 100%;
+}
+
+.border {
+  border: 1px solid #d1d5db; /* Светло-серая граница */
+}
+
+.rounded-lg {
+  border-radius: 0.5rem; /* Радиус 8px */
+}
+
+.p-2 {
+  padding: 0.5rem; /* Отступ 8px */
+}
+
+.flex {
+  display: flex;
+}
+.h-screen {
+  height:100vh;
+}
+.w-full {
+  width:100%
+}
+.max-w-md {
+  max-width:28rem
+}
+.items-center {
+  align-items:center
+}
+.justify-center {
+  justify-content:center
+}
+
+.space-x-2 > * + * {
+  margin-left: 0.5rem; /* Горизонтальное расстояние 8px */
+}
+
+.space-x-3 > * + * {
+  margin-left: 0.75rem; /* Горизонтальное расстояние 12px */
+}
+
+
+.flex-1 {
+  flex: 1; /* Элемент занимает всё доступное пространство */
+}
+
+.w-28 {
+  width: 7rem; /* Ширина 112px */
+}
+
+/* Чекбоксы */
+.rounded {
+  border-radius: 0.25rem; /* Радиус 4px */
+}
+
+.border-gray-300 {
+  border-color: #d1d5db; /* Светло-серая граница */
+}
+
+/* Текстовая область */
+textarea {
+  resize: vertical; /* Разрешить изменение размера только по вертикали */
+}
+
+.rows-4 {
+  height: calc(1.5rem * 4 + 1rem); /* Высота для 4 строк */
+}
+
+/* Кнопки */
+.flex.justify-end {
+  justify-content: flex-end;
+}
+
+.space-x-4 > * + * {
+  margin-left: 1rem; /* Горизонтальное расстояние 16px */
+}
+
+.px-4 {
+  padding-left: 1rem; /* Отступ слева 16px */
+  padding-right: 1rem; /* Отступ справа 16px */
+}
+
+.py-2 {
+  padding-top: 0.5rem; /* Отступ сверху 8px */
+  padding-bottom: 0.5rem; /* Отступ снизу 8px */
+}
+
+.bg-gray-200 {
+  background-color: #e5e7eb; /* Светло-серый фон */
+}
+
+.text-gray-700 {
+  color: #374151; /* Тёмно-серый текст */
+}
+
+.hover\:bg-gray-300:hover {
+  background-color: #d1d5db; /* Светло-серый фон при наведении */
+}
+
+.bg-blue-600 {
+  background-color: #2563eb; /* Синий фон */
+}
+
+.text-white {
+  color: #ffffff; /* Белый текст */
+}
+
+.hover\:bg-blue-700:hover {
+  background-color: #1d4ed8; /* Более тёмный синий фон при наведении */
+}
+
+/* Ensure labels wrap to a new line in mobile view */
+.flex-wrap {
+  flex-wrap: wrap;
+}
+@media (max-width: 375px) {
+  .flex-wrap {
+    flex-wrap: wrap;
+  }
+  .w-full {
+    width: 100%;
+  }
+}
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+@media (max-width: 375px) {
+  .flex-nowrap {
+    flex-wrap: wrap;
+  }
+}
+@media (max-width: 424px) {
+  .mt-mobile {
+    margin-top: 0.5rem;
+  }
+}
+@media (max-width: 424px) {
+  .ml-mobile-0 {
+    margin-left: 0;
+  }
+}
+@media (max-width: 640px) {
+  .space-x-2 > * + * {
+    margin-left: 0; /* Убираем отступ в мобильной версии */
+    margin-right: 0.5rem; /* Добавляем отступ справа в мобильной версии */
+  }
+}
+@media (max-width: 375px) {
+  .flex-column-mobile {
+    flex-direction: column;
+    gap: 1rem; /* Добавляем отступ между кнопками */
+  }
+}
+@media (max-width: 375px) {
+  .space-x-4 > * + * {
+    margin-left: 0; /* Убираем отступ в мобильной версии */
+  }
+}
+@media (max-width: 375px) {
+  select {
+    max-width: 100%; /* Ограничиваем ширину на мобильных устройствах */
+  }
+}
+select {
+  max-width: 100%; /* Ограничиваем ширину */
+  box-sizing: border-box; /* Учитываем отступы и границы */
+}
+/* Ensure elements do not exceed the full width of their container */
+.max-w-full {
+  max-width: 100%;
+  box-sizing: border-box; /* Include padding and border in the element's width */
+}
+@media (max-width: 640px) {
+  select {
+    max-width: 100%;
+    width: 100%;
+  }
+}
+select {
+  max-width: 100%;
+  width: 100%;
+  box-sizing: border-box; /* Учитываем отступы и границы */
+  overflow: hidden; /* Скрываем выходящий контент */
+}

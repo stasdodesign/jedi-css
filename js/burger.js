@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Открытие/закрытие меню
   burgerBtn.addEventListener('click', function () {
     mainNav.classList.toggle('active'); // Переключить видимость основного меню
-    subNav.classList.toggle('active'); // Переключить видимость подменю
+    if (subNav) subNav.classList.toggle('active'); // Переключить видимость подменю
     overlay.classList.toggle('active'); // Переключить видимость затемнения
     mainHeader.classList.toggle('burger-active'); // Переключить класс для скрытия логотипа
   });
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // Закрытие меню при клике на overlay
   overlay.addEventListener('click', function () {
     mainNav.classList.remove('active');
-    subNav.classList.remove('active');
+    if (subNav) subNav.classList.remove('active');
     overlay.classList.remove('active');
     mainHeader.classList.remove('burger-active'); // Убедиться, что логотип возвращается
   });

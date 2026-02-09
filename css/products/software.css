@@ -1,0 +1,50 @@
+﻿ /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1; /* gray-400 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: #f1f5f9; /* slate-100 */
+        }
+        /* Подключение шрифта Inter */
+        @import url('https://rsms.me/inter/inter.css');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Стили для иконок-заглушек (плагины, похожее ПО) */
+        .icon-placeholder {
+            /* Tailwind equivalents converted to plain CSS so styles apply without a Tailwind build step */
+            width: 2.5rem; /* w-10 */
+            height: 2.5rem; /* h-10 */
+            margin-right: 0.75rem; /* mr-3 (≈12px) */
+            border-radius: 0.5rem; /* rounded-lg */
+            flex-shrink: 0;
+            background-color: #f3f4f6; /* bg-gray-100 */
+            color: #2563eb; /* text-blue-600 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem; /* text-xl */
+        }
+        .similar-icon-placeholder {
+            width: 4rem; /* w-16 */
+            height: 4rem; /* h-16 */
+            margin-left: auto;
+            margin-right: auto; /* mx-auto */
+            margin-bottom: 0.75rem; /* mb-3 */
+            border-radius: 0.5rem; /* rounded-lg */
+            background-color: #dbeafe; /* bg-blue-100 */
+            color: #2563eb; /* text-blue-600 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem; /* text-2xl */
+        }
+        /* Стили для модального окна */
+        #support-modal.hidden {
+            display: none;
+        }

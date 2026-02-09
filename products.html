@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>JEDI CSS Design System</title>
+    <title>Products - Design Cases</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/components/styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="jedicss.ico/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="jedicss.ico/favicon.svg" />
@@ -14,7 +15,8 @@
     <link rel="manifest" href="jedicss.ico/site.webmanifest" /> 
   </head>
 <body>
-  <!-- ������ ���� -->
+
+  <!-- Главное меню -->
   <header class="main-header">
     <div class="logo">
       <svg class="logo-img" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -26,104 +28,77 @@
         <span class="logo-subtitle">Product Design System</span>
       </div>
     </div>
-    <nav class="main-nav">
-<a href="index.html" class="nav-link active">Home</a>
+    <nav class="main-nav">      <a href="index.html" class="nav-link">Home</a>
       <a href="themes.html" class="nav-link">Themes</a>
-      <a href="primitives.html" class="nav-link">Primitives</a>
+      <a href="primitives.html" class="nav-link active">Primitives</a>
       <a href="type.html" class="nav-link">Type</a>
       <a href="colors.html" class="nav-link">Colors</a>
       <a href="icons.html" class="nav-link">Icons</a>
     </nav>
-    <button class="burger" id="burger-btn">?</button>
+    <button class="burger" id="burger-btn">☰</button>
     <div class="extra-menu">
       <a href="https://github.com/stasdodesign/" class="menu-link">GitHub</a>
     </div>
   </header>
-<section id="card" class="component-section">
-      <h1>JEDI Design System</h1>
-      <p>Experimental Sandbox by Stanislav Dovidenko with AI Product Design Cases </p>
-        <br>
-<div class="button-row">
-  <a href="https://github.com/stasdodesign/" class="btn-primary">
-    View GitHub
-    <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-      <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-</div>
   <div class="overlay" id="overlay"></div>
+
+  
+  <!-- Второе меню - Якоря -->
+  <aside class="sub-nav">
+    <ul>
+        <li><strong>Logistics</strong></li>
+        <li><a href="logistics_dashboard_v1.html" class="nav-link">Dashboard</a></li>
+        <li><a href="Race.html" class="nav-link">Race</a></li> 
+        <br>
+        <li><strong>Software Store</strong></li>
+        <li><a href="software_store.html" class="nav-link">Software Store</a></li> 
+    </ul>
+  </aside>
+
+  <!-- Компоненты -->
+  <main class="components-list">
+
+    <!-- Components -->
+    <section  class="component-section">
+      <h1>Built apps and SAAS products</h1>
+      <p>Vibecoded with Gemini, ChatGpt, DeepSeek agents several products for different industries and use cases.</p>
+    </section>
+    	    <!-- Cards -->
   <div class="cards">
     <div class="card">
       <div class="card-body">
-        <h3>Themes</h3>
-        <p>Theme variations and dark mode support.</p>
-        <a href="themes.html" class="btn-secondary-test">View
-        <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
+        <h3>Logistics Dashboard</h3>
+        <p>Logistics manager's personal account dashboard with requests and orders</p>
+  <a href="logistics_dashboard_v1.html" class="btn-secondary-test">View Product
+         <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
         <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
-        </a>
+  </a>
       </div>
     </div>
     <div class="card">
       <div class="card-body">
-        <h3>Primitives</h3>
-        <p>Basic design primitives and elements.</p>
-        <a href="primitives.html" class="btn-secondary-test">View
-        <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-        <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        </a>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h3>Type</h3>
-        <p>Typography scales and text styles.</p>
-        <a href="type.html" class="btn-secondary-test">View
-        <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-        <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        </a>
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h3>Colors</h3>
-        <p>Explore the color palette and design tokens.</p>
-        <a href="colors.html" class="btn-secondary-test">View
-        <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-        <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        </a> 
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h3>Icons</h3>
-        <p>Icon library and usage guidelines.</p>
-        <a href="icons.html" class="btn-secondary-test">View
-        <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-        <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-        </a>         
-      </div>
-    </div>
-    <div class="card">
-      <div class="card-body">
-        <h3>Product</h3>
-        <p>Product-specific components and patterns.</p>
-        <a href="products.html" class="btn-secondary-test">View
+        <h3>Software Store</h3>
+        <p>Software store with product listings and purchase options.</p>
+        <a href="software_store.html" class="btn-secondary-test">View Product
          <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
         <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
         </a>
       </div>
     </div>
+ 
   </div>
-</section>
+
+</main>
+  <script src="js/trigger.js"></script>
+  <script src="js/modal.js"></script>
+  <script src="js/tabs.js"></script>
+  <script src="js/accordion.js"></script>
   <script src="js/burger.js"></script>
+  <script src="js/scroll.js"></script>
     <!-- Подвал -->
-    <footer style="margin-left: 0px;">
+    <footer>
       <p>&copy; 2026 JEDI CSS. Product Design System</p>
   </footer>
 </body>

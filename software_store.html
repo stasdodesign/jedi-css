@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редизайн - Карточка ПО</title>
+    <!-- Подключение Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Подключение Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" xintegrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1; /* gray-400 */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background-color: #f1f5f9; /* slate-100 */
+        }
+        /* Подключение шрифта Inter */
+        @import url('https://rsms.me/inter/inter.css');
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Стили для иконок-заглушек (плагины, похожее ПО) */
+        .icon-placeholder {
+            /* Tailwind equivalents converted to plain CSS so styles apply without a Tailwind build step */
+            width: 2.5rem; /* w-10 */
+            height: 2.5rem; /* h-10 */
+            margin-right: 0.75rem; /* mr-3 (≈12px) */
+            border-radius: 0.5rem; /* rounded-lg */
+            flex-shrink: 0;
+            background-color: #f3f4f6; /* bg-gray-100 */
+            color: #2563eb; /* text-blue-600 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem; /* text-xl */
+        }
+        .similar-icon-placeholder {
+            width: 4rem; /* w-16 */
+            height: 4rem; /* h-16 */
+            margin-left: auto;
+            margin-right: auto; /* mx-auto */
+            margin-bottom: 0.75rem; /* mb-3 */
+            border-radius: 0.5rem; /* rounded-lg */
+            background-color: #dbeafe; /* bg-blue-100 */
+            color: #2563eb; /* text-blue-600 */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem; /* text-2xl */
+        }
+        /* Стили для модального окна */
+        #support-modal.hidden {
+            display: none;
+        }
+    </style> 
+</head>
+<body class="bg-gray-100 h-screen flex flex-col">
+
+    <!-- 1. Верхняя навигация (Серая) -->
+    <nav class="bg-gray-50 border-b border-gray-200 w-full flex-shrink-0 z-10">
+        <div class="max-w-screen-2xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-14">
+                <!-- Левая часть: Логотип и Навигация -->
+                <div class="flex items-center space-x-8">
+                    <!-- Логотип -->
+                    <a href="index.html" class="flex items-center space-x-2 text-lg font-bold text-gray-900">
+                        <span class="flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full">
+                                  <svg class="logo-img" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M399.93,408a7.59,7.59,0,0,1-7.9-6.61.1.1,0,0,1,.07-.1h0a.1.1,0,0,1,.09.06,9.65,9.65,0,0,0,.77,1.6,7,7,0,0,1,.2-7.09.1.1,0,0,1,.07,0l.05,0a.08.08,0,0,1,0,.12c-1.09,2.06.07,4.14.86,5.19a6.51,6.51,0,0,1-.63-4.53,7.8,7.8,0,0,1,3.23-4.34h0a.08.08,0,0,1,.07,0,.08.08,0,0,1,0,.12,3.2,3.2,0,0,0-1.38,2.29c-.2,2.11,1.73,4.27,1.75,4.29a.09.09,0,0,1,0,.1,5.78,5.78,0,0,0-.67,4.64,6.24,6.24,0,0,0,2.92,3.26l.06-2.63-1.05,1.1a.07.07,0,0,1-.06,0l-.05,0a.08.08,0,0,1,0-.11l.79-1.56-2.08-.3a.08.08,0,0,1-.07-.09.1.1,0,0,1,.07-.09l2.09-.3-.67-1.85a.1.1,0,0,1,.05-.11h0a.07.07,0,0,1,.07,0l.95,1.38.27-10.34A.09.09,0,0,1,400,392h0a.09.09,0,0,1,.09.09c0,.06.19,7.05.27,10.34l.95-1.38a.1.1,0,0,1,.07,0h0a.09.09,0,0,1,0,.11l-.67,1.85,2.09.3a.11.11,0,0,1,.08.09.09.09,0,0,1-.08.09l-2.08.3.8,1.56a.09.09,0,0,1,0,.11.07.07,0,0,1-.06,0l-.06,0-1.05-1.1c0,1.62.06,2.36.07,2.63a6.23,6.23,0,0,0,2.91-3.26,5.78,5.78,0,0,0-.67-4.64.09.09,0,0,1,0-.1s1.95-2.18,1.75-4.28a3.2,3.2,0,0,0-1.38-2.29.09.09,0,0,1,0-.13.12.12,0,0,1,.08,0l0,0a7.76,7.76,0,0,1,3.23,4.33,6.5,6.5,0,0,1-.62,4.53c.78-1,1.94-3.12.85-5.19a.09.09,0,0,1,0-.12l.05,0a.08.08,0,0,1,.07,0A7,7,0,0,1,407,403a8.06,8.06,0,0,0,.83-1.67.1.1,0,0,1,.09-.06h0a.1.1,0,0,1,.07.1,7.59,7.59,0,0,1-7.9,6.61h-.14Z" transform="translate(-390 -390)"/>
+        <path d="M400,410a10,10,0,1,1,10-10A10,10,0,0,1,400,410Zm0-19.39a9.39,9.39,0,1,0,9.39,9.39A9.4,9.4,0,0,0,400,390.61Z" transform="translate(-390 -390)"/>
+      </svg>
+                        </span>
+                        <span>JEDI Software</span>
+                    </a>
+                    
+                    <!-- Навигация -->
+                    <div class="flex items-center space-x-6">
+                        <a href="products.html" class="text-sm font-medium text-gray-700 hover:text-blue-600">Главная</a>
+                        <a href="products.html" class="text-sm font-medium text-gray-700 hover:text-blue-600">Каталог</a>
+                        <a href="products.html" class="text-sm font-medium text-gray-700 hover:text-blue-600">Обращения</a>
+                        <a href="products.html" class="text-sm font-medium text-gray-700 hover:text-blue-600">Личный кабинет</a>
+                        <a href="products.html" class="text-sm font-medium text-blue-600 hover:text-blue-700">Заказать ПО</a>
+                    </div>
+                </div>
+                <!-- Правая часть: Иконки -->
+                <div class="flex items-center space-x-4">
+                    <button class="text-gray-500 hover:text-gray-700 w-8 h-8 flex items-center justify-center">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="text-gray-500 hover:text-gray-700 w-8 h-8 flex items-center justify-center">
+                        <i class="fas fa-question-circle"></i>
+                    </button>
+                    <button class="text-gray-500 hover:text-gray-700 w-8 h-8 flex items-center justify-center">
+                        <i class="fas fa-bell"></i>
+                    </button>
+                    <button class="text-gray-500 hover:text-gray-700 w-8 h-8 flex items-center justify-center">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <img class="w-6 h-6 rounded-full" src="https://placehold.co/24x24/E0E7FF/4F46E5?text=JS" alt="Avatar">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Основной макет (Боковое меню + Контент) -->
+    <div class="flex flex-1 overflow-hidden">
+        
+        <!-- 2.1. Левое боковое меню -->
+        <aside class="w-64 bg-white border-r border-gray-200 flex-shrink-0 overflow-y-auto">
+            <div class="p-4">
+                <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Навигация</h2>
+                <nav class="mt-4 space-y-1">
+                    <a href="products.html" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-th-large w-6 text-center mr-2"></i>Все категории
+                    </a>
+                    <a href="products.html" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-star w-6 text-center mr-2"></i>Коллекции
+                    </a>
+                    <a href="products.html" class="flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-user-check w-6 text-center mr-2"></i>Мои программы
+                    </a>
+                </nav>
+            </div>
+            <div class="border-t border-gray-200 p-4">
+                 <h2 class="text-sm font-semibold text-gray-500 uppercase tracking-wider">Категории</h2>
+                 <nav class="mt-4 space-y-1">
+                    <!-- Активный элемент -->
+                    <a id="category-dev-tools" href="#category-dev-tools" class="group flex items-center px-3 py-2 text-sm font-medium text-blue-700 bg-blue-50 rounded-lg">
+                        <i class="fas fa-code w-6 text-center mr-2"></i>Инструменты разработки
+                    </a>
+                    <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-file-word w-6 text-center mr-2"></i>Локальное офисное ПО
+                    </a>
+                    <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-briefcase w-6 text-center mr-2"></i>Базовое ПО
+                    </a>
+                    <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-cogs w-6 text-center mr-2"></i>Системное ПО
+                    </a>
+                    <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-shield-alt w-6 text-center mr-2"></i>ПО кибербезопасности
+                    </a>
+                    <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-palette w-6 text-center mr-2"></i>ПО дизайнеров
+                    </a>
+                    <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-hard-hat w-6 text-center mr-2"></i>ПО технической безопасности
+                    </a>
+                    <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-drafting-compass w-6 text-center mr-2"></i>Автоматизированное проектирование
+                    </a>
+                    <div>
+                        <!-- Toggle button for nested client parts -->
+                        <button id="toggle-client-parts" type="button" aria-expanded="false" aria-controls="client-parts-children" class="group flex items-center w-full px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100 focus:outline-none">
+                            <i class="fas fa-desktop w-6 text-center mr-2"></i>
+                            <span class="flex-1 text-left">Клиентские части АС</span>
+                            <!-- Smaller chevron -->
+                            <i id="toggle-client-parts-chevron" class="fas fa-chevron-down ml-2 text-xs" aria-hidden="true" style="transition: transform 0.18s ease;"></i>
+                        </button>
+                        <!-- Вложенные категории (сохранены) -->
+                        <div id="client-parts-children" class="ml-6 mt-2 space-y-1 hidden">
+                            <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                                <i class="fas fa-credit-card w-6 text-center mr-2"></i>Банковское финансовое ПО
+                            </a>
+                            <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                                <i class="fas fa-comments w-6 text-center mr-2"></i>Коммуникационное ПО
+                            </a>
+                            <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                                <i class="fas fa-video w-6 text-center mr-2"></i>Видеонаблюдение
+                            </a>
+                        </div>
+                    </div>
+                    <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-tasks w-6 text-center mr-2"></i>Инструменты администраторов
+                    </a>
+                    <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-book w-6 text-center mr-2"></i>Библиотеки DS
+                    </a>
+                     <a href="#" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-100">
+                        <i class="fas fa-box-open w-6 text-center mr-2"></i>Служебные пакеты
+                    </a>
+                 </nav>
+            </div>
+        </aside>
+
+        <!-- 2.2. Основной контент -->
+        <main class="flex-1 overflow-y-auto bg-gray-100 p-8">
+            <div class="max-w-5xl mx-auto">
+                <!-- Карточка ПО -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden">
+                    
+                    <!-- Верхняя часть (Хедер) -->
+                    <div class="p-6 md:p-8">
+                        <div class="flex flex-col md:flex-row items-start md:items-start">
+                            <!-- Иконка -->
+                            <div class="flex-shrink-0 w-20 h-20 bg-blue-500 rounded-2xl flex items-center justify-center mb-4 md:mb-0 md:mr-6">
+                                <i class="fab fa-microsoft text-5xl text-white"></i> <!-- Приблизительная иконка VS Code -->
+                            </div>
+                            
+                            <!-- Информация о ПО -->
+                            <div class="flex-grow">
+                                <h1 class="text-2xl font-bold text-gray-900">Visual Studio Code</h1>
+
+                                <!-- Рейтинг -->
+                                <div class="flex items-center space-x-2 mt-2 text-gray-800">
+                                    <a href="#category-dev-tools" class="text-sm font-medium text-blue-600 hover:underline">Инструменты разработки</a>
+                                </div>
+                                
+                                <!-- Выбор версии -->
+                                <div class="flex flex-wrap items-center gap-x-4 gap-y-2 mt-4">
+
+                                    <div class="relative">
+                                        <select id="os-version" name="os-version" class="block w-full appearance-none text-sm pl-4 pr-10 py-1.5 rounded-full border border-gray-300 bg-gray-50 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition" style="-webkit-appearance: none; -moz-appearance: none; appearance: none;">
+                                            <option selected>Windows (x64)</option>
+                                            <option>macOS (Universal)</option>
+                                            <option>Linux (x64 .deb)</option>
+                                            <option>Linux (x64 .rpm)</option>
+                                        </select>
+                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex flex-col items-center justify-center px-3 text-gray-500">
+                                            <i class="fas fa-chevron-down text-xs leading-none"></i> 
+                                        </div>
+                                    </div>
+                                    <button id="main-install-btn" class="bg-blue-600 text-white font-semibold rounded-full px-6 py-1.5 transition duration-300 hover:bg-blue-700 active:bg-blue-800 shadow-md hover:shadow-lg flex items-center gap-2" data-installing="false">
+                                        <span id="main-install-text">Установить</span>
+                                        <i id="main-install-spinner" class="fas fa-spinner fa-spin hidden"></i>
+                                    </button>
+                                    <!-- Кнопка удаления -->
+                                    <button class="p-2.5 w-10 h-10 rounded-full text-gray-500 bg-gray-100 hover:bg-red-100 hover:text-red-600 transition flex items-center justify-center" title="Удалить программу">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </button>                                    
+                                </div>
+                                
+
+                            </div>
+                            
+                            <!-- Кнопки и ссылки поддержки, размещённые вертикально: кнопки сверху, поддержка снизу -->
+                            <div class="flex flex-col items-start space-y-2 mt-1 text-gray-500">
+                                <div class="flex items-center space-x-4">
+
+                                    <span class="flex items-center" title="Информация">
+                                        <i class="fas fa-info-circle"></i>
+                                    </span>
+                                    <span class="flex items-center" title="В закладки">
+                                        <i class="fas fa-bookmark"></i>
+                                    </span>
+                                    <a href="#" id="open-support-modal" class="flex items-center space-x-1.5 hover:text-blue-600 transition" title="Поддержка">
+                                        <i class="fas fa-life-ring"></i>
+                                        <span class="text-sm font-medium">Поддержка</span>
+                                    </a>                                    
+                                    <button class="p-2.5 w-10 h-10 rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-800 transition flex items-center justify-center">
+                                        <i class="fas fa-ellipsis-v"></i>
+                                    </button>
+                                </div>
+
+                            </div>
+                            
+                        </div>
+                        
+                        <!-- Баннер статуса -->
+                        <div id="status-banner" class="mt-6 p-4 bg-blue-50 text-blue-700 rounded-lg border border-blue-200 hidden">
+                            <span class="font-medium text-gray-600">Статус установки смотрите в разделе </span> <a href="#category-dev-tools" class="text-m font-medium text-blue-600 hover:underline">«Обращения»</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Инфо-строка -->
+                    <div class="border-t md:p-4">
+                        <div class="flex justify-around divide-x divide-gray-200">
+                            <div class="flex-1 p-1 text-center">
+                                <span class="text-xs text-gray-500 uppercase">12 тыс. оценок</span>
+                                <div class="flex items-center justify-center mt-1">
+                                    <span class="text-sm font-semibold text-gray-800">4,8</span>
+                                    <i class="fas fa-star text-yellow-500 ml-1" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="flex-1 p-1 text-center">
+                                <span class="text-xs text-gray-500 uppercase">Размер</span>
+                                <p class="text-sm font-semibold text-gray-800">222,58 МБ</p>
+                            </div>
+                            <div class="flex-1 p-1 text-center">
+                                <span class="text-xs text-gray-500 uppercase">Лицензия</span>
+                                <p class="text-sm font-semibold text-gray-800">Не требуется</p>
+                            </div>
+                            <div class="flex-1 p-1 text-center">
+                                <span class="text-xs text-gray-500 uppercase">Соглашение</span>
+                                <p class="text-sm font-semibold text-gray-800">Не требуется</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Слайдер скриншотов -->
+                    <div class="p-6 md:p-8 border-b border-gray-200">
+                         
+                                <div class="relative w-full overflow-hidden rounded-lg bg-gray-200">
+                            <!-- Slides (3 visible per view) -->
+                            <div id="slider-container" class="flex transition-transform duration-500 ease-in-out">
+                                <!-- Slide 1 -->
+                                <div class="slider-slide flex-shrink-0 w-1/3 px-2">
+                                    <img src="https://placehold.co/800x450/007BFF/FFFFFF?text=Интерфейс+программы" class="w-full h-56 object-cover rounded-md" alt="Скриншот 1: Интерфейс программы">
+                                </div>
+                                <!-- Slide 2 -->
+                                <div class="slider-slide flex-shrink-0 w-1/3 px-2">
+                                    <img src="https://placehold.co/800x450/343A40/FFFFFF?text=Редактор+кода" class="w-full h-56 object-cover rounded-md" alt="Скриншот 2: Редактор кода">
+                                </div>
+                                <!-- Slide 3 -->
+                                <div class="slider-slide flex-shrink-0 w-1/3 px-2">
+                                    <img src="https://placehold.co/800x450/28A745/FFFFFF?text=Терминал" class="w-full h-56 object-cover rounded-md" alt="Скриншот 3: Встроенный терминал">
+                                </div>
+                            </div>
+                            <!-- Nav buttons -->
+                            <button id="slider-prev" class="absolute top-1/2 left-3 transform -translate-y-1/2 bg-black bg-opacity-30 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-opacity-50 transition">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button id="slider-next" class="absolute top-1/2 right-3 transform -translate-y-1/2 bg-black bg-opacity-30 text-white rounded-full p-2 w-10 h-10 flex items-center justify-center hover:bg-opacity-50 transition">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                            <!-- Dots -->
+                            <div id="slider-dots" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                                <!-- Точки будут сгенерированы JS -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Система вкладок -->
+                    <div>
+                        <!-- Навигация по вкладкам -->
+                        <div class="border-b border-gray-200 px-4 md:px-8">
+                            <nav class="flex -mb-px space-x-4 overflow-x-auto" id="tab-buttons">
+                                <a href="#" class="tab-button whitespace-nowrap" data-tab-toggle="tab-general">Общие</a>
+                                <a href="#" class="tab-button whitespace-nowrap" data-tab-toggle="tab-docs">Документы</a>
+                                <a href="#" class="tab-button whitespace-nowrap" data-tab-toggle="tab-faq">Вопросы и ответы</a>
+                                <a href="#" class="tab-button whitespace-nowrap" data-tab-toggle="tab-support">Сопровождение</a>
+                                <a href="#" class="tab-button whitespace-nowrap" data-tab-toggle="tab-compatibility">Совместимость</a>
+                                <a href="#" class="tab-button whitespace-nowrap" data-tab-toggle="tab-plugins">Плагины и расширения</a>
+                                <a href="#" class="tab-button whitespace-nowrap" data-tab-toggle="tab-similar">Похожее ПО</a>
+                            </nav>
+                        </div>
+
+                        <!-- Контент вкладок -->
+                        <div class="p-6 md:p-8">
+                            
+                            <!-- Вкладка 1: Общие -->
+                            <div id="tab-general" class="tab-content space-y-8"> <!-- Увеличил space-y для лучшего разделения -->
+                                <!-- Секция "Аналоги" -->
+                                <div>
+                                    <h2 class="text-l font-semibold text-gray-800 mb-4">Аналоги</h2>
+                                    
+                                    <!-- Полная поддержка (зеленый) -->
+                                    <div class="mb-6">
+                                        <h3 class="text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                            <span class="w-3 h-3 rounded-full bg-green-500 mr-2"></span>Полная поддержка
+                                        </h3>
+                                        <div class="flex flex-wrap gap-3">
+                                            <!-- Python -->
+                                            <div class="flex items-center gap-2 px-3 py-2 bg-green-50 border border-green-200 rounded-full">
+                                                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-green-700">
+                                                    <i class="fab fa-python"></i>Python
+                                                </a>
+                                                <div class="flex gap-1 ml-1">
+                                                    <i class="fab fa-linux w-4 h-4 text-gray-600 flex items-center justify-center" title="Linux"></i>
+                                                    <i class="fab fa-apple w-4 h-4 text-gray-600 flex items-center justify-center" title="macOS"></i>
+                                                    <i class="fab fa-windows w-4 h-4 text-gray-600 flex items-center justify-center" title="Windows"></i>
+                                                </div>
+                                            </div>
+                                            <!-- PyCharm -->
+                                            <div class="flex items-center gap-2 px-3 py-2 bg-green-50 border border-green-200 rounded-full">
+                                                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-green-700">
+                                                    <i class="fab fa-python"></i>PyCharm
+                                                </a>
+                                                <div class="flex gap-1 ml-1">
+                                                    <i class="fab fa-linux w-4 h-4 text-gray-600 flex items-center justify-center" title="Linux"></i>
+                                                    <i class="fab fa-apple w-4 h-4 text-gray-600 flex items-center justify-center" title="macOS"></i>
+                                                    <i class="fas fa-check-circle w-4 h-4 text-gray-600 flex items-center justify-center" title="SberOS"></i>
+                                                    <i class="fab fa-windows w-4 h-4 text-gray-600 flex items-center justify-center" title="Windows"></i>
+                                                </div>
+                                            </div>
+                                            <!-- DataGrip -->
+                                            <div class="flex items-center gap-2 px-3 py-2 bg-green-50 border border-green-200 rounded-full">
+                                                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-green-700">
+                                                    <i class="fas fa-database"></i>DataGrip
+                                                </a>
+                                                <div class="flex gap-1 ml-1">
+                                                    <i class="fab fa-linux w-4 h-4 text-gray-600 flex items-center justify-center" title="Linux"></i>
+                                                    <i class="fab fa-apple w-4 h-4 text-gray-600 flex items-center justify-center" title="macOS"></i>
+                                                    <i class="fab fa-windows w-4 h-4 text-gray-600 flex items-center justify-center" title="Windows"></i>
+                                                </div>
+                                            </div>
+                                            <!-- Oracle SQL Developer -->
+                                            <div class="flex items-center gap-2 px-3 py-2 bg-green-50 border border-green-200 rounded-full">
+                                                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-green-700">
+                                                    <i class="fab fa-oracle"></i>Oracle SQL Developer
+                                                </a>
+                                                <div class="flex gap-1 ml-1">
+                                                    <i class="fab fa-linux w-4 h-4 text-gray-600 flex items-center justify-center" title="Linux"></i>
+                                                    <i class="fab fa-apple w-4 h-4 text-gray-600 flex items-center justify-center" title="macOS"></i>
+                                                    <i class="fab fa-windows w-4 h-4 text-gray-600 flex items-center justify-center" title="Windows"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Частичная поддержка (оранжевый) -->
+                                    <div>
+                                        <h3 class="text-sm font-semibold text-gray-700 mb-3 flex items-center">
+                                            <span class="w-3 h-3 rounded-full bg-orange-500 mr-2"></span>Частичная поддержка
+                                        </h3>
+                                        <div class="flex flex-wrap gap-3">
+                                            <!-- IntelliJ IDEA -->
+                                            <div class="flex items-center gap-2 px-3 py-2 bg-orange-50 border border-orange-200 rounded-full">
+                                                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-orange-700">
+                                                    <i class="fas fa-code"></i>IntelliJ IDEA
+                                                </a>
+                                                <div class="flex gap-1 ml-1">
+                                                    <i class="fab fa-linux w-4 h-4 text-gray-600 flex items-center justify-center" title="Linux"></i>
+                                                    <i class="fab fa-apple w-4 h-4 text-gray-600 flex items-center justify-center" title="macOS"></i>
+                                                </div>
+                                            </div>
+                                            <!-- GoLand -->
+                                            <div class="flex items-center gap-2 px-3 py-2 bg-orange-50 border border-orange-200 rounded-full">
+                                                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-orange-700">
+                                                    <i class="fas fa-code"></i>GoLand
+                                                </a>
+                                                <div class="flex gap-1 ml-1">
+                                                    <i class="fab fa-windows w-4 h-4 text-gray-600 flex items-center justify-center" title="Windows"></i>
+                                                    <i class="fas fa-check-circle w-4 h-4 text-gray-600 flex items-center justify-center" title="SberOS"></i>
+                                                </div>
+                                            </div>
+                                            <!-- Eclipse IDE -->
+                                            <div class="flex items-center gap-2 px-3 py-2 bg-orange-50 border border-orange-200 rounded-full">
+                                                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-orange-700">
+                                                    <i class="fab fa-java"></i>Eclipse IDE
+                                                </a>
+                                                <div class="flex gap-1 ml-1">
+                                                    <i class="fab fa-linux w-4 h-4 text-gray-600 flex items-center justify-center" title="Linux"></i>
+                                                    <i class="fab fa-windows w-4 h-4 text-gray-600 flex items-center justify-center" title="Windows"></i>
+                                                </div>
+                                            </div>
+                                            <!-- SQL Server Management Studio -->
+                                            <div class="flex items-center gap-2 px-3 py-2 bg-orange-50 border border-orange-200 rounded-full">
+                                                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-orange-700">
+                                                    <i class="fas fa-database"></i>SQL Server Management Studio
+                                                </a>
+                                                <div class="flex gap-1 ml-1">
+                                                    <i class="fab fa-windows w-4 h-4 text-gray-600 flex items-center justify-center" title="Windows"></i>
+                                                </div>
+                                            </div>
+                                            <!-- PL/SQL Developer -->
+                                            <div class="flex items-center gap-2 px-3 py-2 bg-orange-50 border border-orange-200 rounded-full">
+                                                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-orange-700">
+                                                    <i class="fas fa-database"></i>PL/SQL Developer
+                                                </a>
+                                                <div class="flex gap-1 ml-1">
+                                                    <i class="fab fa-windows w-4 h-4 text-gray-600 flex items-center justify-center" title="Windows"></i>
+                                                    <i class="fas fa-check-circle w-4 h-4 text-gray-600 flex items-center justify-center" title="SberOS"></i>
+                                                </div>
+                                            </div>
+                                            <!-- Jira -->
+                                            <div class="flex items-center gap-2 px-3 py-2 bg-orange-50 border border-orange-200 rounded-full">
+                                                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-orange-700">
+                                                    <i class="fab fa-jira"></i>Jira
+                                                </a>
+                                                <div class="flex gap-1 ml-1">
+                                                    <i class="fab fa-apple w-4 h-4 text-gray-600 flex items-center justify-center" title="macOS"></i>
+                                                    <i class="fab fa-windows w-4 h-4 text-gray-600 flex items-center justify-center" title="Windows"></i>
+                                                </div>
+                                            </div>
+                                            <!-- Free Snippet Editor -->
+                                            <div class="flex items-center gap-2 px-3 py-2 bg-orange-50 border border-orange-200 rounded-full">
+                                                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-orange-700">
+                                                    <i class="fas fa-file-code"></i>Free Snippet Editor
+                                                </a>
+                                                <div class="flex gap-1 ml-1">
+                                                    <i class="fas fa-check-circle w-4 h-4 text-gray-600 flex items-center justify-center" title="SberOS"></i>
+                                                </div>
+                                            </div>
+                                            <!-- Visual Studio Build Tools -->
+                                            <div class="flex items-center gap-2 px-3 py-2 bg-orange-50 border border-orange-200 rounded-full">
+                                                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-orange-700">
+                                                    <i class="fas fa-tools"></i>Visual Studio Build Tools
+                                                </a>
+                                                <div class="flex gap-1 ml-1">
+                                                    <i class="fab fa-windows w-4 h-4 text-gray-600 flex items-center justify-center" title="Windows"></i>
+                                                </div>
+                                            </div>
+                                            <!-- .NET Core SDK -->
+                                            <div class="flex items-center gap-2 px-3 py-2 bg-orange-50 border border-orange-200 rounded-full">
+                                                <a href="#" class="flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-orange-700">
+                                                    <i class="fab fa-microsoft"></i>.NET Core SDK
+                                                </a>
+                                                <div class="flex gap-1 ml-1">
+                                                    <i class="fab fa-linux w-4 h-4 text-gray-600 flex items-center justify-center" title="Linux"></i>
+                                                    <i class="fab fa-apple w-4 h-4 text-gray-600 flex items-center justify-center" title="macOS"></i>
+                                                    <i class="fab fa-windows w-4 h-4 text-gray-600 flex items-center justify-center" title="Windows"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- ИЗМЕНЕНИЕ: Добавлен контент -->
+                                <div>
+                                    <h3 class="text-l font-semibold text-gray-800 mb-3">Описание</h3>
+                                    <p class="text-gray-700 leading-relaxed">
+                                        Visual Studio Code (VS Code) – текстовый редактор для разработки, предназначен для работы с различными языками программирования и технологиями, а также для удобной кросс-платформенной десктопной разработки приложений.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h3 class="text-l font-semibold text-gray-800 mb-3">Функции</h3>
+                                    <ul class="list-disc list-outside space-y-2 text-gray-700 pl-5">
+                                        <li><b class="text-gray-800">Написание, редактирование и сохранение кода,</b> менеджмент пакетов. Можно редактировать код в файлах, группировать файлы в каталогах и рабочих областях.</li>
+                                        <li><b class="text-gray-800">Компилирование/интерпретация и запуск кода.</b> Встроены компиляторы/интерпретаторы для большинства популярных языков.</li>
+                                        <li><b class="text-gray-800">Отладка кода.</b> Встроенная система отладки помогает находить и исправлять ошибки в коде: можно устанавливать точки останова, следить за переменными и выполнять код пошагово.</li>
+                                        <li><b class="text-gray-800">Интеграция с системами контроля версий.</b> Прямо из редактора можно выполнять основные операции с репозиториями: коммиты, пул, пуш и просмотр истории изменений.</li>
+                                        <li><b class="text-gray-800">Встроенный терминал</b> – позволяет выполнять команды прямо из редактора, запускать скрипты, устанавливать пакеты.</li>
+                                    </ul>
+                                </div>
+                                <div>
+                                    <h3 class="text-l font-semibold text-gray-800 mb-3">Языки</h3>
+                                    <p class="text-gray-700 leading-relaxed mb-3">
+                                        VS Code поддерживает работу с разными языками программирования, например:
+                                    </p>
+                                    <ul class="list-disc list-outside space-y-2 text-gray-700 pl-5 mb-4">
+                                        <li>JavaScript, TypeScript, HTML, CSS – для фронтэнд- и веб-разработки;</li>
+                                        <li>Python, C++, C#, Java, Go, Rust – для серверной и высокопроизводительной разработки;</li>
+                                        <li>PHP, Ruby – для веб-разработки;</li>
+                                        <li>SQL – для работы с базами данных.</li>
+                                    </ul>
+                                    <p class="text-sm text-gray-600 p-4 bg-gray-50 rounded-lg">
+                                        Всем разработчикам «Экосистемы» рекомендуется использование AI-помощника <a href="#" class="font-medium text-blue-600 hover:underline">CodeMe</a>.
+                                    </p>
+                                </div>
+                                <!-- Конец изменения -->
+
+                                <div>
+                                    <h3 class="text-l font-semibold text-gray-800 mb-3">Теги</h3>
+                                    <div class="flex flex-wrap gap-2">
+                                        <a href="#" class="tag">#dev</a>
+                                        <a href="#" class="tag">#ide</a>
+                                        <a href="#" class="tag">#code</a>
+                                        <a href="#" class="tag">#ProductivitySuite</a>
+                                        <a href="#" class="tag">#vsc</a>
+                                        <a href="#" class="tag">#sql</a>
+                                        <a href="#" class="tag">#python</a>
+                                        <a href="#" class="tag">#javascript</a>
+                                        <a href="#" class="tag">#visualstudiocode</a>
+                                        <a href="#" class="tag">#typescript</a>
+                                        <a href="#" class="tag">#json</a>
+                                        <a href="#" class="tag">#powershell</a>
+                                        <a href="#" class="tag">#git</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Вкладка 2: Документы -->
+                            <div id="tab-docs" class="tab-content hidden"><p>Здесь будет информация о документах.</p></div>
+                            <!-- Вкладка 3: Вопросы и ответы -->
+                            <div id="tab-faq" class="tab-content hidden"><p>Здесь будут вопросы и ответы.</p></div>
+                            <!-- Вкладка 4: Сопровождение -->
+                            <div id="tab-support" class="tab-content hidden"><p>Здесь будет информация о сопровождении.</p></div>
+                            <!-- Вкладка 5: Совместимость -->
+                            <div id="tab-compatibility" class="tab-content hidden"><p>Здесь будет информация о совместимости.</p></div>
+
+                            <!-- Вкладка 6: Плагины и расширения -->
+                            <div id="tab-plugins" class="tab-content hidden">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h2 class="text-2xl font-bold text-gray-900">Плагины и расширения</h2>
+                                    <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800">Все &rarr;</a>
+                                </div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    <!-- Элемент плагина -->
+                                    <div class="flex items-center p-4 border border-gray-200 rounded-lg">
+                                        <div class="icon-placeholder"><i class="fab fa-python"></i></div>
+                                        <div class="flex-grow">
+                                            <h3 class="font-semibold text-gray-800">Python extension for Visual Studio Code</h3>
+                                            <p class="text-sm text-gray-500">2023.13.2023081201</p>
+                                        </div>
+                                        <button class="plugin-install-btn ml-4 flex-shrink-0 text-sm font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1" data-installing="false">
+                                            <span class="btn-text">Установить</span>
+                                            <i class="fas fa-spinner fa-spin hidden btn-spinner"></i>
+                                        </button>
+                                    </div>
+                                    <!-- Элемент плагина -->
+                                    <div class="flex items-center p-4 border border-gray-200 rounded-lg">
+                                        <div class="icon-placeholder"><i class="fas fa-file-code"></i></div>
+                                        <div class="flex-grow">
+                                            <h3 class="font-semibold text-gray-800">Jupyter extension for Visual Studio Code</h3>
+                                            <p class="text-sm text-gray-500">3.2.14</p>
+                                        </div>
+                                        <button class="plugin-install-btn ml-4 flex-shrink-0 text-sm font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1" data-installing="false">
+                                            <span class="btn-text">Установить</span>
+                                            <i class="fas fa-spinner fa-spin hidden btn-spinner"></i>
+                                        </button>
+                                    </div>
+                                    <!-- Элемент плагина -->
+                                    <div class="flex items-center p-4 border border-gray-200 rounded-lg">
+                                        <div class="icon-placeholder"><i class="fab fa-git-alt"></i></div>
+                                        <div class="flex-grow">
+                                            <h3 class="font-semibold text-gray-800">Gitlens</h3>
+                                            <p class="text-sm text-gray-500">2.1.2</p>
+                                        </div>
+                                        <button class="plugin-install-btn ml-4 flex-shrink-0 text-sm font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1" data-installing="false">
+                                            <span class="btn-text">Установить</span>
+                                            <i class="fas fa-spinner fa-spin hidden btn-spinner"></i>
+                                        </button>
+                                    </div>
+                                    <!-- Элемент плагина -->
+                                    <div class="flex items-center p-4 border border-gray-200 rounded-lg">
+                                        <div class="icon-placeholder"><i class="fas fa-glasses"></i></div>
+                                        <div class="flex-grow">
+                                            <h3 class="font-semibold text-gray-800">Swagger Viewer for Visual Studio Code</h3>
+                                            <p class="text-sm text-gray-500">3.1.2</p>
+                                        </div>
+                                        <button class="plugin-install-btn ml-4 flex-shrink-0 text-sm font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1" data-installing="false">
+                                            <span class="btn-text">Установить</span>
+                                            <i class="fas fa-spinner fa-spin hidden btn-spinner"></i>
+                                        </button>
+                                    </div>
+                                    <!-- Элемент плагина -->
+                                    <div class="flex items-center p-4 border border-gray-200 rounded-lg">
+                                        <div class="icon-placeholder"><i class="fas fa-asterisk"></i></div>
+                                        <div class="flex-grow">
+                                            <h3 class="font-semibold text-gray-800">Aspser for Visual Studio Code</h3>
+                                            <p class="text-sm text-gray-500">2024.5.2024021201</p>
+                                        </div>
+                                        <button class="plugin-install-btn ml-4 flex-shrink-0 text-sm font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1" data-installing="false">
+                                            <span class="btn-text">Установить</span>
+                                            <i class="fas fa-spinner fa-spin hidden btn-spinner"></i>
+                                        </button>
+                                    </div>
+                                    <!-- Элемент плагина -->
+                                    <div class="flex items-center p-4 border border-gray-200 rounded-lg">
+                                        <div class="icon-placeholder"><i class="fab fa-gofore"></i></div>
+                                        <div class="flex-grow">
+                                            <h3 class="font-semibold text-gray-800">Go for Visual Studio Code</h3>
+                                            <p class="text-sm text-gray-500">2.42.4</p>
+                                        </div>
+                                        <button class="plugin-install-btn ml-4 flex-shrink-0 text-sm font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1" data-installing="false">
+                                            <span class="btn-text">Установить</span>
+                                            <i class="fas fa-spinner fa-spin hidden btn-spinner"></i>
+                                        </button>
+                                    </div>
+                                    <!-- Элемент плагина -->
+                                    <div class="flex items-center p-4 border border-gray-200 rounded-lg">
+                                        <div class="icon-placeholder"><i class="fas fa-project-diagram"></i></div> <!-- Иконка PlantUML -->
+                                        <div class="flex-grow">
+                                            <h3 class="font-semibold text-gray-800">PlantUML for Visual Studio Code</h3>
+                                            <p class="text-sm text-gray-500">2.17.6</p>
+                                        </div>
+                                        <button class="plugin-install-btn ml-4 flex-shrink-0 text-sm font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1" data-installing="false">
+                                            <span class="btn-text">Установить</span>
+                                            <i class="fas fa-spinner fa-spin hidden btn-spinner"></i>
+                                        </button>
+                                    </div>
+                                    <!-- Элемент плагина -->
+                                    <div class="flex items-center p-4 border border-gray-200 rounded-lg">
+                                        <div class="icon-placeholder"><i class="fas fa-bug"></i></div>
+                                        <div class="flex-grow">
+                                            <h3 class="font-semibold text-gray-800">Python Debugger extension for Visual Studio</h3>
+                                            <p class="text-sm text-gray-500">2024.5.11172029</p>
+                                        </div>
+                                        <button class="plugin-install-btn ml-4 flex-shrink-0 text-sm font-medium text-blue-600 hover:text-blue-800 flex items-center gap-1" data-installing="false">
+                                            <span class="btn-text">Установить</span>
+                                            <i class="fas fa-spinner fa-spin hidden btn-spinner"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Вкладка 7: Похожее ПО -->
+                            <div id="tab-similar" class="tab-content hidden">
+                                <div class="flex justify-between items-center mb-4">
+                                    <h2 class="text-2xl font-bold text-gray-900">Похожее ПО</h2>
+                                    <a href="#" class="text-sm font-medium text-blue-600 hover:text-blue-800">Все &rarr;</a>
+                                </div>
+                                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                                    <!-- ... карточки похожего ПО ... -->
+                                    <div class="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden p-4 text-center transition hover:shadow-md">
+                                        <div class="similar-icon-placeholder"><i class="fas fa-file-alt"></i></div>
+                                        <h4 class="font-semibold text-sm text-gray-800">LibreOffice</h4>
+                                        <p class="text-xs text-gray-500">24.8.4 - 4 версия</p>
+                                    </div>
+                                    <div class="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden p-4 text-center transition hover:shadow-md">
+                                        <div class="similar-icon-placeholder"><i class="fas fa-file-invoice"></i></div>
+                                        <h4 class="font-semibold text-sm text-gray-800">ABBYY FineReader</h4>
+                                        <p class="text-xs text-gray-500">PRO - 4 версия</p>
+                                    </div>
+                                    <div class="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden p-4 text-center transition hover:shadow-md">
+                                        <div class="similar-icon-placeholder"><i class="fas fa-database"></i></div>
+                                        <h4 class="font-semibold text-sm text-gray-800">SQL Server</h4>
+                                        <p class="text-xs text-gray-500">18.10 ENG - 7 вер</p>
+                                    </div>
+                                    <div class="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden p-4 text-center transition hover:shadow-md">
+                                        <div class="similar-icon-placeholder"><i class="fab fa-sap"></i></div>
+                                        <h4 class="font-semibold text-sm text-gray-800">SAP Физ.Объек..</h4>
+                                        <p class="text-xs text-gray-500">2.7 SP02 - 3 версия</p>
+                                    </div>
+                                    <div class="bg-gray-50 border border-gray-200 rounded-lg overflow-hidden p-4 text-center transition hover:shadow-md">
+                                        <div class="similar-icon-placeholder"><i class="fas fa-mobile-alt"></i></div>
+                                        <h4 class="font-semibold text-sm text-gray-800">Noxapp</h4>
+                                        <p class="text-xs text-gray-500">2.0.0 - 1 версия</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Конец Карточки ПО -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Модальное окно (Попап) поддержки -->
+    <div id="support-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 relative">
+            <!-- Кнопка Закрыть (X) -->
+            <button id="close-support-modal" class="absolute top-4 right-4 w-8 h-8 rounded-full text-gray-500 hover:bg-gray-100 flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="flex items-center space-x-3 mb-4">
+                <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-xl">
+                    <i class="fas fa-life-ring"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900">Поддержка</h3>
+            </div>
+            
+            <p class="text-gray-700 leading-relaxed mb-6">
+                Проблемы с установкой или использованием? Опишите вашу проблему, и мы поможем.
+            </p>
+            
+            <button class="w-full bg-blue-600 text-white font-semibold rounded-full px-6 py-3 transition duration-300 hover:bg-blue-700 active:bg-blue-800">
+                Создать обращение
+            </button>
+        </div>
+    </div>
+    <!-- Конец Модального окна -->
+
+
+    <!-- Стили для кастомных классов -->
+    <style>
+        .tab-button {
+            @apply py-4 px-3 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300 transition;
+            /* Fallbacks so the tab spacing and styles work without a Tailwind build step */
+            padding: 16px 12px; /* 16px top/bottom, 12px left/right */
+            border-bottom-width: 2px;
+            border-bottom-style: solid;
+            border-bottom-color: transparent;
+            font-weight: 500;
+            font-size: 0.875rem; /* text-sm */
+            color: #6b7280; /* text-gray-500 */
+            transition: color .15s ease, border-color .15s ease;
+        }
+        .tab-button.active {
+            @apply border-blue-600 text-blue-600 font-semibold; /* Сделал активную вкладку жирнее */
+            /* Plain CSS fallback for active state */
+            border-bottom-color: #2563eb; /* blue-600 */
+            color: #2563eb;
+            font-weight: 600;
+        }
+        /* Tag chips (used in Tags section) */
+        a.tag {
+            display: inline-flex;
+            align-items: center;
+            background-color: #dbeafe; /* bg-blue-100 */
+            color: #1e40af; /* text-blue-800 */
+            font-size: 0.75rem; /* text-xs */
+            font-weight: 500;
+            padding: 0.25rem 0.625rem; /* py-1 px-2.5 */
+            border-radius: 9999px; /* rounded-full */
+            transition: background-color .15s ease, color .15s ease;
+            text-decoration: none;
+        }
+        a.tag:hover {
+            background-color: #bfdbfe; /* bg-blue-200 */
+            color: #12243b; /* darker blue (approx text-blue-900) */
+        }
+
+        /* Analog tags (small pills used earlier) */
+        a.analog-tag {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.75rem; /* px-3 py-1 */
+            border-radius: 9999px; /* rounded-full */
+            font-size: 0.875rem; /* text-sm */
+            font-weight: 500;
+            background-color: #f3f4f6; /* bg-gray-100 */
+            color: #374151; /* text-gray-700 */
+            border: 1px solid #e5e7eb; /* border-gray-200 */
+            transition: background-color .15s ease, border-color .15s ease;
+            text-decoration: none;
+        }
+        a.analog-tag:hover {
+            background-color: #e5e7eb; /* bg-gray-200 */
+            border-color: #d1d5db; /* border-gray-300 */
+        }
+        /* Для прокрутки вкладок на мобильных */
+        #tab-buttons::-webkit-scrollbar {
+            height: 2px;
+        }
+        #tab-buttons::-webkit-scrollbar-thumb {
+            background: #cbd5e1; /* gray-400 */
+        }
+        /* Spinner animation for installation button */
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .fa-spin {
+            animation: spin 1s linear infinite;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+
+    <!-- JS для переключения вкладок, Слайдера и Модального окна -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Логика Вкладок ---
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            if (tabButtons.length > 0) {
+                // Активируем первую вкладку
+                tabButtons[0].classList.add('active');
+            }
+            if (tabContents.length > 0) {
+                // Скрываем все, кроме первой
+                tabContents.forEach((content, index) => {
+                    if (index !== 0) {
+                        content.classList.add('hidden');
+                    } else {
+                        content.classList.remove('hidden');
+                    }
+                });
+            }
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('data-tab-toggle');
+                    
+                    // Убираем 'active' у всех кнопок
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    // Скрываем весь контент
+                    tabContents.forEach(content => {
+                        if (!content.classList.contains('hidden')) {
+                            content.classList.add('hidden');
+                        }
+                    });
+                    
+                    // Добавляем 'active' нажатой кнопке
+                    this.classList.add('active');
+                    
+                    // Показываем нужный контент
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.remove('hidden');
+                    }
+                });
+            });
+
+            // --- Логика Слайдера ---
+            const sliderContainer = document.getElementById('slider-container');
+            const slides = document.querySelectorAll('.slider-slide');
+            const prevButton = document.getElementById('slider-prev');
+            const nextButton = document.getElementById('slider-next');
+            const dotsContainer = document.getElementById('slider-dots');
+            
+            if (slides.length > 0) {
+                // Show 3 slides per view
+                let currentPage = 0;
+                const slideCount = slides.length;
+                const visibleCount = 3;
+                const maxPage = Math.max(0, slideCount - visibleCount);
+
+                // number of pages = maxPage + 1
+                const pages = maxPage + 1;
+
+                // Создаем точки для страниц
+                for (let i = 0; i < pages; i++) {
+                    const dot = document.createElement('button');
+                    dot.classList.add('w-3', 'h-3', 'rounded-full', 'transition', 'bg-white');
+                    dot.classList.add(i === 0 ? 'bg-opacity-100' : 'bg-opacity-50');
+                    dot.addEventListener('click', () => goToPage(i));
+                    dotsContainer.appendChild(dot);
+                }
+                const dots = dotsContainer.querySelectorAll('button');
+
+                function updateDots() {
+                    dots.forEach((dot, i) => {
+                        dot.classList.toggle('bg-opacity-100', i === currentPage);
+                        dot.classList.toggle('bg-opacity-50', i !== currentPage);
+                    });
+                }
+
+                function goToPage(pageIndex) {
+                    // clamp
+                    currentPage = Math.max(0, Math.min(pageIndex, maxPage));
+                    const slideWidthPercent = 100 / visibleCount; // each visible item occupies this percent
+                    sliderContainer.style.transform = `translateX(-${currentPage * slideWidthPercent}%)`;
+                    updateDots();
+                }
+
+                prevButton.addEventListener('click', () => goToPage(currentPage - 1));
+                nextButton.addEventListener('click', () => goToPage(currentPage + 1));
+
+                goToPage(0); // Инициализация
+            }
+
+            // --- Логика Модального окна Поддержки ---
+            const openModalButton = document.getElementById('open-support-modal');
+            const closeModalButton = document.getElementById('close-support-modal');
+            const supportModal = document.getElementById('support-modal');
+
+            if (openModalButton && closeModalButton && supportModal) {
+                // Открыть модальное окно
+                openModalButton.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    supportModal.classList.remove('hidden');
+                });
+
+                // Закрыть модальное окно (по кнопке 'X')
+                closeModalButton.addEventListener('click', function() {
+                    supportModal.classList.add('hidden');
+                });
+
+                // Закрыть модальное окно (по клику на фон)
+                supportModal.addEventListener('click', function(e) {
+                    // e.target - это элемент, по которому кликнули
+                    // e.currentTarget - это 'supportModal' (тот, на ком висит .addEventListener)
+                    // Если они совпадают, значит клик был по самому фону, а не по дочерним элементам.
+                    if (e.target === e.currentTarget) {
+                        supportModal.classList.add('hidden');
+                    }
+                });
+            }
+
+            // --- Toggle for 'Клиентские части АС' nested links ---
+            const clientToggle = document.getElementById('toggle-client-parts');
+            const clientChildren = document.getElementById('client-parts-children');
+            const clientChevron = document.getElementById('toggle-client-parts-chevron');
+
+            if (clientToggle && clientChildren) {
+                // Initialize visual state: collapsed by default
+                clientChildren.classList.add('hidden');
+                clientToggle.setAttribute('aria-expanded', 'false');
+                if (clientChevron) clientChevron.style.transform = 'rotate(-90deg)';
+
+                clientToggle.addEventListener('click', function(e) {
+                    const expanded = clientToggle.getAttribute('aria-expanded') === 'true';
+                    if (expanded) {
+                        // collapse -> hide children and rotate chevron to point right
+                        clientChildren.classList.add('hidden');
+                        clientToggle.setAttribute('aria-expanded', 'false');
+                        if (clientChevron) clientChevron.style.transform = 'rotate(-90deg)';
+                    } else {
+                        // expand -> show children and reset chevron
+                        clientChildren.classList.remove('hidden');
+                        clientToggle.setAttribute('aria-expanded', 'true');
+                        if (clientChevron) clientChevron.style.transform = 'rotate(0deg)';
+                    }
+                });
+            }
+
+            // --- Installation process for main install button ---
+            const mainInstallBtn = document.getElementById('main-install-btn');
+            const statusBanner = document.getElementById('status-banner');
+            if (mainInstallBtn) {
+                mainInstallBtn.addEventListener('click', function() {
+                    if (mainInstallBtn.dataset.installing === 'true') return; // Already installing
+                    
+                    const text = document.getElementById('main-install-text');
+                    const spinner = document.getElementById('main-install-spinner');
+                    
+                    // Show status banner
+                    statusBanner.classList.remove('hidden');
+                    
+                    // Start installation
+                    mainInstallBtn.dataset.installing = 'true';
+                    mainInstallBtn.disabled = true;
+                    text.textContent = 'Установка...';
+                    spinner.classList.remove('hidden');
+                    
+                    // Simulate installation (2-3 seconds)
+                    setTimeout(() => {
+                        text.textContent = 'Открыть';
+                        spinner.classList.add('hidden');
+                        mainInstallBtn.data.installing = 'false';
+                        mainInstallBtn.disabled = false;
+                    }, 2500);
+                });
+            }
+
+            // --- Installation process for plugin install buttons ---
+            const pluginButtons = document.querySelectorAll('.plugin-install-btn');
+            pluginButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (this.dataset.installing === 'true') return; // Already installing
+                    
+                    const text = this.querySelector('.btn-text');
+                    const spinner = this.querySelector('.btn-spinner');
+                    
+                    // Start installation
+                    this.dataset.installing = 'true';
+                    this.disabled = true;
+                    text.textContent = 'Установка...';
+                    spinner.classList.remove('hidden');
+                    
+                    // Simulate installation (2-3 seconds)
+                    setTimeout(() => {
+                        text.textContent = 'Открыть';
+                        spinner.classList.add('hidden');
+                        this.dataset.installing = 'false';
+                        this.disabled = false;
+                    }, 2500);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

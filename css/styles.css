@@ -1,4 +1,15 @@
-﻿/* Основные стили для компонентов */
+﻿/* Плавная прокрутка для всей страницы */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Отступы для блоков, чтобы шапка их не перекрывала при скролле */
+/* Высота 80px - это примерная высота твоей шапки + отступ */
+#form, #HR, #Trigger {
+  scroll-margin-top: 80px; 
+}
+
+/* Основные стили для компонентов */
 body {
   font-family: 'Inter', sans-serif;
   line-height: 1.6;
@@ -13,9 +24,9 @@ footer {
   background-color: none;
   color: white;
   position: relative;
-  margin-left: 220px;
+  margin-left: 240px;
 }
-@media (max-width: 959px) {
+@media (max-width: 768px) {
   footer {
     margin-left: 0 !important;
   }
@@ -74,7 +85,7 @@ input, textarea {
   right: 0;
   height: 40px;
   background-color: #fff;
-  z-index: 1000;
+  z-index: 10000 !important;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -151,7 +162,146 @@ input, textarea {
   }
 }
 
-.sub-nav {
+/* ==========================================
+   НАВИГАЦИЯ (Mobile-First логика)
+   ========================================== */
+
+/* 1. БАЗОВЫЕ СТИЛИ НАВИГАЦИИ (МОБИЛЬНАЯ ВЕРСИЯ) */
+.main-nav {
+  display: none; /* По умолчанию на мобилке скрыто */
+  position: absolute; /* Выпадает поверх контента */
+  top: 100%; /* Ровно под шапкой */
+  left: 0;
+  width: 100%;
+  background-color: #ffffff; /* Белый фон выпадающего меню */
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 0 20px 20px rgba(0,0,0,0.1);
+}
+
+/* 2. АКТИВНОЕ СОСТОЯНИЕ (КОГДА НАЖАЛИ БУРГЕР НА МОБИЛКЕ) */
+.main-nav.active {
+  flex-direction: column; /* Ссылки идут сверху вниз */
+  gap: 10px;
+  z-index: 10000; /* Поверх всего */
+  display: flex;
+  position: absolute;
+  top: 60px; /* Высота шапки */
+  left: 0;
+  right: 0;   /* Жестко прижимаем к правому краю */
+  width: 100%; 
+  box-sizing: border-box; /* Чтобы padding не раздувал ширину */
+  background-color: #fff;
+  z-index: 1000;
+}
+
+/* 3. СТИЛИ ССЫЛОК */
+.main-nav .nav-link {
+  color: #333;  /* Темно-серый текст */
+  text-decoration: none;
+  font-weight: 500;
+  padding: 8px 12px;
+  transition: all 0.2s ease;
+}
+
+.main-nav .nav-link:hover {
+  text-decoration: underline; 
+  text-decoration-thickness: 2px;
+  text-underline-offset: 5px;
+}
+
+/* Стили активной страницы */
+.main-nav .nav-link.active {
+  font-weight: 600;
+  color: #007bff; 
+  bottom: 2px solid #007bff; /* Исправлена опечатка (было bottom) */
+  background-color: rgba(0, 123, 255, 0.05); 
+  border-radius: 6px; 
+}
+
+/* 4. ДОПОЛНИТЕЛЬНОЕ МЕНЮ (GitHub) */
+.extra-menu {
+  display: none; /* На мобилке скрываем */
+  gap: 15px;
+}
+
+.extra-menu .menu-link {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: 500;
+}
+
+.extra-menu .menu-link:hover {
+  text-decoration: underline;
+}
+
+/* ==========================================
+   ДЕСКТОПНАЯ ВЕРСИЯ (От 769px и выше)
+   ========================================== */
+@media (min-width: 769px) {
+  
+  .main-nav {
+    display: flex; /* Всегда показываем на десктопе */
+    position: static; /* Убираем выпадение, возвращаем в поток шапки */
+    flex-direction: row; /* Ссылки в один ряд */
+    width: auto;
+    background-color: transparent; /* Убираем белый фон */
+    padding: 0;
+    box-shadow: none;
+    margin-left: 20px;
+    align-items: center;
+    gap: 15px;
+  }
+
+  /* Страховка: даже если через JS добавлен класс .active, на десктопе ничего не сломается */
+  .main-nav.active {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .extra-menu {
+    display: flex; /* Показываем GitHub на десктопе */
+  }
+}
+
+@media (max-width: 768px) {
+  .main-nav.active {
+    margin-left: 0 !important; /* Убираем десктопный сдвиг */
+    margin-right: 0 !important;
+  }
+}
+
+@media (min-width: 769px) {
+    /* Основное меню для десктопа */
+    .main-nav {
+        display: flex !important; /* Всегда показываем */
+        flex-direction: row !important; /* В одну линию */
+        
+        /* КРИТИЧЕСКИ ВАЖНО: сбрасываем мобильное позиционирование */
+        position: static !important; 
+        width: auto !important; 
+        height: auto !important;
+        background-color: transparent !important; /* Убираем белый фон выпадашки */
+        box-shadow: none !important; /* Убираем тень выпадашки */
+        
+        margin-left: 20px;
+        gap: 15px;
+    }
+
+    /* На всякий случай сбрасываем активное состояние, если оно осталось от мобилки */
+    .main-nav.active {
+        position: static !important;
+        display: flex !important;
+        flex-direction: row !important;
+        box-shadow: none !important;
+    }
+
+    /* Прячем бургер на десктопе */
+    .burger {
+        display: none !important;
+    }
+}
+/*.sub-nav {
   background-color: #fff;
   padding: 10px;
   width: 200px;
@@ -160,10 +310,10 @@ input, textarea {
   bottom: 0;
   left: -220px; /* прячем за левым краем */
   transition: left 0.3s ease; /* добавляем анимацию */
-  z-index: 999; /* поверх overlay */
-  overflow-y: hidden; /* по умолчанию скрываем скролл */
-}
-
+/*  z-index: 999; /* поверх overlay */
+  /*overflow-y: hidden; /* по умолчанию скрываем скролл */
+/*}
+*/
 /* Активное состояние sub-nav */
 .sub-nav.active {
   left: 0; /* выехать на экран */
@@ -183,7 +333,7 @@ input, textarea {
 .sub-nav li {
   /*margin-bottom: 10px;*/
   /*margin-left: 20px;*/
-  padding: 0 15px 0;
+  /*padding: 0 15px 0;*/
 }
 
 .sub-nav a {
@@ -243,7 +393,7 @@ h2 {
 /* Для десктопной версии: сдвигаем components-list вправо */
 @media (min-width: 769px) {
   .components-list {
-    margin-left: 220px; /* Сдвигаем вправо, чтобы не было наложения с меню */
+    margin-left: 260px; /* Сдвигаем вправо, чтобы не было наложения с меню */
   }
 }
 
@@ -472,6 +622,137 @@ h2 {
   border: none;
   padding: 10px 20px;
   cursor: pointer;
+}
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Тело карточки растягивается на всю высоту */
+  height: 100%;
+}
+
+.card-body p {
+  flex-grow: 1; /* Текст занимает всё свободное место, выталкивая кнопку вниз */
+  margin-bottom: 24px; /* Отступ от текста до кнопки */
+}
+/* Стили для новых иконок внутри карточек */
+.card-icon {
+  width: 32px;
+  height: 32px;
+  margin-bottom: 20px;
+  color: #b0b0b0; /* Замени на свой акцентный цвет, если нужно */
+  opacity: 0.8;
+}
+
+/* Container */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px; /* Чуть увеличил отступ для "воздуха" */
+  margin-top: 40px;
+}
+
+/* Card - Делаем саму карточку флекс-колонкой */
+.card {
+  flex: 1 1 300px;
+  display: flex;
+  flex-direction: column; /* Элементы внутри карточки идут сверху вниз */
+  border: 1px solid #e0e0e0;
+  border-radius: 16px; /* Более современное скругление */
+  padding: 24px; /* Единый отступ внутри всей карточки */
+  background-color: #ffffff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Эффект наведения - добавил легкое "поднятие" */
+.card:hover {
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+  transform: translateY(-4px); 
+}
+
+/* Картинка (если она есть) */
+.card-img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+/* Card Body - Занимает все оставшееся место */
+.card-body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Растягивает блок на всю высоту карточки */
+  padding: 0; /* Убрал лишний padding, он теперь есть у .card */
+}
+
+/* Заголовки (поддерживает и твой класс, и тег h3 из HTML) */
+.card-title, .card-body h3 {
+  font-size: 1.25rem;
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+/* Текст - Выталкивает кнопку вниз */
+.card-text, .card-body p {
+  font-size: 1rem;
+  color: #555555;
+  line-height: 1.5;
+  flex-grow: 1; /* КРИТИЧЕСКИ ВАЖНО: Текст занимает всё свободное место */
+  margin-bottom: 24px; /* Фиксированный отступ от текста до кнопки */
+}
+
+/* Кнопки и ссылки (поддерживает и button, и твои a.btn-secondary-test) */
+.card button, .card a.btn-secondary-test {
+  margin-top: auto; /* Страховка: всегда прижимает элемент к нижнему краю */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Расстояние между текстом и иконкой внутри кнопки */
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none; /* Убирает подчеркивание у ссылок */
+  font-weight: 500;
+  font-size: 0.95rem;
+  width: fit-content; /* Кнопка будет по ширине текста, а не на всю карточку */
+  transition: background-color 0.2s ease;
+}
+
+.card button:hover, .card a.btn-secondary-test:hover {
+  background-color: #0056b3;
+}
+
+/* Кнопки и ссылки (Secondary Style) */
+.card button, .card a.btn-secondary-test {
+  margin-top: auto; /* Якорь к низу карточки */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; 
+  
+  /* Цвета Secondary кнопки */
+  background-color: #f3f4f6; /* Мягкий светло-серый фон */
+  color: #111111; /* Почти черный текст для контраста */
+  border: 1px solid transparent; /* Подготовка для hover, если захочешь добавить рамку */
+  
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  width: fit-content;
+  transition: all 0.2s ease;
+}
+
+/* Эффект при наведении */
+.card button:hover, .card a.btn-secondary-test:hover {
+  background-color: #e5e7eb; /* Фон становится чуть темнее */
+  color: #000000;
 }
 
 /* Tooltip */
@@ -735,10 +1016,10 @@ h2 {
 }
 
 /* Скрыть логотип, если активен класс .burger-active */
-@media (max-width: 768px) {
+/*@media (max-width: 768px) {
   .main-header.burger-active .logo {
     display: none; /* Скрыть логотип */
-  }
+  /*}*/
   
   .main-header .burger {
     position: relative;
@@ -1070,4 +1351,255 @@ pre {
 
 .btn-secondary:hover {
   background-color: #5a6268;
+}
+
+/* ==========================================
+   ДЕСКТОПНАЯ ВЕРСИЯ SUB-NAV (Сайдбар слева)
+   ========================================== */
+.sub-nav {
+  background-color: #ffffff;
+  width: 220px;
+  position: fixed;
+  top: 60px; /* Под шапкой */
+  bottom: 0;
+  left: 0; /* На десктопе всегда открыто */
+  padding: 20px 10px;
+  border-right: 1px solid #eaeaea;
+  z-index: 99;
+  overflow-y: auto;
+}
+
+.sub-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sub-nav .nav-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  color: #555555;
+  text-decoration: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.sub-nav .nav-link:hover {
+  background-color: #f3f4f6;
+  color: #111111;
+}
+
+.sub-nav .nav-link.active {
+  background-color: rgba(0, 123, 255, 0.08);
+  color: #007bff;
+  font-weight: 600;
+}
+
+/* Кнопка выпадающего списка скрыта на ПК */
+.mobile-dropdown-btn {
+  display: none;
+}
+
+
+/* ==========================================
+   МОБИЛЬНАЯ ВЕРСИЯ SUB-NAV (Выпадающий список на всю ширину)
+   ========================================== */
+@media (max-width: 768px) {
+  
+  /* Контейнер-обертка */
+  .page-sub-nav-wrapper {
+    position: relative;
+    margin-top: 24px; /* Отступ от верхней шапки */
+    /*padding: 0 20px; /* Отступы по краям экрана */
+    z-index: 100;
+  }
+
+  /* Кнопка на всю ширину экрана (без ограничений в 320px) */
+  .mobile-dropdown-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%; /* Растягиваем на всё доступное пространство */
+    padding: 14px 16px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #111111;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+  }
+
+  .mobile-dropdown-btn svg {
+    transition: transform 0.3s ease;
+  }
+
+  /* Поворот стрелки, если добавить класс .is-open на обертку через JS */
+  .page-sub-nav-wrapper.is-open .mobile-dropdown-btn svg {
+    transform: rotate(180deg);
+  }
+
+  /* Сам выпадающий список */
+  .sub-nav {
+    position: absolute;
+    top: calc(100% + 8px); /* Отступ 8px вниз от кнопки */
+    left: 20px;
+    right: 20px; /* Заставляет меню растянуться на всю ширину между отступами */
+    width: auto; /* Сбрасываем десктопные 220px */
+    bottom: auto; /* Сбрасываем десктопный 0 */
+    height: auto;
+    border-right: none;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    padding: 8px;
+    
+    /* Анимация скрытия */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.2s ease-out;
+  }
+
+  /* Показываем меню */
+  .sub-nav.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  /* ЖЕЛЕЗОБЕТОННАЯ ВЫСОТА ССЫЛОК */
+  .sub-nav .nav-link {
+    min-height: 48px; /* Крупная кнопка для пальца */
+    padding: 0 16px;
+    font-size: 1rem;
+  }
+
+  /* Сбрасываем отступы у контента на мобилках */
+  .components-list, .main-content {
+    margin-left: 0;
+    padding: 24px 20px;
+  }
+}
+
+/* ==========================================
+   НОВОЕ ИЗОЛИРОВАННОЕ МОБИЛЬНОЕ МЕНЮ
+   ========================================== */
+
+/* 1. На компьютере эту обертку прячем вообще */
+.jedi-mobile-wrapper {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  /* 2. На мобилке жестко глушим твой старый левый сайдбар, чтобы он не мешал */
+  .sub-nav { 
+    display: none !important; 
+  }
+
+  /* 3. Показываем наш новый контейнер */
+  .jedi-mobile-wrapper {
+    display: block;
+    position: relative;
+    margin: 20px 20px 0 20px; /* Отступы от краев экрана */
+    z-index: 500; /* Поверх всего */
+    font-family: 'Inter', sans-serif;
+  }
+
+  /* 4. Большая кнопка на 100% ширины */
+  .jedi-mobile-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 16px;
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #111111;
+    cursor: pointer;
+    box-sizing: border-box;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+  }
+
+  .jedi-mobile-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s;
+  }
+  
+  /* Поворот стрелки */
+  .jedi-mobile-wrapper.is-open .jedi-mobile-btn svg {
+    transform: rotate(180deg);
+  }
+
+  /* 5. Выпадающий список (идеально ровно под кнопкой) */
+  .jedi-mobile-list {
+    display: none; /* Скрыт по умолчанию */
+    position: absolute;
+    top: calc(100% + 8px); /* Отступ от кнопки вниз */
+    left: 0;
+    width: 100%; /* Ширина ровно по кнопке */
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    padding: 8px;
+    box-sizing: border-box;
+  }
+
+  /* Когда скрипт вешает класс .active - список появляется */
+  .jedi-mobile-list.active {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* 6. ЖЕЛЕЗОБЕТОННЫЕ ССЫЛКИ (Без сплющивания до 17px) */
+  .jedi-mobile-list .jedi-link {
+    display: flex; /* Флекс не даст сплющить текст */
+    align-items: center;
+    width: 100%;
+    min-height: 48px; /* Точная высота для нажатия */
+    padding: 0 16px;
+    color: #555555;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: transparent;
+    transition: background 0.2s;
+  }
+
+  .jedi-mobile-list .jedi-link:hover {
+    background-color: #f3f4f6;
+    color: #111111;
+  }
+
+  .jedi-mobile-list .jedi-link.active {
+    background-color: rgba(0, 123, 255, 0.08);
+    color: #007bff;
+    font-weight: 600;
+  }
+}
+
+/* Ограничение по высоте и скролл */
+@media (max-width: 768px) {
+  .jedi-mobile-list.active {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-height: 70vh; /* Меню не будет больше 70% высоты экрана */
+    overflow-y: auto; /* Появится внутренний скролл */
+    -webkit-overflow-scrolling: touch;
+  }
 }

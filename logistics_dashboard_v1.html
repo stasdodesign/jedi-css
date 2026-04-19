@@ -165,7 +165,11 @@
         <li><a href="Race.html" class="nav-link">Race</a></li> 
         <br>
         <li><strong>Software Store</strong></li>
-        <li><a href="software_store.html" class="nav-link">Software Store</a></li> 
+        <li><a href="software_store.html" class="nav-link">Software Store</a></li>
+                  <br>
+        <li><strong>Infrastructure Lab</strong></li>
+        <li><a href="infrastructure_lab.html" class="nav-link">Objects</a></li>
+        <li><a href="server_view.html" class="nav-link">Server View</a></li> 
     </ul>
   </aside>
 
@@ -397,6 +401,22 @@
                  </div>
         </div>
     </div>
+<section class="max-w-[800px] mx-auto mt-32 mb-20 text-center fade-in px-4">
+    <div class="inline-flex items-center justify-center flex flex-wrap gap-2 mb-4">
+        <span class="px-3 py-1 bg-white text-blue-600 text-[10px] font-bold uppercase tracking-widest rounded-full shadow-sm">B2B SaaS</span>
+    <span class="px-3 py-1 bg-emerald-50 text-emerald-600 text-[10px] font-bold uppercase tracking-widest rounded-full">Logistics</span>
+    </div>
+    
+    <h3 class="text-3xl font-medium text-slate-900 mb-4 tracking-tight">Logistics Dashboard: Real-time Monitoring</h3>
+    <p class="text-slate-500 mb-10 max-w-md mx-auto leading-relaxed">
+        Интерактивный инструмент для управления цепочками поставок. Реализован как живой прототип для проверки гипотез по визуализации маршрутов и работе с плотными данными.</p>
+    
+    <a href="https://www.figma.com/community/file/1513960760115808636/transport-logistics-race-dashboard" target="_blank" class="group inline-flex items-center justify-center gap-3 bg-slate-900 text-white px-8 py-4 rounded-2xl font-medium text-sm transition-all duration-300 hover:bg-blue-600 hover:shadow-2xl hover:shadow-blue-500/30 hover:-translate-y-1">
+        <span>Паттерны и дашборд в Figma</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1.5 group-hover:-translate-y-1.5"><path d="M7 17L17 7"/><path d="M7 7h10v10"/></svg>
+    </a>
+</section>
+      
   </main>
 
     <script>
@@ -578,6 +598,33 @@
   <script src="js/burger.js"></script>
   <script src="js/scroll.js"></script>
     <!-- Подвал -->
+
+  <footer >
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+        <div class="space-y-2">
+            <h3 class="text-xl font-semibold text-slate-900">Stanislav Dovidenko</h3>
+            <p class="text-sm text-slate-500 max-w-sm leading-relaxed">
+                Senior Product Designer & AI/3D Artist. Специализируюсь на создании сложных Enterprise & Fintech систем с Consumer-grade UX.
+            </p>
+            <div class="flex items-center gap-3 pt-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+                <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span> Available for projects</span>
+                <span class="text-slate-200">|</span>
+                <span>Moscow, RU</span>
+            </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-3">
+            <a href="https://linkedin.com/in/stasdodesign" target="_blank" class="px-5 py-2.5 bg-slate-900 text-white rounded-xl text-sm font-medium hover:bg-blue-600 transition-all flex items-center gap-2">
+                <span>LinkedIn</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
+            </a>
+            <button onclick="copyEmail()" class="px-5 py-2.5 bg-white border border-slate-200 text-slate-900 rounded-xl text-sm font-medium hover:border-slate-400 transition-all flex items-center gap-2 group">
+                <span id="emailText">Copy Email</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:rotate-12 transition-transform"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            </button>
+        </div>
+    </div>
+</footer> 
     <footer>
       <p>&copy; 2026 JEDI CSS. Product Design System</p>
   </footer>

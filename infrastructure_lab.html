@@ -1,0 +1,1020 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RackTables Redesign - Objects</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.263.0/lucide.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        .table-dense td, .table-dense th { padding: 8px 12px; }
+    </style>
+</head>
+<body class="text-slate-800">
+<aside id="sidebarNav" class="fixed left-0 top-0 h-full w-64 bg-[#0f172a] text-slate-400 z-50 border-r border-slate-800 transition-all duration-300">
+    <div class="p-6">
+        <div class="flex items-center gap-3 text-white mb-2">
+            <a href="products.html" class="flex items-center space-x-2 ">
+                <span class="flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full">
+                <svg class="logo-img" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M399.93,408a7.59,7.59,0,0,1-7.9-6.61.1.1,0,0,1,.07-.1h0a.1.1,0,0,1,.09.06,9.65,9.65,0,0,0,.77,1.6,7,7,0,0,1,.2-7.09.1.1,0,0,1,.07,0l.05,0a.08.08,0,0,1,0,.12c-1.09,2.06.07,4.14.86,5.19a6.51,6.51,0,0,1-.63-4.53,7.8,7.8,0,0,1,3.23-4.34h0a.08.08,0,0,1,.07,0,.08.08,0,0,1,0,.12,3.2,3.2,0,0,0-1.38,2.29c-.2,2.11,1.73,4.27,1.75,4.29a.09.09,0,0,1,0,.1,5.78,5.78,0,0,0-.67,4.64,6.24,6.24,0,0,0,2.92,3.26l.06-2.63-1.05,1.1a.07.07,0,0,1-.06,0l-.05,0a.08.08,0,0,1,0-.11l.79-1.56-2.08-.3a.08.08,0,0,1-.07-.09.1.1,0,0,1,.07-.09l2.09-.3-.67-1.85a.1.1,0,0,1,.05-.11h0a.07.07,0,0,1,.07,0l.95,1.38.27-10.34A.09.09,0,0,1,400,392h0a.09.09,0,0,1,.09.09c0,.06.19,7.05.27,10.34l.95-1.38a.1.1,0,0,1,.07,0h0a.09.09,0,0,1,0,.11l-.67,1.85,2.09.3a.11.11,0,0,1,.08.09.09.09,0,0,1-.08.09l-2.08.3.8,1.56a.09.09,0,0,1,0,.11.07.07,0,0,1-.06,0l-.06,0-1.05-1.1c0,1.62.06,2.36.07,2.63a6.23,6.23,0,0,0,2.91-3.26,5.78,5.78,0,0,0-.67-4.64.09.09,0,0,1,0-.1s1.95-2.18,1.75-4.28a3.2,3.2,0,0,0-1.38-2.29.09.09,0,0,1,0-.13.12.12,0,0,1,.08,0l0,0a7.76,7.76,0,0,1,3.23,4.33,6.5,6.5,0,0,1-.62,4.53c.78-1,1.94-3.12.85-5.19a.09.09,0,0,1,0-.12l.05,0a.08.08,0,0,1,.07,0A7,7,0,0,1,407,403a8.06,8.06,0,0,0,.83-1.67.1.1,0,0,1,.09-.06h0a.1.1,0,0,1,.07.1,7.59,7.59,0,0,1-7.9,6.61h-.14Z" transform="translate(-390 -390)"/>
+        <path d="M400,410a10,10,0,1,1,10-10A10,10,0,0,1,400,410Zm0-19.39a9.39,9.39,0,1,0,9.39,9.39A9.4,9.4,0,0,0,400,390.61Z" transform="translate(-390 -390)"/>
+      </svg>
+                        </span>
+            <span class="font-semibold tracking-tight">RackTables <span class="text-blue-500">PRO</span></span>
+                        </a>
+        </div>
+
+        <nav class="flex-1 overflow-y-auto py-4 space-y-1 custom-scrollbar">
+            <p class="  text-[10px] font-bold uppercase text-slate-500 mb-2 mt-4 tracking-wider">Infrastructure</p>
+            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 hover:text-white transition">
+                <i data-lucide="server" class="w-4 h-4"></i> Rackspace
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium bg-blue-600/10 text-blue-400 border border-blue-500/20 transition">
+                <i data-lucide="box" class="w-4 h-4"></i> Objects
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 hover:text-white transition">
+                <i data-lucide="network" class="w-4 h-4"></i> IPv4 Space
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 hover:text-white transition">
+                <i data-lucide="network" class="w-4 h-4"></i> IPv6 Space
+            </a>
+            
+            <p class=" text-[10px] font-bold uppercase text-slate-500 mb-2 mt-6 tracking-wider  py-4">Administration</p>
+            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 hover:text-white transition">
+                <i data-lucide="file-bar-chart" class="w-4 h-4"></i> Reports
+            </a>
+            <a href="#" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800 hover:text-white transition">
+                <i data-lucide="settings" class="w-4 h-4"></i> Configuration
+            </a>
+        </nav>
+    </div>
+
+    <div class="absolute bottom-0 left-0 w-full p-4 border-t border-slate-800 bg-[#0f172a]/50 backdrop-blur-md">
+        <div class="flex items-center gap-3 px-2 py-1">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center font-bold text-white text-xs">SD</div>
+           
+            <div class="text-xs">
+                <p class="text-white font-medium">Stanislav Dovidenko</p>
+                <p class="text-slate-500">Moscow, Russia</p>
+            </div>
+        </div>
+    </div> 
+</aside>
+
+
+<header id="headerNav" class="hidden h-[52px] bg-[#1e293b] text-white px-6 py-3 flex justify-between items-center sticky top-0 z-50">
+    <div class="flex items-center gap-8">
+          <a href="products.html" class="flex items-center space-x-2 ">
+                <span class="flex items-center justify-center w-8 h-8 bg-blue-600 text-white rounded-full">
+                <svg class="logo-img" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+        <path d="M399.93,408a7.59,7.59,0,0,1-7.9-6.61.1.1,0,0,1,.07-.1h0a.1.1,0,0,1,.09.06,9.65,9.65,0,0,0,.77,1.6,7,7,0,0,1,.2-7.09.1.1,0,0,1,.07,0l.05,0a.08.08,0,0,1,0,.12c-1.09,2.06.07,4.14.86,5.19a6.51,6.51,0,0,1-.63-4.53,7.8,7.8,0,0,1,3.23-4.34h0a.08.08,0,0,1,.07,0,.08.08,0,0,1,0,.12,3.2,3.2,0,0,0-1.38,2.29c-.2,2.11,1.73,4.27,1.75,4.29a.09.09,0,0,1,0,.1,5.78,5.78,0,0,0-.67,4.64,6.24,6.24,0,0,0,2.92,3.26l.06-2.63-1.05,1.1a.07.07,0,0,1-.06,0l-.05,0a.08.08,0,0,1,0-.11l.79-1.56-2.08-.3a.08.08,0,0,1-.07-.09.1.1,0,0,1,.07-.09l2.09-.3-.67-1.85a.1.1,0,0,1,.05-.11h0a.07.07,0,0,1,.07,0l.95,1.38.27-10.34A.09.09,0,0,1,400,392h0a.09.09,0,0,1,.09.09c0,.06.19,7.05.27,10.34l.95-1.38a.1.1,0,0,1,.07,0h0a.09.09,0,0,1,0,.11l-.67,1.85,2.09.3a.11.11,0,0,1,.08.09.09.09,0,0,1-.08.09l-2.08.3.8,1.56a.09.09,0,0,1,0,.11.07.07,0,0,1-.06,0l-.06,0-1.05-1.1c0,1.62.06,2.36.07,2.63a6.23,6.23,0,0,0,2.91-3.26,5.78,5.78,0,0,0-.67-4.64.09.09,0,0,1,0-.1s1.95-2.18,1.75-4.28a3.2,3.2,0,0,0-1.38-2.29.09.09,0,0,1,0-.13.12.12,0,0,1,.08,0l0,0a7.76,7.76,0,0,1,3.23,4.33,6.5,6.5,0,0,1-.62,4.53c.78-1,1.94-3.12.85-5.19a.09.09,0,0,1,0-.12l.05,0a.08.08,0,0,1,.07,0A7,7,0,0,1,407,403a8.06,8.06,0,0,0,.83-1.67.1.1,0,0,1,.09-.06h0a.1.1,0,0,1,.07.1,7.59,7.59,0,0,1-7.9,6.61h-.14Z" transform="translate(-390 -390)"/>
+        <path d="M400,410a10,10,0,1,1,10-10A10,10,0,0,1,400,410Zm0-19.39a9.39,9.39,0,1,0,9.39,9.39A9.4,9.4,0,0,0,400,390.61Z" transform="translate(-390 -390)"/>
+      </svg>
+                        </span>
+            <h1 class="text-lg font-bold tracking-tight">RackTables <span class="font-normal text-slate-400">| Objects</span></h1>
+         </a>    
+            <nav class="hidden md:flex gap-4 text-sm font-medium text-slate-300">
+                <a href="#" class="hover:text-white transition">Rackspace</a>
+                <a href="#" class="text-white border-b-2 border-blue-500 pb-1">Objects</a>
+                <a href="#" class="hover:text-white transition">IPv4 Space</a>
+                <a href="#" class="hover:text-white transition">IPv6 Space</a>
+                <a href="#" class="hover:text-white transition">Reports</a>
+                <a href="#" class="hover:text-white transition">Configuration</a>
+            </nav>
+        </div>
+        <div class="flex items-center gap-4">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center font-bold text-white text-xs">SD</div>
+            </div>
+    </header>
+<div id="subHeader" class="transition-all duration-300 ml-64 sticky top-0 z-30 bg-white/80 backdrop-blur-md border-b border-slate-200/60 px-8 py-4 flex items-center justify-start gap-12 shrink-0">
+    
+    <div class="flex items-center gap-4">
+        <div class="flex flex-col">
+            <div class="flex items-center gap-2 mb-0.5">
+            <h2 class="text-xl font-bold text-slate-900 tracking-tight">Objects</h2>
+                <span class="px-2 py-0.5 bg-blue-50 text-blue-600 text-[11px] font-bold rounded-md border border-blue-100">
+                84 total
+                </span>
+            </div>
+ <div class="text-[11px] text-slate-400 font-medium uppercase tracking-wider">
+        Main Resource Registry
+    </div>
+        </div>
+    </div>
+
+    <div class="flex items-center flex-1 max-w-md">
+        <div class="relative w-full group">
+            <div class="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            </div>
+            <input type="text" 
+                   placeholder="Quick search..." 
+                   class="bg-slate-100/50 border border-slate-200/60 rounded-xl pl-9 pr-4 py-2 text-sm w-full max-w-[320px] focus:bg-white focus:border-blue-500/50 focus:ring-4 focus:ring-blue-500/10 outline-none transition-all placeholder:text-slate-400">
+        </div>
+    </div>
+</div>
+    <main id="mainContent" class="transition-all duration-500 ml-64 px-6 py-2">
+        <div class="flex justify-between items-end mb-6">
+            <div>
+
+
+<div class="flex gap-3 mt-4 items-end">
+    <div class="flex flex-col gap-1">
+        <span class="text-[10px] uppercase font-bold text-slate-500 ml-1">Type</span>
+        <div class="relative min-w-[140px]">
+            <select class="appearance-none w-full border rounded-md pl-3 pr-8 py-1.5 text-sm bg-white shadow-sm outline-none focus:border-blue-500 cursor-pointer">
+                <option>All Types</option>
+                <option>Server</option>
+                <option>Router</option>
+                <option>PDU</option>
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                <path d="m6 9 6 6 6-6"/>
+            </svg>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-1">
+        <span class="text-[10px] uppercase font-bold text-slate-500 ml-1">Location</span>
+        <div class="relative min-w-[140px]">
+            <select class="appearance-none w-full border rounded-md pl-3 pr-8 py-1.5 text-sm bg-white shadow-sm outline-none focus:border-blue-500 cursor-pointer">
+                <option>All Locations</option>
+                <option>Row 1 / L01</option>
+                <option>CF-4 / NY100</option>
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                <path d="m6 9 6 6 6-6"/>
+            </svg>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-1">
+        <span class="text-[10px] uppercase font-bold text-slate-500 ml-1">Status</span>
+        <div class="relative min-w-[140px]">
+            <select class="appearance-none w-full border rounded-md pl-3 pr-8 py-1.5 text-sm bg-white shadow-sm outline-none focus:border-blue-500 cursor-pointer">
+                <option>All Statuses</option>
+                <option>Active</option>
+                <option>Alert</option>
+            </select>
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+                <path d="m6 9 6 6 6-6"/>
+            </svg>
+        </div>
+    </div>
+
+    <button class="px-3 py-1.5 text-sm text-slate-500 hover:text-blue-600 font-medium transition-colors mb-[1px]">
+        Clear All
+    </button>
+</div>
+                
+            </div>
+            <button id="addObjectBtn" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg font-medium shadow-lg shadow-blue-200 transition flex items-center gap-2">
+                <span>+ Add Object</span>
+            </button>
+        </div>
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-visible">
+    <table class="w-full text-left border-separate border-spacing-0">
+        <thead class="bg-slate-50">
+            <tr class="text-slate-500 text-[10px] uppercase tracking-widest font-bold">
+                <th class="px-5 py-3 border-b border-slate-200 rounded-tl-xl w-10">
+                    <input type="checkbox" id="selectAll" class="rounded border-slate-300 cursor-pointer">
+                </th>
+                <th class="px-5 py-3 border-b border-slate-200 w-24">Status</th>
+                <th class="px-5 py-3 border-b border-slate-200">Common Name</th>
+                <th class="px-5 py-3 border-b border-slate-200">Type</th>
+                <th class="px-5 py-3 border-b border-slate-200">Tags</th>
+                <th class="px-5 py-3 border-b border-slate-200">Asset Tag</th>
+                <th class="px-5 py-3 border-b border-slate-200 rounded-tr-xl">Location</th>
+            </tr>
+        </thead>
+        <tbody class="text-sm" id="tableBody">
+            
+            <tr onclick="window.location='server_view.html';" class="hover:bg-blue-50/50 transition-all duration-300 cursor-pointer group">
+                <td class="px-5 py-4 border-b border-slate-100" onclick="event.stopPropagation();">
+                    <input type="checkbox" class="row-checkbox rounded border-slate-300 cursor-pointer">
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100">
+                    <span class="inline-flex items-center gap-1.5 text-red-600 font-medium">
+                        <span class="w-2 h-2 bg-red-500 rounded-full animate-pulse"></span> Alert
+                    </span>
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100 font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
+                    <a href="server_view.html">London server 4</a>
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-600">Server</td>
+                <td class="px-5 py-4 border-b border-slate-100 overflow-visible" onclick="event.stopPropagation();">
+                    <div class="flex items-center gap-1.5">
+                        <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-200">production</span>
+                        <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-200">testing</span>
+                        <div class="relative">
+                            <span class="text-slate-400 text-[11px] font-medium">+3</span>
+                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out flex flex-col gap-1 w-max min-w-[140px] p-2 bg-[#1e293b]/95 backdrop-blur-md rounded-xl shadow-2xl z-[1000] border border-slate-700">
+                                <span class="text-[10px] text-slate-400 font-bold uppercase mb-1 px-1">Дополнительные теги</span>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">sql-cluster</span>
+                                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">london-dc</span>
+                                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">pci-dss</span>
+                                </div>
+                                <div class="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-[#1e293b]/95"></div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-500 font-mono text-[13px]">srv503</td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-500">Row 1 / L01</td>
+            </tr>
+
+            <tr onclick="window.location='server_view.html';" class="hover:bg-blue-50/50 transition-all duration-300 cursor-pointer group">
+                <td class="px-5 py-4 border-b border-slate-100" onclick="event.stopPropagation();">
+                    <input type="checkbox" class="row-checkbox rounded border-slate-300 cursor-pointer">
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100">
+                    <span class="inline-flex items-center gap-1.5 text-slate-400 font-medium">
+                        <span class="w-2 h-2 bg-slate-300 rounded-full"></span> Offline
+                    </span>
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100 font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
+                    <a href="server_view.html">Beograd router</a>
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-600">Router</td>
+                <td class="px-5 py-4 border-b border-slate-100 overflow-visible" onclick="event.stopPropagation();">
+                    <div class="flex items-center gap-1.5">
+                        <span class="text-slate-400 italic text-[11px]">No tags</span>
+                    </div>
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-500 font-mono text-[13px]">net01</td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-400 italic">Unmounted</td>
+            </tr>
+
+            <tr onclick="window.location='server_view.html';" class="hover:bg-blue-50/50 transition-all duration-300 cursor-pointer group">
+                <td class="px-5 py-4 border-b border-transparent rounded-bl-xl" onclick="event.stopPropagation();">
+                    <input type="checkbox" class="row-checkbox rounded border-slate-300 cursor-pointer">
+                </td>
+                <td class="px-5 py-4 border-b border-transparent">
+                    <span class="inline-flex items-center gap-1.5 text-emerald-600 font-medium">
+                        <span class="w-2 h-2 bg-emerald-500 rounded-full"></span> Active
+                    </span>
+                </td>
+                <td class="px-5 py-4 border-b border-transparent font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
+                    <a href="server_view.html">Moscow KVM Switch</a>
+                </td>
+                <td class="px-5 py-4 border-b border-transparent text-slate-600">KVM Switch</td>
+                <td class="px-5 py-4 border-b border-transparent overflow-visible" onclick="event.stopPropagation();">
+                    <div class="flex items-center gap-1.5">
+                        <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-200">production</span>
+                        <div class="relative">
+                            <span class="text-slate-400 text-[11px] font-medium">+1</span>
+                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 ease-out flex flex-col gap-1 w-max min-w-[140px] p-2 bg-[#1e293b]/95 backdrop-blur-md rounded-xl shadow-2xl z-[1000] border border-slate-700">
+                                <span class="text-[10px] text-slate-400 font-bold uppercase mb-1 px-1 text-left">Дополнительно:</span>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">kvm-internal</span>
+                                </div>
+                                <div class="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-[#1e293b]/95"></div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-5 py-4 border-b border-transparent text-slate-500 font-mono text-[13px]">sw0002</td>
+                <td class="px-5 py-4 border-b border-transparent rounded-br-xl text-slate-500">Row 1 / M01</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="max-w-[1200px] mx-auto px-4 md:px-0">
+<section class="fade-in mt-16 mb-24">
+    <h2 class="text-3xl font-medium mb-12">Техническая реализация и возможности</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div class="p-8 bg-white rounded-[32px] border border-gray-100 shadow-sm flex flex-col h-full">
+            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Управление объектами (CRUD)</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                Реализована полноценная симуляция создания сервера. По клику на <b>+ Add Object</b> открывается Slide-over панель. Данные из инпутов (Name, Type, Location) мгновенно попадают в начало таблицы через манипуляцию DOM, без перезагрузки страницы.
+            </p>
+            <ul class="mt-auto space-y-2 text-xs font-medium text-slate-400 uppercase tracking-wider">
+                <li>• Slide-over Panel (Right)</li>
+                <li>• Live DOM Injection</li>
+                <li>• Form Validation</li>
+            </ul>
+        </div>
+
+        <div class="p-8 bg-white rounded-[32px] border border-gray-100 shadow-sm flex flex-col h-full">
+            <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mb-6">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 12H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Интерактивность и Тултипы</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                Внедрена система <b>Progressive Disclosure</b>. Тултипы с дополнительными тегами автоматически всплывают при наведении на любую область строки, не перекрывая важные данные. Использован эффект <code>backdrop-blur</code> для Apple-эстетики.
+            </p>
+            <ul class="mt-auto space-y-2 text-xs font-medium text-slate-400 uppercase tracking-wider">
+                <li>• Full-row Hover Trigger</li>
+                <li>• Z-index Management (900+)</li>
+                <li>• Backdrop Blur Effects</li>
+            </ul>
+        </div>
+
+        <div class="p-8 bg-white rounded-[32px] border border-gray-100 shadow-sm flex flex-col h-full">
+            <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Слоистая навигация</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                Разделение глобального и контекстного меню. Прототип поддерживает переходы между основным реестром и детальным видом сервера (<code>server_view.html</code>). Протестированы варианты с Side-bar и Top-menu.
+            </p>
+            <ul class="mt-auto space-y-2 text-xs font-medium text-slate-400 uppercase tracking-wider">
+                <li>• Contextual Navigation</li>
+                <li>• Sidebar vs Mega Menu</li>
+                <li>• Infrastructure Lab Logic</li>
+            </ul>
+        </div>
+
+        <div class="p-8 bg-white rounded-[32px] border border-gray-100 shadow-sm flex flex-col h-full">
+            <div class="w-12 h-12 bg-amber-50 text-amber-600 rounded-2xl flex items-center justify-center mb-6">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+            </div>
+            <h3 class="text-xl font-semibold mb-4">Массовые операции</h3>
+            <p class="text-gray-500 text-sm leading-relaxed mb-6">
+                Контекстная панель <b>Bulk Action Bar</b>. Она скрыта по умолчанию и плавно выплывает снизу только при выборе хотя бы одного чекбокса, позволяя производить групповое редактирование или удаление.
+            </p>
+            <ul class="mt-auto space-y-2 text-xs font-medium text-slate-400 uppercase tracking-wider">
+                <li>• State-driven UI</li>
+                <li>• Counting Selected Items</li>
+                <li>• Floating Action Bar</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<section class="fade-in mb-24 bg-slate-900 text-white p-10 md:p-16 rounded-[40px]">
+    <h2 class="text-2xl font-medium mb-8 text-white/90">Гайд по тестированию прототипа</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-sm text-white/60 leading-relaxed">
+        <div>
+            <p class="mb-4">
+                <strong class="text-white font-medium">1. Архитектура навигации (Вариант 1 и 2):</strong> 
+                Прототип позволяет переключаться между двумя концепциями. Сравните <b>Sidebar (Pro-version)</b> для глубокой иерархии объектов и классический <b>Header-menu</b>. Это исследование того, как инженер быстрее находит нужный Rackspace в условиях высокой плотности данных.
+            </p>
+            <p class="mb-4">
+                <strong class="text-white font-medium">2. Интерактивная таблица:</strong> 
+                Наведите на любую строку — сработает групповой триггер тултипа. Нажмите на Common Name для имитации перехода в <code>server_view.html</code>.
+            </p>
+        </div>
+        <div>
+            <p class="mb-4">
+                <strong class="text-white font-medium">3. Создание "на лету":</strong> 
+                Используйте кнопку <b>+ Add Object</b>. Новая запись добавится в текущий список без перезагрузки, сохраняя выбранный вами вариант навигации.
+            </p>
+            <p>
+                <strong class="text-white font-medium">4. Массовые действия:</strong> 
+                Выберите чекбоксами несколько серверов. Появление нижней панели демонстрирует логику работы с групповыми операциями (Bulk Actions).
+            </p>
+        </div>
+    </div>
+</section>        
+
+<div class="mt-10 mb-16">
+    <h2 class="text-3xl font-medium mb-4 text-slate-900">Эволюция интерфейса и поиск плотности данных</h2>
+    <p class="text-slate-500 max-w-2xl leading-relaxed">
+        Финальное решение стало результатом серии экспериментов. Ниже представлены промежуточные этапы проектирования, на которых тестировались гипотезы визуального кодирования и информационной архитектуры.
+    </p>
+</div>
+<div class="max-w-[600px] mb-8 mt-20 border-l-2 border-slate-100 pl-6">
+    <span class="px-2 py-1 bg-slate-100 text-slate-500 rounded-md text-[10px] font-bold uppercase tracking-widest mb-3 inline-block">Итерация 1</span>
+    <h4 class="text-lg font-semibold text-slate-900 mb-1">Избыточный акцент</h4>
+    <p class="text-sm text-slate-500 leading-relaxed">
+        Проверка гипотезы с ярким цветовым кодированием. Отклонено из-за высокого визуального шума, который мешал быстрому сканированию критических данных.
+    </p>
+</div>
+<div class="mb-10 bg-white rounded-xl border border-slate-200 shadow-sm overflow-visible">
+    <table class="w-full text-left border-separate border-spacing-0 table-dense">
+        <thead class="bg-slate-50">
+            <tr class="text-slate-500 text-[11px] uppercase tracking-wider font-semibold">
+                <th class="px-5 py-3 border-b border-slate-200 rounded-tl-xl w-10">
+                    <input type="checkbox" id="selectAll" class="rounded border-slate-300">
+                </th>
+                <th class="px-5 py-3 border-b border-slate-200 w-24">Status</th>
+                <th class="px-5 py-3 border-b border-slate-200">Common Name</th>
+                <th class="px-5 py-3 border-b border-slate-200">Type</th>
+                <th class="px-5 py-3 border-b border-slate-200">Tags</th>
+                <th class="px-5 py-3 border-b border-slate-200">Asset Tag</th>
+                <th class="px-5 py-3 border-b border-slate-200 rounded-tr-xl">Location</th>
+            </tr>
+        </thead>
+        <tbody class="text-sm">
+            
+            <tr class="hover:bg-blue-50/50 transition cursor-pointer group">
+                <td class="px-5 py-4 border-b border-slate-100">
+                    <input type="checkbox" class="row-checkbox rounded border-slate-300">
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100">
+                    <span class="inline-flex items-center gap-1.5 text-red-600 font-medium">
+                        <span class="w-2 h-2 bg-red-500 rounded-full"></span> Alert
+                    </span>
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100 font-semibold text-slate-900">
+                    <a href="server_view.html" class="hover:text-blue-600 transition-colors">London server 4</a>
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-600">Server</td>
+                <td class="px-5 py-4 border-b border-slate-100 overflow-visible">
+                    <div class="flex items-center gap-1.5">
+                        <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-200">production</span>
+                        <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-200">testing</span>
+                        
+                        <div class="relative group/tooltip cursor-help">
+                            <span class="text-slate-400 text-[11px] font-medium hover:text-blue-600 transition-colors">+3</span>
+                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover/tooltip:flex flex-col gap-1 w-max min-w-[120px] p-2 bg-[#1e293b] rounded-lg shadow-2xl z-[1000] border border-slate-700 pointer-events-none">
+                                <span class="text-[10px] text-slate-400 font-bold uppercase mb-1 px-1 text-left">Дополнительно:</span>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">sql-cluster</span>
+                                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">london-dc</span>
+                                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">pci-dss</span>
+                                </div>
+                                <div class="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-[#1e293b]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-500 font-mono text-[13px]">srv503</td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-500">Row 1 / L01</td>
+            </tr>
+
+            <tr class="hover:bg-blue-50/50 transition cursor-pointer group">
+                <td class="px-5 py-4 border-b border-slate-100">
+                    <input type="checkbox" class="row-checkbox rounded border-slate-300">
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100">
+                    <span class="inline-flex items-center gap-1.5 text-slate-400">
+                        <span class="w-2 h-2 bg-slate-300 rounded-full"></span> Offline
+                    </span>
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100 font-semibold text-slate-900">
+                    <a href="#" class="hover:text-blue-600 transition-colors">Beograd router</a>
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-600">Router</td>
+                <td class="px-5 py-4 border-b border-slate-100">—</td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-500 font-mono text-[13px]">net01</td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-400 italic">Unmounted</td>
+            </tr>
+
+            <tr class="hover:bg-blue-50/50 transition cursor-pointer group">
+                <td class="px-5 py-4 border-b border-transparent rounded-bl-xl">
+                    <input type="checkbox" class="row-checkbox rounded border-slate-300">
+                </td>
+                <td class="px-5 py-4 border-b border-transparent text-emerald-600 font-medium">
+                    <span class="inline-flex items-center gap-1.5">
+                        <span class="w-2 h-2 bg-emerald-500 rounded-full"></span> Active
+                    </span>
+                </td>
+                <td class="px-5 py-4 border-b border-transparent font-semibold text-slate-900">
+                    <a href="#" class="hover:text-blue-600 transition-colors">Moscow KVM Switch</a>
+                </td>
+                <td class="px-5 py-4 border-b border-transparent text-slate-600">KVM Switch</td>
+                <td class="px-5 py-4 border-b border-transparent">
+                    <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-200">production</span>
+                </td>
+                <td class="px-5 py-4 border-b border-transparent text-slate-500 font-mono text-[13px]">sw0002</td>
+                <td class="px-5 py-4 border-b border-transparent rounded-br-xl text-slate-500">Row 1 / M01</td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>
+
+<div class="max-w-[600px] mb-10 mt-24 border-l-2 border-slate-100 pl-6">
+    <span class="px-2 py-1 bg-slate-100 text-slate-500 rounded-md text-[10px] font-bold uppercase tracking-widest mb-3 inline-block">Итерация 2</span>
+    <h4 class="text-lg font-semibold text-slate-900 mb-1">Минимализм</h4>
+    <p class="text-sm text-slate-500 leading-relaxed">
+        Попытка максимально разгрузить интерфейс. Решение отклонено из-за потери разделителей в таблице, что критично для работы системных инженеров. Также съехала иерархия информации, что замедляло восприятие статуса объектов.
+    </p>
+</div>
+<div class="mb-10 bg-white rounded-xl border border-slate-200 shadow-sm overflow-visible">
+            <table class="w-full text-left border-separate border-spacing-0 table-dense">
+                <thead class="bg-slate-50 border-b border-slate-200">
+                    <tr class="text-slate-500 text-xs uppercase tracking-wider font-semibold">
+                        <th class="w-10 rounded-tl-xl"><input type="checkbox" id="selectAll" class="rounded border-slate-300"></th>
+                        <th class="w-24 ">Status</th>
+                        <th>Common Name</th>
+                        <th>Type</th>
+                        <th>Tags</th>
+                        <th>Asset Tag</th>
+                        <th class="w-24 rounded-tr-xl">Location</th>
+                    </tr>
+                </thead>
+                <tbody class="text-sm divide-y divide-slate-100">
+                    <tr onclick="window.location='server_view.html';" class="hover:bg-blue-50/50 transition cursor-pointer group">
+                        <td><input type="checkbox" class="row-checkbox rounded border-slate-300"></td>
+                        <td><span class="inline-flex items-center gap-1.5 text-red-600 font-medium"><span class="w-2 h-2 bg-red-500 rounded-full"></span> Alert</span></td>
+                        <td class="font-semibold text-slate-900">
+                            <a href="server_view.html" class="hover:text-blue-600 hover:underline transition-colors decoration-blue-200 underline-offset-4">
+                                London Server 4 </a>
+                    </td>
+                        <td>Server</td>
+<td class="px-5 py-3 overflow-visible"> <div class="flex items-center gap-1.5">
+        <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-200">production</span>
+        <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-200">testing</span>
+        
+        <div class="relative group cursor-help">
+            <span class="text-slate-400 text-[11px] font-medium hover:text-blue-600 transition-colors">
+                +3
+            </span>
+            
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col gap-1 w-max min-w-[120px] p-2 bg-[#1e293b] rounded-lg shadow-2xl z-[1000] border border-slate-700 pointer-events-none">
+                
+                <span class="text-[10px] text-slate-400 font-bold uppercase mb-1 px-1">Дополнительно:</span>
+                <div class="flex flex-wrap gap-1">
+                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">sql-cluster</span>
+                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">london-dc</span>
+                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">pci-dss</span>
+                </div>
+
+                <div class="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-[#1e293b]"></div>
+            </div>
+        </div>
+    </div>
+</td>
+                        <td class="text-slate-500">srv503</td>
+                        <td class="text-slate-500">Row 1 / L01</td>
+                    </tr>
+                    <tr onclick="window.location='server_view.html';" class="hover:bg-blue-50/50 transition cursor-pointer group">
+                        <td><input type="checkbox" class="row-checkbox rounded border-slate-300"></td>
+                        <td><span class="inline-flex items-center gap-1.5 text-slate-400"><span class="w-2 h-2 bg-slate-300 rounded-full"></span> Offline</span></td>
+                        <td class="font-semibold text-slate-900">
+                            <a href="server_view.html" class="hover:text-blue-600 hover:underline transition-colors decoration-blue-200 underline-offset-4">
+                                Beograd router
+                            </a>
+                        </td>
+                        <td>Router</td>
+                        <td class="px-5 py-3 overflow-visible"> <div class="flex items-center gap-1.5">
+        <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-200">production</span>
+        <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-200">testing</span>
+        
+        <div class="relative group cursor-help">
+            <span class="text-slate-400 text-[11px] font-medium hover:text-blue-600 transition-colors ">
+                +3
+            </span>
+            
+            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:flex flex-col gap-1 w-max min-w-[120px] p-2 bg-[#1e293b] rounded-lg shadow-2xl z-[900] border border-slate-700 pointer-events-none">
+                
+                <span class="text-[10px] text-slate-400 font-bold uppercase mb-1 px-1">Дополнительно:</span>
+                <div class="flex flex-wrap gap-1">
+                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">sql-cluster</span>
+                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">london-dc</span>
+                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">pci-dss</span>
+                </div>
+
+                <div class="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-[#1e293b]"></div>
+            </div>
+        </div>
+    </div>
+</td>
+                        <td class="text-slate-500">net01</td>
+                        <td class="text-slate-400 italic">Unmounted</td>
+                    </tr>
+                    <tr onclick="window.location='server_view.html';" class="hover:bg-blue-50/50 transition cursor-pointer group">
+                        <td><input type="checkbox" class="row-checkbox rounded border-slate-300"></td>
+                        <td><span class="inline-flex items-center gap-1.5 text-emerald-600 font-medium"><span class="w-2 h-2 bg-emerald-500 rounded-full"></span> Active</span></td>
+                        <td class="font-semibold text-slate-900">Moscow KVM Switch</td>
+                        <td>KVM Switch</td>
+                        <td>
+                            <div class="flex gap-1">
+                                <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium">production</span>
+                            </div>
+                        </td>
+                        <td class="text-slate-500">sw0002</td>
+                        <td class="text-slate-500">Row 1 / M01</td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+
+<div class="max-w-[600px]  mb-8 mt-24 border-l-2 border-slate-100 pl-6">
+    <span class="px-2 py-1 bg-slate-100 text-slate-500 rounded-md text-[10px] font-bold uppercase tracking-widest mb-3 inline-block">Итерация 3</span>
+    <h4 class="text-lg font-semibold text-slate-900 mb-1">Структурный поиск</h4>
+    <p class="text-sm text-slate-500 leading-relaxed">
+        Тестирование различных вариантов выравнивания, группировки тегов и работы с акцидентными шрифтами для Asset Tags.
+    </p>
+</div>
+<div class="bg-white rounded-xl border border-slate-200 shadow-sm overflow-visible">
+    <table class="w-full text-left border-separate border-spacing-0 table-dense">
+        <thead class="bg-slate-50 uppercase text-[10px] font-bold text-slate-500 tracking-wider">
+            <tr>
+                <th class="px-5 py-3 border-b border-slate-200 rounded-tl-xl w-10">
+                    <input type="checkbox" id="selectAll" class="rounded border-slate-300">
+                </th>
+                <th class="px-5 py-3 border-b border-slate-200 w-24">Status</th>
+                <th class="px-5 py-3 border-b border-slate-200">Common Name</th>
+                <th class="px-5 py-3 border-b border-slate-200">Type</th>
+                <th class="px-5 py-3 border-b border-slate-200">Tags</th>
+                <th class="px-5 py-3 border-b border-slate-200">Asset Tag</th>
+                <th class="px-5 py-3 border-b border-slate-200 rounded-tr-xl">Location</th>
+            </tr>
+        </thead>
+        <tbody class="text-sm">
+            
+            <tr onclick="window.location='server_view.html';" class="hover:bg-blue-50/50 transition cursor-pointer group">
+                <td class="px-5 py-4 border-b border-slate-100" onclick="event.stopPropagation();">
+                    <input type="checkbox" class="row-checkbox rounded border-slate-300">
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100">
+                    <span class="inline-flex items-center gap-1.5 text-red-600 font-medium">
+                        <span class="w-2 h-2 bg-red-500 rounded-full"></span> Alert
+                    </span>
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100 font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
+                    <a href="server_view.html">London server 4</a>
+                </td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-600">Server</td>
+                
+                <td class="px-5 py-4 border-b border-slate-100 overflow-visible" onclick="event.stopPropagation();">
+                    <div class="flex items-center gap-1.5">
+                        <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-200">production</span>
+                        <span class="bg-slate-100 text-slate-600 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-200">testing</span>
+                        
+                        <div class="relative group/tooltip cursor-help">
+                            <span class="text-slate-400 text-[11px] font-medium hover:text-blue-600 transition-colors">+3</span>
+                            
+                            <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover/tooltip:flex flex-col gap-1 w-max min-w-[140px] p-2 bg-[#1e293b] rounded-lg shadow-2xl z-[1000] border border-slate-700 pointer-events-none">
+                                <span class="text-[10px] text-slate-400 font-bold uppercase mb-1 px-1">Дополнительно:</span>
+                                <div class="flex flex-wrap gap-1">
+                                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">sql-cluster</span>
+                                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">london-dc</span>
+                                    <span class="bg-slate-700 text-slate-200 px-2 py-0.5 rounded text-[10px]">pci-dss</span>
+                                </div>
+                                <div class="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-[#1e293b]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-500 font-mono text-[13px]">srv503</td>
+                <td class="px-5 py-4 border-b border-slate-100 text-slate-500">Row 1 / L01</td>
+            </tr>
+            </tbody>
+    </table>
+</div>
+</div>
+<footer class="mt-32 pt-12 border-t border-slate-100 pb-20">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+        <div class="space-y-2">
+            <h3 class="text-xl font-semibold text-slate-900">Stanislav Dovidenko</h3>
+            <p class="text-sm text-slate-500 max-w-sm leading-relaxed">
+                Senior Product Designer & AI/3D Artist. Специализируюсь на создании сложных Enterprise & Fintech систем с Consumer-grade UX.
+            </p>
+            <div class="flex items-center gap-3 pt-2 text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+                <span class="flex items-center gap-1.5"><span class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></span> Available for projects</span>
+                <span class="text-slate-200">|</span>
+                <span>Moscow, RU</span>
+            </div>
+        </div>
+        
+        <div class="flex flex-wrap gap-3">
+            <a href="https://linkedin.com/in/stasdodesign" target="_blank" class="px-5 py-2.5 bg-slate-900 text-white rounded-xl text-sm font-medium hover:bg-blue-600 transition-all flex items-center gap-2">
+                <span>LinkedIn</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6M15 3h6v6M10 14 21 3"/></svg>
+            </a>
+            <button onclick="copyEmail()" class="px-5 py-2.5 bg-white border border-slate-200 text-slate-900 rounded-xl text-sm font-medium hover:border-slate-400 transition-all flex items-center gap-2 group">
+                <span id="emailText">Copy Email</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:rotate-12 transition-transform"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+            </button>
+        </div>
+    </div>
+</footer>
+    </main>
+<script>lucide.createIcons();</script>
+    <div id="bulkAction" class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-slate-900 text-white px-6 py-3 rounded-full shadow-2xl flex items-center gap-6 transition-all transform translate-y-20 opacity-0 z-[100]">
+        <span class="text-sm font-medium border-r border-slate-700 pr-6"><span id="selectedCount">0</span> selected</span>
+        <div class="flex gap-4">
+            <button class="flex items-center gap-2 text-sm hover:text-blue-400 transition">
+                <span>Edit Tags</span>
+            </button>
+            <button class="flex items-center gap-2 text-sm hover:text-blue-400 transition">
+                <span>Move to Rack</span>
+            </button>
+            <button class="flex items-center gap-2 text-sm hover:text-red-400 transition">
+                <span>Delete</span>
+            </button>
+        </div>
+        <button id="cancelSelect" class="ml-4 text-slate-400 hover:text-white">✕</button>
+    </div>
+
+    <div id="modalOverlay" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-[240] opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+<div id="addObjectPanel" class="fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-[250] transform translate-x-full transition-transform duration-500 ease-out border-l border-slate-200">
+    <div class="flex flex-col h-full">
+        <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
+            <h2 class="text-xl font-semibold text-slate-900">Add New Object</h2>
+            <button id="closePanel" class="p-2 hover:bg-slate-200/50 rounded-full transition-colors">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto p-6 space-y-6">
+            <div class="space-y-2">
+                <label class="text-[10px] uppercase font-bold text-slate-500 ml-1">Common Name</label>
+                <input id="objName" type="text" placeholder="e.g. London-switch-01" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50/50 transition-all">
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+<div class="space-y-2">
+    <label class="text-[10px] uppercase font-bold text-slate-500 ml-1 tracking-wider">Object Type</label>
+    <div class="relative group">
+        <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors pointer-events-none">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/>
+            </svg>
+        </div>
+
+        <select id="objType" class="w-full bg-white border border-slate-200 rounded-xl pl-11 pr-10 py-2.5 text-sm outline-none appearance-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50/50 transition-all cursor-pointer text-slate-900 font-medium">
+            <option>Server</option>
+            <option>Router</option>
+            <option>Switch</option>
+            <option>PDU</option>
+        </select>
+
+        <div class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+            </svg>
+        </div>
+    </div>
+</div>
+                <div class="space-y-2">
+                    <label class="text-[10px] uppercase font-bold text-slate-500 ml-1">Asset Tag</label>
+                    <input id="objAsset" type="text" placeholder="SRV-990" class="w-full border border-slate-200 rounded-xl px-4 py-2.5 text-sm outline-none focus:border-blue-500 transition-all">
+                </div>
+            </div>
+<div class="space-y-2">
+    <label class="text-[10px] uppercase font-bold text-slate-500 ml-1 tracking-wider">Location / Rack</label>
+    <div class="relative group">
+        <div class="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-blue-500 transition-colors pointer-events-none">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
+            </svg>
+        </div>
+
+        <select id="objLocation" class="w-full bg-white border border-slate-200 rounded-xl pl-11 pr-10 py-2.5 text-sm outline-none appearance-none focus:border-blue-500 focus:ring-4 focus:ring-blue-50/50 transition-all cursor-pointer text-slate-900 font-medium">
+            <option>Row 1 / Unit 04 (London DC)</option>
+            <option>Row 1 / Unit 05 (London DC)</option>
+            <option>Row 2 / Unit 12 (Moscow DC)</option>
+            <option>Storage (Unmounted)</option>
+        </select>
+
+        <div class="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m6 9 6 6 6-6"/>
+            </svg>
+        </div>
+    </div>
+</div>
+
+            <div class="p-4 bg-blue-50 rounded-2xl border border-blue-100">
+                <p class="text-xs text-blue-700 leading-relaxed">
+                    <strong>Note:</strong> New objects are created with "Offline" status by default. You can change this in the object's properties after creation.
+                </p>
+            </div>
+        </div>
+
+        <div class="p-6 border-t border-slate-100 bg-slate-50/50 flex gap-3">
+            <button id="saveObject" class="flex-1 bg-blue-600 text-white font-medium py-2.5 rounded-xl hover:bg-blue-700 transition shadow-lg shadow-blue-200" id="saveObject">Create Object</button>
+            <button id="cancelBtn" class="px-6 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-200/50 rounded-xl transition">Cancel</button>
+        </div>
+    </div>   
+</div>
+<script>
+    const bulkAction = document.getElementById('bulkAction');
+    const selectedCount = document.getElementById('selectedCount');
+    const cancelSelect = document.getElementById('cancelSelect');
+    const selectAll = document.getElementById('selectAll');
+    const checkboxes = document.querySelectorAll('.row-checkbox');
+
+    function updateBulkAction() {
+        // Считаем количество выбранных чекбоксов
+        const checkedCount = document.querySelectorAll('.row-checkbox:checked').length;
+        
+        selectedCount.textContent = checkedCount;
+
+        if (checkedCount > 0) {
+            // Показываем панель (плавный подъем и появление)
+            bulkAction.classList.remove('opacity-0', 'translate-y-20');
+            bulkAction.classList.add('opacity-100', 'translate-y-0');
+        } else {
+            // Прячем панель
+            bulkAction.classList.add('opacity-0', 'translate-y-20');
+            bulkAction.classList.remove('opacity-100', 'translate-y-0');
+            if(selectAll) selectAll.checked = false;
+        }
+    }
+
+    // Слушатель для каждого чекбокса в строке
+    checkboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', updateBulkAction);
+    });
+
+    // Логика кнопки "Выбрать всё"
+    if (selectAll) {
+        selectAll.addEventListener('change', () => {
+            checkboxes.forEach(cb => cb.checked = selectAll.checked);
+            updateBulkAction();
+        });
+    }
+
+    // Кнопка отмены (крестик)
+    cancelSelect.addEventListener('click', () => {
+        checkboxes.forEach(cb => cb.checked = false);
+        if(selectAll) selectAll.checked = false;
+        updateBulkAction();
+    });
+</script>
+<script>
+const addObjectBtn = document.getElementById('addObjectBtn');
+const addObjectPanel = document.getElementById('addObjectPanel');
+const modalOverlay = document.getElementById('modalOverlay');
+const closePanel = document.getElementById('closePanel');
+const cancelBtn = document.getElementById('cancelBtn');
+
+function openAddPanel() {
+    addObjectPanel.classList.remove('translate-x-full');
+    modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
+    modalOverlay.classList.add('opacity-100');
+    document.body.style.overflow = 'hidden'; // Запрещаем скролл страницы
+}
+
+function closeAddPanel() {
+    addObjectPanel.classList.add('translate-x-full');
+    modalOverlay.classList.remove('opacity-100');
+    modalOverlay.classList.add('opacity-0', 'pointer-events-none');
+    document.body.style.overflow = ''; // Возвращаем скролл
+}
+
+addObjectBtn.addEventListener('click', openAddPanel);
+closePanel.addEventListener('click', closeAddPanel);
+cancelBtn.addEventListener('click', closeAddPanel);
+modalOverlay.addEventListener('click', closeAddPanel);
+</script>
+<script>
+    document.getElementById('saveObject').addEventListener('click', () => {
+    // 1. Собираем данные из формы
+    const name = document.getElementById('objName').value || "New Object";
+    const type = document.getElementById('objType').value;
+    const asset = document.getElementById('objAsset').value || "—";
+    const location = document.getElementById('objLocation').value;
+
+    // 2. Создаем шаблон новой строки
+    // Мы сразу закладываем туда всю логику: переход по ссылке, stopPropagation и стили
+    const newRow = document.createElement('tr');
+    newRow.className = "hover:bg-blue-50/50 transition-all duration-300 cursor-pointer group";
+    newRow.setAttribute('onclick', "window.location='server_view.html';");
+
+    newRow.innerHTML = `
+        <td class="px-5 py-4 border-b border-slate-100" onclick="event.stopPropagation();">
+            <input type="checkbox" class="row-checkbox rounded border-slate-300 cursor-pointer">
+        </td>
+        <td class="px-5 py-4 border-b border-slate-100">
+            <span class="inline-flex items-center gap-1.5 text-slate-400 font-medium">
+                <span class="w-2 h-2 bg-slate-300 rounded-full"></span> Offline
+            </span>
+        </td>
+        <td class="px-5 py-4 border-b border-slate-100 font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
+            <a href="server_view.html">${name}</a>
+        </td>
+        <td class="px-5 py-4 border-b border-slate-100 text-slate-600">${type}</td>
+        <td class="px-5 py-4 border-b border-slate-100 overflow-visible" onclick="event.stopPropagation();">
+            <div class="flex items-center gap-1.5">
+                <span class="text-slate-400 italic text-[11px]">No tags</span>
+            </div>
+        </td>
+        <td class="px-5 py-4 border-b border-slate-100 text-slate-500 font-mono text-[13px]">${asset}</td>
+        <td class="px-5 py-4 border-b border-slate-100 text-slate-500">${location}</td>
+    `;
+
+    // 3. Добавляем строку в начало таблицы (с эффектом появления)
+    const tbody = document.getElementById('tableBody');
+    tbody.prepend(newRow);
+
+    // 4. Очищаем форму и закрываем панель
+    document.getElementById('objName').value = '';
+    document.getElementById('objAsset').value = '';
+    closeAddPanel(); // Используем функцию закрытия, которую мы писали раньше
+    showToast();     // Показываем уведомление об успехе
+    // 5. Переинициализируем слушатели для Bulk Action (чтобы новый чекбокс работал)
+    const newCheckbox = newRow.querySelector('.row-checkbox');
+    newCheckbox.addEventListener('change', updateBulkAction);
+});
+    </script>
+<div id="successToast" class="fixed top-12 left-1/2 -translate-x-1/2 z-[300] pointer-events-none transform -translate-y-20 opacity-0 transition-all duration-500 ease-out">
+    <div class="bg-white/80 backdrop-blur-xl border border-emerald-100 shadow-2xl shadow-emerald-200/50 px-5 py-3 rounded-2xl flex items-center gap-3">
+        <div class="w-6 h-6 bg-emerald-500 rounded-full flex items-center justify-center text-white">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <div class="flex flex-col">
+            <p class="text-sm font-semibold text-slate-900">Object created</p>
+            <p class="text-[11px] text-slate-500">The server has been added to the registry</p>
+        </div>
+    </div>
+</div>
+<script>
+function showToast() {
+    const toast = document.getElementById('successToast');
+    
+    // Показываем (плавный выезд сверху)
+    toast.classList.remove('-translate-y-20', 'opacity-0');
+    toast.classList.add('translate-y-0', 'opacity-100');
+
+    // Прячем через 3 секунды
+    setTimeout(() => {
+        toast.classList.add('-translate-y-20', 'opacity-0');
+        toast.classList.remove('translate-y-0', 'opacity-100');
+    }, 3000);
+}
+</script>
+<script>    
+    function copyEmail() {
+    const email = "stasdodesign@gmail.com"; // Замени на свой
+    navigator.clipboard.writeText(email);
+    
+    const btnText = document.getElementById('emailText');
+    const originalText = btnText.innerText;
+    
+    btnText.innerText = "Copied!";
+    btnText.classList.add('text-emerald-600');
+    
+    setTimeout(() => {
+        btnText.innerText = originalText;
+        btnText.classList.remove('text-emerald-600');
+    }, 2000);
+}
+</script>
+<div class="fixed bottom-8 right-8 z-[200] bg-white/90 backdrop-blur-xl p-1.5 rounded-2xl border border-slate-200 shadow-2xl flex items-center gap-1">
+    <div class="px-3 py-1.5">
+        <span class="text-[10px] font-bold uppercase tracking-widest text-slate-400">Nav Layout</span>
+    </div>
+    <button id="navVariant1" class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 bg-slate-900 text-white shadow-lg">
+        Sidebar (Pro)
+    </button>
+    <button id="navVariant2" class="px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 text-slate-600 hover:bg-slate-100">
+        Header (Classic)
+    </button>
+</div>
+
+<script>
+    // Ждем полной загрузки DOM
+    document.addEventListener('DOMContentLoaded', () => {
+        
+        // 1. Собираем все элементы
+        const btn1 = document.getElementById('navVariant1');
+        const btn2 = document.getElementById('navVariant2');
+        const sidebar = document.getElementById('sidebarNav');
+        const header = document.getElementById('headerNav');
+        const main = document.getElementById('mainContent');
+        const subHeader = document.getElementById('subHeader');
+
+        // 2. Сама функция переключения
+        function switchNav(variant) {
+            console.log("Switching to variant:", variant); // Отладка в консоли (F12)
+
+            if (variant === 1) {
+                // --- РЕЖИМ SIDEBAR (PRO) ---
+                if (sidebar) sidebar.classList.remove('hidden');
+                if (header) header.classList.add('hidden');
+                if (main) main.classList.add('ml-64');
+                
+                if (subHeader) {
+                    subHeader.classList.add('ml-64');
+                    subHeader.style.top = '0px'; // Прижимаем к верху
+                }
+
+                // Стили кнопок
+                if (btn1) btn1.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all bg-slate-900 text-white shadow-lg";
+                if (btn2) btn2.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100";
+
+            } else {
+                // --- РЕЖИМ HEADER (CLASSIC) ---
+                if (sidebar) sidebar.classList.add('hidden');
+                if (header) header.classList.remove('hidden');
+                if (main) main.classList.remove('ml-64');
+                
+                if (subHeader) {
+                    subHeader.classList.remove('ml-64');
+                    subHeader.style.top = '52px'; // Опускаем под меню (высота твоего хедера)
+                }
+
+                // Стили кнопок
+                if (btn2) btn2.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all bg-slate-900 text-white shadow-lg";
+                if (btn1) btn1.className = "px-4 py-2 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100";
+            }
+        }
+
+        // 3. Вешаем события клика (только если кнопки существуют)
+        if (btn1) btn1.addEventListener('click', () => switchNav(1));
+        if (btn2) btn2.addEventListener('click', () => switchNav(2));
+    });
+</script>
+
+</body>
+</html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>JEDI CSS Design System</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/jedi.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="jedicss.ico/favicon-96x96.png" sizes="96x96" />
     <link rel="icon" type="image/svg+xml" href="jedicss.ico/favicon.svg" />
@@ -14,7 +15,6 @@
     <link rel="manifest" href="jedicss.ico/site.webmanifest" /> 
   </head>
 <body>
-  <!-- ������ ���� -->
   <header class="main-header">
     <div class="logo">
       <svg class="logo-img" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -33,94 +33,141 @@
       <a href="type.html" class="nav-link">Type</a>
       <a href="colors.html" class="nav-link">Colors</a>
       <a href="icons.html" class="nav-link">Icons</a>
+	  <a href="https://case.stanislavdovidenko.com/" class="nav-link">Portfolio Cases</a>
     </nav>
-    <button class="burger" id="burger-btn">?</button>
+    <button class="burger" id="burger-btn">☰</button>
     <div class="extra-menu">
       <a href="https://github.com/stasdodesign/" class="menu-link">GitHub</a>
     </div>
   </header>
-<section id="card" class="component-section">
-      <h1>JEDI Design System</h1>
-      <p>Experimental Sandbox by Stanislav Dovidenko with AI Product Design Cases </p>
-        <br>
-<div class="button-row">
-  <a href="https://github.com/stasdodesign/" class="btn-primary">
-    View GitHub
-    <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-      <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </a>
-</div>
-  <div class="overlay" id="overlay"></div>
-  <div class="cards">
+<section id="hero" class="component-section">
+  <div class="hero-container">
+    <h1>JEDI Design System</h1>
+    <p>Experimental Sandbox by Stanislav Dovidenko with AI Product Design Cases</p>
+    
+    <div class="button-row">
+      <a href="https://github.com/stasdodesign/" class="btn-primary">
+        View GitHub
+        <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+          <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+  <div class="container">
+<div class="cards">
+    
     <div class="card">
       <div class="card-body">
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+        </svg>
         <h3>Themes</h3>
         <p>Theme variations and dark mode support.</p>
         <a href="themes.html" class="btn-secondary-test">View
-        <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-        <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+          <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
+            <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
       </div>
     </div>
+
     <div class="card">
       <div class="card-body">
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2-1-2 1M4 7l2-1M4 7l2 1M4 7v2.5M12 21l-2-1m2 1l2-1m-2 1v-2.5M6 18l-2-1v-2.5M18 18l2-1v-2.5" />
+        </svg>
         <h3>Primitives</h3>
         <p>Basic design primitives and elements.</p>
         <a href="primitives.html" class="btn-secondary-test">View
-        <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-        <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+          <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
+            <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
       </div>
     </div>
+
     <div class="card">
       <div class="card-body">
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 4h18M8 4v16m8-16v16" />
+        </svg>
         <h3>Type</h3>
         <p>Typography scales and text styles.</p>
         <a href="type.html" class="btn-secondary-test">View
-        <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-        <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+          <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
+            <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
       </div>
     </div>
+
     <div class="card">
       <div class="card-body">
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+        </svg>
         <h3>Colors</h3>
         <p>Explore the color palette and design tokens.</p>
         <a href="colors.html" class="btn-secondary-test">View
-        <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-        <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+          <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
+            <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a> 
       </div>
     </div>
+
     <div class="card">
       <div class="card-body">
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
+        </svg>
         <h3>Icons</h3>
         <p>Icon library and usage guidelines.</p>
         <a href="icons.html" class="btn-secondary-test">View
-        <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-        <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+          <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
+            <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>         
       </div>
     </div>
+
     <div class="card">
       <div class="card-body">
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
         <h3>Product</h3>
         <p>Product-specific components and patterns.</p>
         <a href="products.html" class="btn-secondary-test">View
          <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
-        <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+            <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
         </a>
       </div>
     </div>
+
+    <div class="card">
+      <div class="card-body">
+        <svg class="card-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <h3>Portfolio Cases</h3>
+        <p>Stanislav Dovidenko AI Product Design Cases</p>
+        <a href="https://case.stanislavdovidenko.com/" class="btn-secondary-test" target="_blank">View
+         <svg class="icon small-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="30" height="30">
+            <path d="M10 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+    </div>	
+    
   </div>
+</div>
 </section>
+
+ 
+
   <script src="js/burger.js"></script>
     <!-- Подвал -->
     <footer style="margin-left: 0px;">
